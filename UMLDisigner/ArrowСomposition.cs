@@ -8,8 +8,8 @@ namespace UMLDisigner
     class ArrowСomposition : IFigure
     {
         public void Draw(Graphics graphics, Pen pen, Points p)
-        {
-            SolidBrush brush =new SolidBrush(Color.Black);
+        { 
+            SolidBrush brush =new SolidBrush(pen.Color); 
             double d = Math.Sqrt(Math.Pow(p.Positions[1].X - p.Positions[0].X, 2) + Math.Pow(p.Positions[1].Y - p.Positions[0].Y, 2));
 
             Point a = new Point((int)(p.Positions[1].X - (p.ShouldersArrows[3].X / d) * 40),

@@ -41,9 +41,10 @@ namespace UMLDisigner
             {
                 mouseUpPosition = e.Location;
                 p = new Points(FindingPointsAndPerpendiculars(), mouseDownPosition, mouseUpPosition, FindingPointsAndPerpendicularsAtFirst());
+                brush.TrackBarWidth = trackBar1.Value;
                 brush.DrawMoveFigure(figure, p);
                 //pictureBox1.Invalidate();
-               
+
             }
             
 
@@ -179,30 +180,6 @@ namespace UMLDisigner
             return ArrowAtFront;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_2(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click_2(object sender, EventArgs e)
         {
@@ -211,6 +188,11 @@ namespace UMLDisigner
                 button1.BackColor = colorDialog1.Color;
                 brush.Color = colorDialog1.Color;
             }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            label2.Text = trackBar1.Value.ToString();
         }
     }
 }
