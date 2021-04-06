@@ -40,6 +40,8 @@ namespace UMLDisigner
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_ArrowImplementation = new System.Windows.Forms.Button();
             this.button_ArrowAggregationPlus = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +49,7 @@ namespace UMLDisigner
             // 
             this.button_Clear.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_Clear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_Clear.Location = new System.Drawing.Point(912, 59);
+            this.button_Clear.Location = new System.Drawing.Point(919, 90);
             this.button_Clear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_Clear.Name = "button_Clear";
             this.button_Clear.Size = new System.Drawing.Size(190, 48);
@@ -60,7 +62,7 @@ namespace UMLDisigner
             // 
             this.button_Rectangle.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_Rectangle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_Rectangle.Location = new System.Drawing.Point(912, 117);
+            this.button_Rectangle.Location = new System.Drawing.Point(919, 148);
             this.button_Rectangle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_Rectangle.Name = "button_Rectangle";
             this.button_Rectangle.Size = new System.Drawing.Size(190, 45);
@@ -73,7 +75,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowAssociation.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowAssociation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowAssociation.Location = new System.Drawing.Point(912, 172);
+            this.button_ArrowAssociation.Location = new System.Drawing.Point(919, 203);
             this.button_ArrowAssociation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ArrowAssociation.Name = "button_ArrowAssociation";
             this.button_ArrowAssociation.Size = new System.Drawing.Size(190, 45);
@@ -86,7 +88,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowInheritance.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowInheritance.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowInheritance.Location = new System.Drawing.Point(912, 227);
+            this.button_ArrowInheritance.Location = new System.Drawing.Point(919, 258);
             this.button_ArrowInheritance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ArrowInheritance.Name = "button_ArrowInheritance";
             this.button_ArrowInheritance.Size = new System.Drawing.Size(190, 45);
@@ -99,7 +101,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowAggregation.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowAggregation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowAggregation.Location = new System.Drawing.Point(912, 282);
+            this.button_ArrowAggregation.Location = new System.Drawing.Point(919, 313);
             this.button_ArrowAggregation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ArrowAggregation.Name = "button_ArrowAggregation";
             this.button_ArrowAggregation.Size = new System.Drawing.Size(190, 45);
@@ -112,7 +114,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowСomposition.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowСomposition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowСomposition.Location = new System.Drawing.Point(912, 391);
+            this.button_ArrowСomposition.Location = new System.Drawing.Point(919, 422);
             this.button_ArrowСomposition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ArrowСomposition.Name = "button_ArrowСomposition";
             this.button_ArrowСomposition.Size = new System.Drawing.Size(190, 43);
@@ -125,7 +127,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowCompositionPlus.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowCompositionPlus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowCompositionPlus.Location = new System.Drawing.Point(912, 444);
+            this.button_ArrowCompositionPlus.Location = new System.Drawing.Point(919, 475);
             this.button_ArrowCompositionPlus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ArrowCompositionPlus.Name = "button_ArrowCompositionPlus";
             this.button_ArrowCompositionPlus.Size = new System.Drawing.Size(190, 43);
@@ -164,7 +166,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowImplementation.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowImplementation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowImplementation.Location = new System.Drawing.Point(912, 497);
+            this.button_ArrowImplementation.Location = new System.Drawing.Point(919, 528);
             this.button_ArrowImplementation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ArrowImplementation.Name = "button_ArrowImplementation";
             this.button_ArrowImplementation.Size = new System.Drawing.Size(190, 43);
@@ -177,7 +179,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowAggregationPlus.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowAggregationPlus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowAggregationPlus.Location = new System.Drawing.Point(912, 337);
+            this.button_ArrowAggregationPlus.Location = new System.Drawing.Point(919, 368);
             this.button_ArrowAggregationPlus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ArrowAggregationPlus.Name = "button_ArrowAggregationPlus";
             this.button_ArrowAggregationPlus.Size = new System.Drawing.Size(190, 43);
@@ -186,11 +188,23 @@ namespace UMLDisigner
             this.button_ArrowAggregationPlus.UseVisualStyleBackColor = true;
             this.button_ArrowAggregationPlus.Click += new System.EventHandler(this.button_ArrowAggregationPlus_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button1.Location = new System.Drawing.Point(997, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(33, 34);
+            this.button1.TabIndex = 12;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1122, 607);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button_ArrowAggregationPlus);
             this.Controls.Add(this.button_ArrowImplementation);
             this.Controls.Add(this.button_StepBack);
@@ -225,6 +239,8 @@ namespace UMLDisigner
         private System.Windows.Forms.Button button_ArrowImplementation;
         private System.Windows.Forms.Button button;
         private System.Windows.Forms.Button button_ArrowAggregationPlus;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

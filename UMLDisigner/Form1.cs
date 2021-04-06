@@ -19,7 +19,6 @@ namespace UMLDisigner
         IFigure figure;
         Points p;
         bool isMousDown = false;
-
         //Graph 
         //Arrow arrow = new Arrow(graph);
         //table (graph)
@@ -71,8 +70,7 @@ namespace UMLDisigner
 
         private void button_Clear_Click(object sender, EventArgs e)
         {
-            brush.Clear();
-            
+            brush.Clear();            
         }
 
         private void button_Rectangle_Click(object sender, EventArgs e)
@@ -206,6 +204,13 @@ namespace UMLDisigner
 
         }
 
-
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                button1.BackColor = colorDialog1.Color;
+                brush.Color = colorDialog1.Color;
+            }
+        }
     }
 }
