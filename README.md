@@ -1,1 +1,1 @@
-UML-designer
+UMLDisigner
