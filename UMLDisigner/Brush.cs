@@ -8,6 +8,7 @@ namespace UMLDisigner
 {
    public class Brush
     {
+        public Color Color { get; set; } = Color.Black;
         Bitmap _mainBitmap;
         Bitmap _tmpBitmap;
         Graphics graphics;
@@ -17,8 +18,7 @@ namespace UMLDisigner
         public Brush(PictureBox pb)
         {
             _mainBitmap = new Bitmap(pb.Width, pb.Height);
-           
-            pen = new Pen(Color.Black, 3);
+            pen = new Pen(Color, 3);
             graphics = Graphics.FromImage(_mainBitmap);
 
             graphics.Clear(Color.White);
@@ -29,6 +29,7 @@ namespace UMLDisigner
         {
             _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             graphics = Graphics.FromImage(_tmpBitmap);
+            pen.Color = Color;
             figure.Draw(graphics, pen, p);
             pb.Image = _tmpBitmap;
             GC.Collect();
