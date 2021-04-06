@@ -74,39 +74,47 @@ namespace UMLDisigner
             brush.Clear();
             
         }
-        private void button_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
 
-            switch (button.Text)
-            {
-                case "ArrowAssociation":
-                    figure = new ArrowAssociation();
-                    break;
-                case "ArrowInheritance":
-                    figure = new ArrowInheritance();
-                    break;
-                case "ArrowAggregation":
-                    figure = new ArrowAggregation();
-                    break;
-                case "ArrowAggregationPlus":
-                    figure = new ArrowAggregationPlus();
-                    break;
-                case "ArrowСomposition":
-                    figure = new ArrowСomposition();
-                    break;
-                case "ArrowСompositionPlus":
-                    figure = new ArrowСompositionPlus();
-                    break;
-                case "ArrowImplementation":
-                    figure = new ArrowImplementation();
-                    break;
-                case "Rectangle":
-                    figure = new Rectangle();
-                    break;
-            }
-            
+        private void button_Rectangle_Click(object sender, EventArgs e)
+        {
+            figure = new Rectangle();
         }
+
+        private void button_ArrowAssociation_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowAssociation();
+        }
+
+        private void button_ArrowInheritance_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowInheritance();
+        }
+
+        private void button_ArrowAggregation_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowAggregation();
+        }
+
+        private void button_ArrowAggregationPlus_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowAggregationPlus();
+        }
+
+        private void button_ArrowСomposition_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowСomposition();
+        }
+
+        private void button_ArrowCompositionPlus_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowСompositionPlus();
+        }
+
+        private void button_ArrowImplementation_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowImplementation();
+        }
+
 
         private void button_StepBack_Click(object sender, EventArgs e)
         {
@@ -197,5 +205,7 @@ namespace UMLDisigner
         {
 
         }
+
+
     }
 }
