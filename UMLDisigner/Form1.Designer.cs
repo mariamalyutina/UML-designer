@@ -42,14 +42,17 @@ namespace UMLDisigner
             this.button_ArrowAggregationPlus = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.button1 = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_Clear
             // 
             this.button_Clear.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_Clear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_Clear.Location = new System.Drawing.Point(735, 72);
+            this.button_Clear.Location = new System.Drawing.Point(1136, 83);
             this.button_Clear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_Clear.Name = "button_Clear";
             this.button_Clear.Size = new System.Drawing.Size(152, 38);
@@ -62,7 +65,7 @@ namespace UMLDisigner
             // 
             this.button_Rectangle.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_Rectangle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_Rectangle.Location = new System.Drawing.Point(735, 118);
+            this.button_Rectangle.Location = new System.Drawing.Point(1136, 129);
             this.button_Rectangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_Rectangle.Name = "button_Rectangle";
             this.button_Rectangle.Size = new System.Drawing.Size(152, 36);
@@ -75,7 +78,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowAssociation.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowAssociation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowAssociation.Location = new System.Drawing.Point(735, 162);
+            this.button_ArrowAssociation.Location = new System.Drawing.Point(1136, 173);
             this.button_ArrowAssociation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ArrowAssociation.Name = "button_ArrowAssociation";
             this.button_ArrowAssociation.Size = new System.Drawing.Size(152, 36);
@@ -88,7 +91,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowInheritance.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowInheritance.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowInheritance.Location = new System.Drawing.Point(735, 206);
+            this.button_ArrowInheritance.Location = new System.Drawing.Point(1136, 217);
             this.button_ArrowInheritance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ArrowInheritance.Name = "button_ArrowInheritance";
             this.button_ArrowInheritance.Size = new System.Drawing.Size(152, 36);
@@ -101,7 +104,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowAggregation.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowAggregation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowAggregation.Location = new System.Drawing.Point(735, 250);
+            this.button_ArrowAggregation.Location = new System.Drawing.Point(1136, 261);
             this.button_ArrowAggregation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ArrowAggregation.Name = "button_ArrowAggregation";
             this.button_ArrowAggregation.Size = new System.Drawing.Size(152, 36);
@@ -114,7 +117,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowСomposition.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowСomposition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowСomposition.Location = new System.Drawing.Point(735, 338);
+            this.button_ArrowСomposition.Location = new System.Drawing.Point(1136, 349);
             this.button_ArrowСomposition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ArrowСomposition.Name = "button_ArrowСomposition";
             this.button_ArrowСomposition.Size = new System.Drawing.Size(152, 34);
@@ -127,7 +130,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowCompositionPlus.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowCompositionPlus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowCompositionPlus.Location = new System.Drawing.Point(735, 380);
+            this.button_ArrowCompositionPlus.Location = new System.Drawing.Point(1136, 391);
             this.button_ArrowCompositionPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ArrowCompositionPlus.Name = "button_ArrowCompositionPlus";
             this.button_ArrowCompositionPlus.Size = new System.Drawing.Size(152, 34);
@@ -140,7 +143,7 @@ namespace UMLDisigner
             // 
             this.button_StepBack.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_StepBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_StepBack.Location = new System.Drawing.Point(1105, 582);
+            this.button_StepBack.Location = new System.Drawing.Point(1136, 600);
             this.button_StepBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_StepBack.Name = "button_StepBack";
             this.button_StepBack.Size = new System.Drawing.Size(152, 34);
@@ -151,13 +154,12 @@ namespace UMLDisigner
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(10, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 83);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(704, 434);
+            this.pictureBox1.Size = new System.Drawing.Size(1118, 551);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_2);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -166,7 +168,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowImplementation.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowImplementation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowImplementation.Location = new System.Drawing.Point(735, 422);
+            this.button_ArrowImplementation.Location = new System.Drawing.Point(1136, 433);
             this.button_ArrowImplementation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ArrowImplementation.Name = "button_ArrowImplementation";
             this.button_ArrowImplementation.Size = new System.Drawing.Size(152, 34);
@@ -179,7 +181,7 @@ namespace UMLDisigner
             // 
             this.button_ArrowAggregationPlus.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_ArrowAggregationPlus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_ArrowAggregationPlus.Location = new System.Drawing.Point(735, 294);
+            this.button_ArrowAggregationPlus.Location = new System.Drawing.Point(1136, 305);
             this.button_ArrowAggregationPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ArrowAggregationPlus.Name = "button_ArrowAggregationPlus";
             this.button_ArrowAggregationPlus.Size = new System.Drawing.Size(152, 34);
@@ -192,19 +194,43 @@ namespace UMLDisigner
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button1.Location = new System.Drawing.Point(798, 38);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(301, 20);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 27);
+            this.button1.Size = new System.Drawing.Size(26, 26);
             this.button1.TabIndex = 12;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(12, 20);
+            this.trackBar1.Maximum = 5;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(284, 56);
+            this.trackBar1.TabIndex = 13;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(21, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 19);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 486);
+            this.ClientSize = new System.Drawing.Size(1300, 647);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button_ArrowAggregationPlus);
             this.Controls.Add(this.button_ArrowImplementation);
@@ -223,7 +249,9 @@ namespace UMLDisigner
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -242,6 +270,8 @@ namespace UMLDisigner
         private System.Windows.Forms.Button button_ArrowAggregationPlus;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
