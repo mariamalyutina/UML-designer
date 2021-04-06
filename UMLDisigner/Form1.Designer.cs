@@ -70,7 +70,7 @@ namespace UMLDisigner
             this.button_Rectangle.Name = "button_Rectangle";
             this.button_Rectangle.Size = new System.Drawing.Size(152, 36);
             this.button_Rectangle.TabIndex = 2;
-            this.button_Rectangle.Text = "Rectangle";
+            this.button_Rectangle.Text = "Class";
             this.button_Rectangle.UseVisualStyleBackColor = true;
             this.button_Rectangle.Click += new System.EventHandler(this.button_Rectangle_Click);
             // 
@@ -83,7 +83,7 @@ namespace UMLDisigner
             this.button_ArrowAssociation.Name = "button_ArrowAssociation";
             this.button_ArrowAssociation.Size = new System.Drawing.Size(152, 36);
             this.button_ArrowAssociation.TabIndex = 3;
-            this.button_ArrowAssociation.Text = "ArrowAssociation";
+            this.button_ArrowAssociation.Text = "Association";
             this.button_ArrowAssociation.UseVisualStyleBackColor = true;
             this.button_ArrowAssociation.Click += new System.EventHandler(this.button_ArrowAssociation_Click);
             // 
@@ -96,7 +96,7 @@ namespace UMLDisigner
             this.button_ArrowInheritance.Name = "button_ArrowInheritance";
             this.button_ArrowInheritance.Size = new System.Drawing.Size(152, 36);
             this.button_ArrowInheritance.TabIndex = 4;
-            this.button_ArrowInheritance.Text = "ArrowInheritance";
+            this.button_ArrowInheritance.Text = "Inheritance";
             this.button_ArrowInheritance.UseVisualStyleBackColor = true;
             this.button_ArrowInheritance.Click += new System.EventHandler(this.button_ArrowInheritance_Click);
             // 
@@ -109,7 +109,7 @@ namespace UMLDisigner
             this.button_ArrowAggregation.Name = "button_ArrowAggregation";
             this.button_ArrowAggregation.Size = new System.Drawing.Size(152, 36);
             this.button_ArrowAggregation.TabIndex = 5;
-            this.button_ArrowAggregation.Text = "ArrowAggregation";
+            this.button_ArrowAggregation.Text = "Aggregation";
             this.button_ArrowAggregation.UseVisualStyleBackColor = true;
             this.button_ArrowAggregation.Click += new System.EventHandler(this.button_ArrowAggregation_Click);
             // 
@@ -122,7 +122,7 @@ namespace UMLDisigner
             this.button_ArrowСomposition.Name = "button_ArrowСomposition";
             this.button_ArrowСomposition.Size = new System.Drawing.Size(152, 34);
             this.button_ArrowСomposition.TabIndex = 6;
-            this.button_ArrowСomposition.Text = "ArrowСomposition";
+            this.button_ArrowСomposition.Text = "Сomposition";
             this.button_ArrowСomposition.UseVisualStyleBackColor = true;
             this.button_ArrowСomposition.Click += new System.EventHandler(this.button_ArrowСomposition_Click);
             // 
@@ -135,7 +135,7 @@ namespace UMLDisigner
             this.button_ArrowCompositionPlus.Name = "button_ArrowCompositionPlus";
             this.button_ArrowCompositionPlus.Size = new System.Drawing.Size(152, 34);
             this.button_ArrowCompositionPlus.TabIndex = 8;
-            this.button_ArrowCompositionPlus.Text = "ArrowСompositionPlus";
+            this.button_ArrowCompositionPlus.Text = "Сomposition+";
             this.button_ArrowCompositionPlus.UseVisualStyleBackColor = true;
             this.button_ArrowCompositionPlus.Click += new System.EventHandler(this.button_ArrowCompositionPlus_Click);
             // 
@@ -173,7 +173,7 @@ namespace UMLDisigner
             this.button_ArrowImplementation.Name = "button_ArrowImplementation";
             this.button_ArrowImplementation.Size = new System.Drawing.Size(152, 34);
             this.button_ArrowImplementation.TabIndex = 10;
-            this.button_ArrowImplementation.Text = "ArrowImplementation";
+            this.button_ArrowImplementation.Text = "Implementation";
             this.button_ArrowImplementation.UseVisualStyleBackColor = true;
             this.button_ArrowImplementation.Click += new System.EventHandler(this.button_ArrowImplementation_Click);
             // 
@@ -186,7 +186,7 @@ namespace UMLDisigner
             this.button_ArrowAggregationPlus.Name = "button_ArrowAggregationPlus";
             this.button_ArrowAggregationPlus.Size = new System.Drawing.Size(152, 34);
             this.button_ArrowAggregationPlus.TabIndex = 11;
-            this.button_ArrowAggregationPlus.Text = "ArrowAggregationPlus";
+            this.button_ArrowAggregationPlus.Text = "Aggregation+";
             this.button_ArrowAggregationPlus.UseVisualStyleBackColor = true;
             this.button_ArrowAggregationPlus.Click += new System.EventHandler(this.button_ArrowAggregationPlus_Click);
             // 
