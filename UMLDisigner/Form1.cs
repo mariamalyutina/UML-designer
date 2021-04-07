@@ -24,7 +24,7 @@ namespace UMLDisigner
         //table (graph)
         //arrow.adasdad(Point)
       
-        string Output;
+       
         public Form1()
         {
             InitializeComponent();
@@ -74,10 +74,7 @@ namespace UMLDisigner
             brush.Clear();            
         }
 
-        private void button_Rectangle_Click(object sender, EventArgs e)
-        {
-            figure = new Rectangle();
-        }
+        
 
         private void button_ArrowAssociation_Click(object sender, EventArgs e)
         {
@@ -117,6 +114,7 @@ namespace UMLDisigner
 
         private void button_StepBack_Click(object sender, EventArgs e)
         {
+            figure = new Class3();
             //brush.bitmap = BitmapList[BitmapList.Count - 1];
             //BitmapList.RemoveAt(BitmapList.Count - 1);
             //if (BitmapList.Count == 1)
@@ -193,6 +191,26 @@ namespace UMLDisigner
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label2.Text = trackBar1.Value.ToString();
+        }
+
+        private void button_Class1_Click(object sender, EventArgs e)
+        {
+            figure = new Class1();
+        }
+
+        private void button_Class2_Click(object sender, EventArgs e)
+        {
+            figure = new Class2();
+        }
+
+        private void button_Class3_Click(object sender, EventArgs e)
+        {
+            figure = new Class3();
+        }
+
+        private void button_ClassStack_Click(object sender, EventArgs e)
+        {
+            figure = new ClassStack();
         }
     }
 }
