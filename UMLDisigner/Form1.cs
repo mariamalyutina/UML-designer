@@ -7,22 +7,16 @@ namespace UMLDisigner
 {
     public partial class Form1 : Form
     {
-       // Bitmap brush.bitmap;
+       
         List<Bitmap> BitmapList= new List<Bitmap>();
 
-        //Graphics brush.graphics;
-        //Pen brush.pen;
-        //SolidBrush brush.brushBlack;
         Brush brush;
         Point mouseDownPosition;
         Point mouseUpPosition;
         IFigure figure;
         Points p;
         bool isMousDown = false;
-        //Graph 
-        //Arrow arrow = new Arrow(graph);
-        //table (graph)
-        //arrow.adasdad(Point)
+        
       
        
         public Form1()
