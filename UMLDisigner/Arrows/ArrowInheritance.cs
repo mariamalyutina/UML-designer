@@ -5,12 +5,12 @@ using System.Drawing;
 
 namespace UMLDisigner
 {
-   public class ArrowInheritance : IFigure
+    class ArrowInheritance : IFigure
     {
-        public void Draw(Graphics graphics, Pen pen, Points p)
+        public void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition)
         {
-            graphics.DrawPolygon(pen, new Point[] { p.Positions[1], p.ShouldersArrows[0], p.ShouldersArrows[1] });
-            graphics.DrawLine(pen, p.Positions[0], p.ShouldersArrows[2]);
+            graphics.DrawLine(pen, mouseDownPosition, Geometry.GetArrow(mouseUpPosition, mouseDownPosition)[3]);
+            graphics.DrawPolygon(pen, Geometry.GetArrow(mouseUpPosition, mouseDownPosition));
         }
     }
 }

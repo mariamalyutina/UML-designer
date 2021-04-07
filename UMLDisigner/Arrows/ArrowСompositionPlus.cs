@@ -7,19 +7,14 @@ namespace UMLDisigner
 {
     class ArrowСompositionPlus : IFigure
     {
-        public void Draw(Graphics graphics, Pen pen, Points p)
+        public void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition)
         {
             SolidBrush brush = new SolidBrush(pen.Color);
-            double d = Math.Sqrt(Math.Pow(p.Positions[1].X - p.Positions[0].X, 2) + Math.Pow(p.Positions[1].Y - p.Positions[0].Y, 2));
-
-            Point a = new Point((int)(p.Positions[0].X - (p.ArrowAtFront[2].X / d) * 40),
-               (int)(p.Positions[0].Y - (p.ArrowAtFront[2].Y / d) * 40));
-
-            graphics.FillPolygon(brush, new Point[] { p.Positions[0], p.ArrowAtFront[0], a, p.ArrowAtFront[1] });
-            graphics.DrawPolygon(pen, new Point[] { p.Positions[0], p.ArrowAtFront[0], a, p.ArrowAtFront[1] });
-            graphics.DrawLine(pen, a, p.Positions[1]);
-            graphics.DrawLine(pen, p.Positions[1], p.ShouldersArrows[0]);
-            graphics.DrawLine(pen, p.Positions[1], p.ShouldersArrows[1]);
+            graphics.DrawLine(pen, Geometry.GetRomb(mouseDownPosition, mouseUpPosition)[3], mouseUpPosition);//начинаем прорисовывать линию от конца ромбика
+            graphics.DrawLine(pen, mouseUpPosition, Geometry.GetArrow(mouseUpPosition, mouseDownPosition)[0]); //отрисовка крыльев стрелки
+            graphics.DrawLine(pen, mouseUpPosition, Geometry.GetArrow(mouseUpPosition, mouseDownPosition)[2]); //отрисовка крыльев стрелки
+            graphics.DrawPolygon(pen, Geometry.GetRomb(mouseDownPosition, mouseUpPosition)); //ромбик на конце , меняем местами mouseUp и mouseDown, чтобы ромбик рисовался в конце линии
+            graphics.FillPolygon(brush, Geometry.GetRomb(mouseDownPosition, mouseUpPosition));
         }
     }
 }
