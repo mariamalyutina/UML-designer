@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
+
 namespace UMLDisigner
 {
     public partial class Form1 : Form
@@ -73,6 +74,39 @@ namespace UMLDisigner
             brush.Clear();            
         }
 
+        private void SetArrow(String nameArrow)
+        {
+
+            switch (nameArrow)
+            {
+                case "ArrowAssociation":
+                    figure = new ArrowAssociation();
+                    break;
+                case "ArrowInheritance":
+                    figure = new ArrowInheritance();
+                    break;
+                case "ArrowAggregation":
+                    figure = new ArrowAggregation();
+                    break;
+                case "ArrowAggregationPlus":
+                    figure = new ArrowAggregationPlus();
+                    break;
+                case "ArrowСomposition":
+                    figure = new ArrowСomposition();
+                    break;
+                case "ArrowСompositionPlus":
+                    figure = new ArrowСompositionPlus();
+                    break;
+                case "ArrowImplementation":
+                    figure = new ArrowImplementation();
+                    break;
+                case "Rectangle":
+                    figure = new Rectangle();
+                    break;
+            }
+
+        }
+
         private void button_Rectangle_Click(object sender, EventArgs e)
         {
             figure = new Rectangle();
@@ -112,7 +146,6 @@ namespace UMLDisigner
         {
             figure = new ArrowImplementation();
         }
-
 
         private void button_StepBack_Click(object sender, EventArgs e)
         {
@@ -211,6 +244,24 @@ namespace UMLDisigner
                 button1.BackColor = colorDialog1.Color;
                 brush.Color = colorDialog1.Color;
             }
+        }
+
+
+        private void button_ArrowsList_MouseHover(object sender, EventArgs e)
+        {
+            FormArrows formArrows = new FormArrows();
+            formArrows.Location = button_ArrowsList.Location;
+            formArrows.ShowDialog();
+            if(formArrows.String != null)
+            {
+                SetArrow(formArrows.String);
+            }
+            
+        }
+
+        private void formArrows_pictureBox_Association_Click()
+        {
+            figure = new ArrowAssociation();
         }
     }
 }

@@ -42,6 +42,7 @@ namespace UMLDisigner
             this.button_ArrowAggregationPlus = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.button1 = new System.Windows.Forms.Button();
+            this.button_ArrowsList = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +70,6 @@ namespace UMLDisigner
             this.button_Rectangle.TabIndex = 2;
             this.button_Rectangle.Text = "Rectangle";
             this.button_Rectangle.UseVisualStyleBackColor = true;
-            this.button_Rectangle.Click += new System.EventHandler(this.button_Rectangle_Click);
             // 
             // button_ArrowAssociation
             // 
@@ -82,7 +82,6 @@ namespace UMLDisigner
             this.button_ArrowAssociation.TabIndex = 3;
             this.button_ArrowAssociation.Text = "ArrowAssociation";
             this.button_ArrowAssociation.UseVisualStyleBackColor = true;
-            this.button_ArrowAssociation.Click += new System.EventHandler(this.button_ArrowAssociation_Click);
             // 
             // button_ArrowInheritance
             // 
@@ -95,7 +94,6 @@ namespace UMLDisigner
             this.button_ArrowInheritance.TabIndex = 4;
             this.button_ArrowInheritance.Text = "ArrowInheritance";
             this.button_ArrowInheritance.UseVisualStyleBackColor = true;
-            this.button_ArrowInheritance.Click += new System.EventHandler(this.button_ArrowInheritance_Click);
             // 
             // button_ArrowAggregation
             // 
@@ -108,7 +106,6 @@ namespace UMLDisigner
             this.button_ArrowAggregation.TabIndex = 5;
             this.button_ArrowAggregation.Text = "ArrowAggregation";
             this.button_ArrowAggregation.UseVisualStyleBackColor = true;
-            this.button_ArrowAggregation.Click += new System.EventHandler(this.button_ArrowAggregation_Click);
             // 
             // button_ArrowСomposition
             // 
@@ -121,7 +118,6 @@ namespace UMLDisigner
             this.button_ArrowСomposition.TabIndex = 6;
             this.button_ArrowСomposition.Text = "ArrowСomposition";
             this.button_ArrowСomposition.UseVisualStyleBackColor = true;
-            this.button_ArrowСomposition.Click += new System.EventHandler(this.button_ArrowСomposition_Click);
             // 
             // button_ArrowCompositionPlus
             // 
@@ -134,7 +130,6 @@ namespace UMLDisigner
             this.button_ArrowCompositionPlus.TabIndex = 8;
             this.button_ArrowCompositionPlus.Text = "ArrowСompositionPlus";
             this.button_ArrowCompositionPlus.UseVisualStyleBackColor = true;
-            this.button_ArrowCompositionPlus.Click += new System.EventHandler(this.button_ArrowCompositionPlus_Click);
             // 
             // button_StepBack
             // 
@@ -173,7 +168,6 @@ namespace UMLDisigner
             this.button_ArrowImplementation.TabIndex = 10;
             this.button_ArrowImplementation.Text = "ArrowImplementation";
             this.button_ArrowImplementation.UseVisualStyleBackColor = true;
-            this.button_ArrowImplementation.Click += new System.EventHandler(this.button_ArrowImplementation_Click);
             // 
             // button_ArrowAggregationPlus
             // 
@@ -186,7 +180,6 @@ namespace UMLDisigner
             this.button_ArrowAggregationPlus.TabIndex = 11;
             this.button_ArrowAggregationPlus.Text = "ArrowAggregationPlus";
             this.button_ArrowAggregationPlus.UseVisualStyleBackColor = true;
-            this.button_ArrowAggregationPlus.Click += new System.EventHandler(this.button_ArrowAggregationPlus_Click);
             // 
             // button1
             // 
@@ -199,11 +192,22 @@ namespace UMLDisigner
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // button_ArrowsList
+            // 
+            this.button_ArrowsList.Location = new System.Drawing.Point(933, 579);
+            this.button_ArrowsList.Name = "button_ArrowsList";
+            this.button_ArrowsList.Size = new System.Drawing.Size(176, 39);
+            this.button_ArrowsList.TabIndex = 13;
+            this.button_ArrowsList.Text = "Arrows";
+            this.button_ArrowsList.UseVisualStyleBackColor = true;
+            this.button_ArrowsList.MouseHover += new System.EventHandler(this.button_ArrowsList_MouseHover);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1122, 607);
+            this.ClientSize = new System.Drawing.Size(1122, 619);
+            this.Controls.Add(this.button_ArrowsList);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button_ArrowAggregationPlus);
             this.Controls.Add(this.button_ArrowImplementation);
@@ -241,6 +245,7 @@ namespace UMLDisigner
         private System.Windows.Forms.Button button_ArrowAggregationPlus;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_ArrowsList;
     }
 }
 

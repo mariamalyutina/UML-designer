@@ -14,5 +14,7 @@ namespace UMLDisigner
             graphics.DrawLine(pen, p.Positions[1], p.ShouldersArrows[0]);
             graphics.DrawLine(pen, p.Positions[1], p.ShouldersArrows[1]);
         }
+
+
     }
 }
