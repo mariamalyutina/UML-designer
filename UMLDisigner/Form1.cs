@@ -19,7 +19,6 @@ namespace UMLDisigner
         Point mouseUpPosition;
         IFigure figure;
         Points p;
-        bool isMousDown = false;
         //Graph 
         //Arrow arrow = new Arrow(graph);
         //table (graph)
@@ -38,7 +37,7 @@ namespace UMLDisigner
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
 
-            if(isMousDown && e.Location!= mouseDownPosition && !(figure is null))
+            if(e.Button == MouseButtons.Left && e.Location!= mouseDownPosition && !(figure is null))
             {
                 mouseUpPosition = e.Location;
                 p = new Points(FindingPointsAndPerpendiculars(), mouseDownPosition, mouseUpPosition, FindingPointsAndPerpendicularsAtFirst());
@@ -59,15 +58,12 @@ namespace UMLDisigner
             {
                 button_StepBack.Enabled = true;
             }
-            isMousDown = true;
 
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             brush.TmpToMainBitmap();
             //pictureBox1.Invalidate();
-            isMousDown = false;
-
         }
 
         private void button_Clear_Click(object sender, EventArgs e)
@@ -246,10 +242,12 @@ namespace UMLDisigner
         //    if (formArrows.Name != null)
         //    {
         //        SetArrow(formArrows.Name);
-        //        pictureBox_Arrows.ImageLocation = "\\ImagesArrows\aggregation.JPG"; \\
+        //        pictureBox_Arrows.ImageLocation = @("ImagesArrows\aggregation.JPG"); 
         //        //pictureBox_Arrows.ImageLocation = ".\\ImagesArrows\\" + formArrows.Name + ".JPG";
         //        formArrows.Close();
         //    }
         //}
+
+
     }
 }
