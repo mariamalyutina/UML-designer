@@ -20,20 +20,21 @@ namespace UMLDisigner
         public Brush(PictureBox pb)
         {
             _mainBitmap = new Bitmap(pb.Width, pb.Height);
+            _tmpBitmap = _mainBitmap;
             pen = new Pen(Color, TrackBarWidth);
             graphics = Graphics.FromImage(_mainBitmap);
-
+            
             graphics.Clear(Color.White);
             this.pb = pb;
             pb.Image = _mainBitmap;
         }
-        public void DrawMoveFigure(IFigure figure, Points p)
+        public void DrawMoveFigure(IFigure figure, Point mouseUpPosition, Point mouseDownPosition)
         {
             _tmpBitmap = (Bitmap)_mainBitmap.Clone(); //Обработать NullPointerException если начать рисовать не выбрав ничего
             graphics = Graphics.FromImage(_tmpBitmap);
             pen.Color = Color;
             pen.Width = TrackBarWidth;
-            figure.Draw(graphics, pen, p);
+            figure.Draw(graphics, pen, mouseUpPosition, mouseDownPosition);
             pb.Image = _tmpBitmap;
             GC.Collect();
             //pb.Invalidate();
