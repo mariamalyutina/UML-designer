@@ -77,77 +77,55 @@ namespace UMLDisigner
 
         private void SetArrow(String nameArrow)
         {
-
             switch (nameArrow)
             {
-                case "ArrowAssociation":
+                case "association":
                     figure = new ArrowAssociation();
                     break;
-                case "ArrowInheritance":
+                case "inheritance":
                     figure = new ArrowInheritance();
                     break;
-                case "ArrowAggregation":
+                case "aggregation":
                     figure = new ArrowAggregation();
                     break;
-                case "ArrowAggregationPlus":
+                case "aggregationPlus":
                     figure = new ArrowAggregationPlus();
                     break;
-                case "ArrowСomposition":
+                case "composition":
                     figure = new ArrowСomposition();
                     break;
-                case "ArrowСompositionPlus":
+                case "compositionPlus":
                     figure = new ArrowСompositionPlus();
                     break;
-                case "ArrowImplementation":
+                case "implementation":
                     figure = new ArrowImplementation();
-                    break;
-                case "Rectangle":
-                    figure = new Rectangle();
                     break;
             }
 
         }
 
-        private void button_Rectangle_Click(object sender, EventArgs e)
+
+        private void SetClass(String nameClass)
         {
-            figure = new Rectangle();
+            switch (nameClass)
+            {
+                case "Class1":
+                    figure = new Class1();
+                    break;
+                case "Class2":
+                    figure = new Class2();
+                    break;
+                case "Class3":
+                    figure = new Class3();
+                    break;
+                case "ClassStack":
+                    figure = new ClassStack();
+                    break;
+            }
+
         }
 
-        private void button_ArrowAssociation_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowAssociation();
-        }
-
-        private void button_ArrowInheritance_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowInheritance();
-        }
-
-        private void button_ArrowAggregation_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowAggregation();
-        }
-
-        private void button_ArrowAggregationPlus_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowAggregationPlus();
-        }
-
-        private void button_ArrowСomposition_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowСomposition();
-        }
-
-        private void button_ArrowCompositionPlus_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowСompositionPlus();
-        }
-
-        private void button_ArrowImplementation_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowImplementation();
-        }
-
+ 
         private void button_StepBack_Click(object sender, EventArgs e)
         {
             figure = new Class3();
@@ -229,42 +207,49 @@ namespace UMLDisigner
             label2.Text = trackBar1.Value.ToString();
         }
 
-        private void button_Class1_Click(object sender, EventArgs e)
-        {
-            figure = new Class1();
-        }
 
-        private void button_Class2_Click(object sender, EventArgs e)
-        {
-            figure = new Class2();
-        }
-
-        private void button_Class3_Click(object sender, EventArgs e)
-        {
-            figure = new Class3();
-        }
-
-        private void button_ClassStack_Click(object sender, EventArgs e)
-        {
-            figure = new ClassStack();
-        }
-
-
-        private void button_ArrowsList_MouseHover(object sender, EventArgs e)
+        private void button_Arrows_MouseHover(object sender, EventArgs e)
         {
             FormArrows formArrows = new FormArrows();
-            formArrows.Location = button_ArrowsList.Location;
+            formArrows.TopMost = true;
+            formArrows.StartPosition = FormStartPosition.Manual;
+            formArrows.Location = button_Arrows.Location;
             formArrows.ShowDialog();
-            if(formArrows.String != null)
+            if (formArrows.Name != null)
             {
-                SetArrow(formArrows.String);
+                SetArrow(formArrows.Name);
+                formArrows.Close();
             }
-            
         }
 
-        private void formArrows_pictureBox_Association_Click()
+        private void button_Classes_MouseHover(object sender, EventArgs e)
         {
-            figure = new ArrowAssociation();
+            FormClasses formClasses = new FormClasses();
+            formClasses.TopMost = true;
+            formClasses.StartPosition = FormStartPosition.Manual;
+            formClasses.Location = button_Classes.Location;
+            formClasses.ShowDialog();
+            if (formClasses.Name != null)
+            {
+                SetClass(formClasses.Name);
+                formClasses.Close();
+            }
         }
+
+        //private void pictureBox2_MouseHover(object sender, EventArgs e)
+        //{
+        //    FormArrows formArrows = new FormArrows();
+        //    formArrows.TopMost = true;
+        //    formArrows.StartPosition = FormStartPosition.Manual;
+        //    formArrows.Location = pictureBox_Arrows.Location;
+        //    formArrows.ShowDialog();
+        //    if (formArrows.Name != null)
+        //    {
+        //        SetArrow(formArrows.Name);
+        //        pictureBox_Arrows.ImageLocation = "\\ImagesArrows\aggregation.JPG"; \\
+        //        //pictureBox_Arrows.ImageLocation = ".\\ImagesArrows\\" + formArrows.Name + ".JPG";
+        //        formArrows.Close();
+        //    }
+        //}
     }
 }

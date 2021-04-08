@@ -10,7 +10,7 @@ namespace UMLDisigner
 {
     public partial class FormArrows : Form
     {
-        public String String { get; private set; }
+        public String Name { get; private set; }
 
         public FormArrows()
         { 
@@ -19,16 +19,44 @@ namespace UMLDisigner
 
         private void pictureBox_Association_Click(object sender, EventArgs e)
         {
-            String = "ArrowAssociation";
+            Name = "association";
             this.Close();
         }
 
         private void pictureBox_Aggregation_Click(object sender, EventArgs e)
         {
-            String = "ArrowAggregation";
+            Name = "aggregation";
             this.Close();
         }
 
+        private void pictureBox_AggregationPlus_Click(object sender, EventArgs e)
+        {
+            Name = "aggregationPlus";
+            this.Close();
+        }
 
+        private void pictureBox_Composition_Click(object sender, EventArgs e)
+        {                    
+            Name = "composition";
+            this.Close();
+        }
+
+        private void pictureBox_CompositionPlus_Click(object sender, EventArgs e)
+        {
+            Name = "compositionPlus";
+            this.Close();
+        }
+
+        private void pictureBox_Implementation_Click(object sender, EventArgs e)
+        {
+            Name = "implementation";
+            this.Close();
+        }
+
+        private void pictureBox_Inheritance_Click(object sender, EventArgs e)
+        {
+            Name = "inheritance";
+            this.Close();
+        }
     }
 }
