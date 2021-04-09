@@ -5,13 +5,13 @@ using System.Drawing;
 
 namespace UMLDisigner
 {
-    class ArrowImplementation : IFigure
+    class ArrowImplementation : AbstractArrow
     {
-        public void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition)
+        public override void Draw(Graphics graphics, Pen pen)
         {
-            graphics.DrawPolygon(pen, Geometry.GetArrow(mouseUpPosition, mouseDownPosition));
+            graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            graphics.DrawLine(pen, mouseDownPosition, Geometry.GetArrow(mouseUpPosition, mouseDownPosition)[3]); //рисуем до начала отрисовки стрелочки
+            graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]); //рисуем до начала отрисовки стрелочки
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
         }
     }

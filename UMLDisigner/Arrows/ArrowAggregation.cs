@@ -5,12 +5,12 @@ using System.Drawing;
 
 namespace UMLDisigner
 {
-    class ArrowAggregation : IFigure
+    class ArrowAggregation : AbstractArrow
     {
-        public void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition)
+        public override void Draw(Graphics graphics, Pen pen)
         {
-            graphics.DrawLine(pen, mouseDownPosition, Geometry.GetRomb(mouseUpPosition, mouseDownPosition)[3]);
-            graphics.DrawPolygon(pen, Geometry.GetRomb(mouseUpPosition, mouseDownPosition));
+            graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]);
+            graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
         }
     }
 }

@@ -5,14 +5,14 @@ using System.Drawing;
 
 namespace UMLDisigner
 {
-    class ArrowСomposition : IFigure
+    class ArrowСomposition : AbstractArrow
     {
-        public void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition)
+        public override void Draw(Graphics graphics, Pen pen)
         {
             SolidBrush brush = new SolidBrush(pen.Color);
-            graphics.DrawLine(pen, mouseDownPosition, Geometry.GetRomb(mouseUpPosition, mouseDownPosition)[3]); //рисуем линию до начала ромбика
-            graphics.DrawPolygon(pen, Geometry.GetRomb(mouseUpPosition, mouseDownPosition));
-            graphics.FillPolygon(brush, Geometry.GetRomb(mouseUpPosition, mouseDownPosition));
+            graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]); //рисуем линию до начала ромбика
+            graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
+            graphics.FillPolygon(brush, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
         }
     }
 }

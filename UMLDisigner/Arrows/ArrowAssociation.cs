@@ -6,13 +6,13 @@ using System.Windows.Forms;
 
 namespace UMLDisigner
 {
-    class ArrowAssociation : IFigure
+    class ArrowAssociation : AbstractArrow
     {
-        public void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition)
+        public override void Draw(Graphics graphics, Pen pen)
         {
-            graphics.DrawLine(pen, mouseDownPosition, mouseUpPosition);
-            graphics.DrawLine(pen, mouseUpPosition, Geometry.GetArrow(mouseUpPosition, mouseDownPosition)[0]); //отрисовка крыльев стрелки
-            graphics.DrawLine(pen, mouseUpPosition, Geometry.GetArrow(mouseUpPosition, mouseDownPosition)[2]); //отрисовка крыльев стрелки
+            graphics.DrawLine(pen, MouseDownPosition, MouseUpPosition);
+            graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[0]); //отрисовка крыльев стрелки
+            graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[2]); //отрисовка крыльев стрелки
         }
     }
 }

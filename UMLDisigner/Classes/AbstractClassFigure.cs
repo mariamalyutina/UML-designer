@@ -10,6 +10,10 @@ namespace UMLDisigner
         protected Font _font = new Font("Arial", 16);
         protected SolidBrush _brush = new SolidBrush(Color.Black);
 
-        public abstract void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition);
+        public Point MouseUpPosition { get; set; }
+        public Point MouseDownPosition { get; set; }
+
+
+        public abstract void Draw(Graphics graphics, Pen pen);
     }
 }

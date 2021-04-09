@@ -8,6 +8,9 @@ namespace UMLDisigner
 {
     public interface IFigure
     {
-        void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition);
+        Point MouseUpPosition { get; set; }
+        Point MouseDownPosition { get; set; }
+
+        void Draw(Graphics graphics, Pen pen);
     }
 }
