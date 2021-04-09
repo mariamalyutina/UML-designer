@@ -10,14 +10,13 @@ namespace UMLDisigner
     {
         List<Bitmap> BitmapList= new List<Bitmap>();
 
-        private Point _mouseDownPosition;
         private Point _mouseUpPosition;
-        private String _choice;
-        private String _figureName;
+
         public Brush Brush;
         public IFigure Figure;
 
 
+        private String _figureName;
         public Form1()
         {
             InitializeComponent();
@@ -29,12 +28,12 @@ namespace UMLDisigner
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-
-            if(e.Button == MouseButtons.Left && e.Location!= _mouseDownPosition && !(Figure is null))
+            //_mouseUpPosition = e.Location;
+            if (e.Button == MouseButtons.Left && e.Location!= _mouseUpPosition && !(Figure is null))
             {
-                _mouseUpPosition = e.Location;
+                Figure.MouseUpPosition = e.Location;
                 Brush.TrackBarWidth = trackBar1.Value;
-                Brush.DrawMoveFigure(Figure, _mouseUpPosition, _mouseDownPosition);
+                Brush.DrawMoveFigure(Figure);
                 //pictureBox1.Invalidate();
 
             }
@@ -43,8 +42,11 @@ namespace UMLDisigner
         }             
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            if (!(Figure is null)) 
+            {
+                Figure.MouseDownPosition = e.Location;
+            }
             
-            _mouseDownPosition = e.Location;
             if(BitmapList.Count>1)
             {
                 button_StepBack.Enabled = true;
@@ -56,10 +58,16 @@ namespace UMLDisigner
             Brush.TmpToMainBitmap();
         }
 
-
-        private void button_Clear_Click_1(object sender, EventArgs e)
+        private void button_Clear_Click(object sender, EventArgs e)
         {
-            Brush.Clear();
+            Brush.Clear();            
+        }
+
+        
+
+        private void button_ArrowAssociation_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowAssociation();
         }
 
         private void SetArrow()
@@ -92,28 +100,20 @@ namespace UMLDisigner
             pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
         }
 
-
-
-        private void SetClass()
+        private void button_ArrowAggregationPlus_Click(object sender, EventArgs e)
         {
-            switch (_figureName)
-            {
-                case "Classes1":
-                    Figure = new Class1Figure();
-                    break;
-                case "Classes2":
-                    Figure = new Class2Figure();
-                    break;
-                case "Classes3":
-                    Figure = new Class3Figure();
-                    break;
-                case "ClassStack":
-                    Figure = new ClassStackFigure();
-                    break;
-            }
+            figure = new ArrowAggregationPlus();
+        }
 
-            pictureBox_Arrows.ImageLocation = @"ImagesArrows\Arrows.JPG";
 
+        private void button_ArrowCompositionPlus_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowСompositionPlus();
+        }
+
+        private void button_ArrowImplementation_Click(object sender, EventArgs e)
+        {
+            figure = new ArrowImplementation();
         }
 
 
@@ -161,35 +161,14 @@ namespace UMLDisigner
 
         private void button_Classes_MouseHover(object sender, EventArgs e)
         {
-            FormClasses formClasses = new FormClasses();
-            formClasses.TopMost = true;
-            formClasses.StartPosition = FormStartPosition.Manual;
-            formClasses.Location = button_Classes.Location;
-            formClasses.ShowDialog();
-            if (formClasses.Name != null)
-            {
-                SetClass();
-                formClasses.Close();
-            }
+            figure = new Class2();
         }
 
 
 
         private void pictureBox_Arrows_MouseHover(object sender, EventArgs e)
         {
-            FormArrows formArrows = new FormArrows();
-            formArrows.TopMost = true;
-            formArrows.StartPosition = FormStartPosition.Manual;
-            formArrows.Location = pictureBox_Arrows.Location;
-            formArrows.ShowDialog();
-            if (formArrows.Name != null)
-            {
-                _figureName = formArrows.Name;
-                SetArrow();
-                pictureBox_Arrows.ImageLocation = @"ImagesArrows\" + formArrows.Name + ".JPG";
-                pictureBox_Arrows.SizeMode = PictureBoxSizeMode.Zoom;
-                formArrows.Close();
-            }
+            figure = new Class3();
         }
 
         private void pictureBox_Classes_MouseHover(object sender, EventArgs e)

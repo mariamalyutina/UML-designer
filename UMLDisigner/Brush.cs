@@ -23,18 +23,18 @@ namespace UMLDisigner
             _tmpBitmap = _mainBitmap;
             pen = new Pen(Color, TrackBarWidth);
             graphics = Graphics.FromImage(_mainBitmap);
-            
+
             graphics.Clear(Color.White);
             this.pb = pb;
             pb.Image = _mainBitmap;
         }
-        public void DrawMoveFigure(IFigure figure, Point mouseUpPosition, Point mouseDownPosition)
+        public void DrawMoveFigure(IFigure figure)
         {
-            _tmpBitmap = (Bitmap)_mainBitmap.Clone(); //Обработать NullPointerException если начать рисовать не выбрав ничего
+            _tmpBitmap = (Bitmap)_mainBitmap.Clone(); 
             graphics = Graphics.FromImage(_tmpBitmap);
             pen.Color = Color;
             pen.Width = TrackBarWidth;
-            figure.Draw(graphics, pen, mouseUpPosition, mouseDownPosition);
+            figure.Draw(graphics, pen);
             pb.Image = _tmpBitmap;
             GC.Collect();
             //pb.Invalidate();
