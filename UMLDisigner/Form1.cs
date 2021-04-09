@@ -16,7 +16,22 @@ namespace UMLDisigner
         public IFigure Figure;
 
 
-        private String _figureName;
+=========
+        //Graphics brush.graphics;
+        //Pen brush.pen;
+        //SolidBrush brush.brushBlack;
+        Brush brush;
+        Point mouseDownPosition;
+        Point mouseUpPosition;
+        IFigure figure;
+        Points p;
+        //Graph 
+        //Arrow arrow = new Arrow(graph);
+        //table (graph)
+        //arrow.adasdad(Point)
+      
+       
+>>>>>>>>> Temporary merge branch 2
         public Form1()
         {
             InitializeComponent();
@@ -100,20 +115,35 @@ namespace UMLDisigner
             pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
         }
 
-        private void button_ArrowAggregationPlus_Click(object sender, EventArgs e)
+>>>>>>>>> Temporary merge branch 2
+
+        private void SetClass(String nameClass)
         {
-            figure = new ArrowAggregationPlus();
+<<<<<<<<< Temporary merge branch 1
+            Figure = new ArrowСompositionPlus();
         }
 
-
-        private void button_ArrowCompositionPlus_Click(object sender, EventArgs e)
+        private void SetClass(String nameClass)
         {
-            figure = new ArrowСompositionPlus();
-        }
+            Figure = new ArrowImplementation();
+=========
+            switch (nameClass)
+            {
+                case "Class1":
+                    figure = new Class1();
+                    break;
+                case "Class2":
+                    figure = new Class2();
+                    break;
+                case "Class3":
+                    figure = new Class3();
+                    break;
+                case "ClassStack":
+                    figure = new ClassStack();
+                    break;
+            }
 
-        private void button_ArrowImplementation_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowImplementation();
+>>>>>>>>> Temporary merge branch 2
         }
 
 
@@ -144,6 +174,13 @@ namespace UMLDisigner
             label2.Text = trackBar1.Value.ToString();
         }
 
+<<<<<<<<< Temporary merge branch 1
+        private void button_Class1_Click(object sender, EventArgs e)
+        {
+            Figure = new Class1Figure();
+        }
+=========
+>>>>>>>>> Temporary merge branch 2
 
         private void button_Arrows_MouseHover(object sender, EventArgs e)
         {
@@ -161,16 +198,6 @@ namespace UMLDisigner
 
         private void button_Classes_MouseHover(object sender, EventArgs e)
         {
-            figure = new Class2();
-        }
-
-
-
-        private void pictureBox_Arrows_MouseHover(object sender, EventArgs e)
-        {
-            figure = new Class3();
-        }
-
         private void pictureBox_Classes_MouseHover(object sender, EventArgs e)
         {
             FormClasses formClasses = new FormClasses();
@@ -204,6 +231,7 @@ namespace UMLDisigner
             }
 
 
-        }
+
+>>>>>>>>> Temporary merge branch 2
     }
 }
