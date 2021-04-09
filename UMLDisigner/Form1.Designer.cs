@@ -29,6 +29,7 @@ namespace UMLDisigner
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button_StepBack = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
@@ -38,19 +39,22 @@ namespace UMLDisigner
             this.button_Arrows = new System.Windows.Forms.Button();
             this.button_Classes = new System.Windows.Forms.Button();
             this.pictureBox_Arrows = new System.Windows.Forms.PictureBox();
+            this.button_Clear = new System.Windows.Forms.Button();
+            this.pictureBox_Classes = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrows)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Classes)).BeginInit();
             this.SuspendLayout();
             // 
             // button_StepBack
             // 
             this.button_StepBack.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_StepBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_StepBack.Location = new System.Drawing.Point(812, 20);
+            this.button_StepBack.Location = new System.Drawing.Point(812, 25);
             this.button_StepBack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_StepBack.Name = "button_StepBack";
-            this.button_StepBack.Size = new System.Drawing.Size(190, 43);
+            this.button_StepBack.Size = new System.Drawing.Size(111, 38);
             this.button_StepBack.TabIndex = 9;
             this.button_StepBack.Text = "Step back";
             this.button_StepBack.UseVisualStyleBackColor = true;
@@ -117,9 +121,9 @@ namespace UMLDisigner
             // button_Classes
             // 
             this.button_Classes.BackColor = System.Drawing.SystemColors.Control;
-            this.button_Classes.Location = new System.Drawing.Point(471, 24);
+            this.button_Classes.Location = new System.Drawing.Point(467, 25);
             this.button_Classes.Name = "button_Classes";
-            this.button_Classes.Size = new System.Drawing.Size(112, 34);
+            this.button_Classes.Size = new System.Drawing.Size(110, 32);
             this.button_Classes.TabIndex = 20;
             this.button_Classes.Text = "Classes";
             this.button_Classes.UseVisualStyleBackColor = false;
@@ -131,14 +135,40 @@ namespace UMLDisigner
             this.pictureBox_Arrows.Location = new System.Drawing.Point(933, 160);
             this.pictureBox_Arrows.Name = "pictureBox_Arrows";
             this.pictureBox_Arrows.Size = new System.Drawing.Size(121, 41);
+            this.pictureBox_Arrows.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Arrows.TabIndex = 21;
             this.pictureBox_Arrows.TabStop = false;
+            this.pictureBox_Arrows.MouseHover += new System.EventHandler(this.pictureBox_Arrows_MouseHover);
+            // 
+            // button_Clear
+            // 
+            this.button_Clear.Location = new System.Drawing.Point(961, 29);
+            this.button_Clear.Name = "button_Clear";
+            this.button_Clear.Size = new System.Drawing.Size(112, 34);
+            this.button_Clear.TabIndex = 22;
+            this.button_Clear.Text = "Clear";
+            this.button_Clear.UseVisualStyleBackColor = true;
+            this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click_1);
+            // 
+            // pictureBox_Classes
+            // 
+            this.pictureBox_Classes.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_Classes.Image")));
+            this.pictureBox_Classes.ImageLocation = "ImagesClasses\\Classes.JPG";
+            this.pictureBox_Classes.Location = new System.Drawing.Point(923, 255);
+            this.pictureBox_Classes.Name = "pictureBox_Classes";
+            this.pictureBox_Classes.Size = new System.Drawing.Size(150, 75);
+            this.pictureBox_Classes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_Classes.TabIndex = 23;
+            this.pictureBox_Classes.TabStop = false;
+            this.pictureBox_Classes.MouseHover += new System.EventHandler(this.pictureBox_Classes_MouseHover);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 738);
+            this.Controls.Add(this.pictureBox_Classes);
+            this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.pictureBox_Arrows);
             this.Controls.Add(this.button_Classes);
             this.Controls.Add(this.button_Arrows);
@@ -155,6 +185,7 @@ namespace UMLDisigner
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrows)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Classes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,7 +194,6 @@ namespace UMLDisigner
         #endregion
         private System.Windows.Forms.Button button_StepBack;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TrackBar trackBar1;
@@ -171,6 +201,8 @@ namespace UMLDisigner
         private System.Windows.Forms.Button button_Arrows;
         private System.Windows.Forms.Button button_Classes;
         private System.Windows.Forms.PictureBox pictureBox_Arrows;
+        private System.Windows.Forms.Button button_Clear;
+        private System.Windows.Forms.PictureBox pictureBox_Classes;
     }
 }
 

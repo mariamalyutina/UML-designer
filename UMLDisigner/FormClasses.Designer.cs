@@ -42,7 +42,7 @@ namespace UMLDisigner
             // pictureBox_Class1
             // 
             this.pictureBox_Class1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_Class1.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesClasses\\Classes1.JPG";
+            this.pictureBox_Class1.ImageLocation = "ImagesClasses\\Classes1.JPG";
             this.pictureBox_Class1.Location = new System.Drawing.Point(12, 10);
             this.pictureBox_Class1.Name = "pictureBox_Class1";
             this.pictureBox_Class1.Size = new System.Drawing.Size(147, 97);
@@ -54,7 +54,7 @@ namespace UMLDisigner
             // pictureBox_Class2
             // 
             this.pictureBox_Class2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_Class2.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesClasses\\Classes2.JPG";
+            this.pictureBox_Class2.ImageLocation = "ImagesClasses\\Classes2.JPG";
             this.pictureBox_Class2.Location = new System.Drawing.Point(165, 10);
             this.pictureBox_Class2.Name = "pictureBox_Class2";
             this.pictureBox_Class2.Size = new System.Drawing.Size(139, 97);
@@ -65,7 +65,7 @@ namespace UMLDisigner
             // 
             // pictureBox_Class3
             // 
-            this.pictureBox_Class3.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesClasses\\Classes3.JPG";
+            this.pictureBox_Class3.ImageLocation = "ImagesClasses\\Classes3.JPG";
             this.pictureBox_Class3.Location = new System.Drawing.Point(12, 124);
             this.pictureBox_Class3.Name = "pictureBox_Class3";
             this.pictureBox_Class3.Size = new System.Drawing.Size(147, 106);
@@ -77,8 +77,7 @@ namespace UMLDisigner
             // pictureBox_ClassStack
             // 
             this.pictureBox_ClassStack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_ClassStack.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesClasses\\ClassStack.JPG" +
-    "";
+            this.pictureBox_ClassStack.ImageLocation = "ImagesClasses\\ClassStack.JPG";
             this.pictureBox_ClassStack.Location = new System.Drawing.Point(165, 124);
             this.pictureBox_ClassStack.Name = "pictureBox_ClassStack";
             this.pictureBox_ClassStack.Size = new System.Drawing.Size(139, 106);

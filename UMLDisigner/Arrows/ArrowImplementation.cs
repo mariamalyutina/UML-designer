@@ -7,13 +7,12 @@ namespace UMLDisigner
 {
     class ArrowImplementation : IFigure
     {
-        public void Draw(Graphics graphics, Pen pen, Points p)
+        public void Draw(Graphics graphics, Pen pen, Point mouseUpPosition, Point mouseDownPosition)
         {
-
-            graphics.DrawPolygon(pen, new Point[] {p.Positions[1], p.ShouldersArrows[0], p.ShouldersArrows[1] });
+            graphics.DrawPolygon(pen, Geometry.GetArrow(mouseUpPosition, mouseDownPosition));
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            graphics.DrawLine(pen, p.Positions[0], p.ShouldersArrows[2]);
-            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            graphics.DrawLine(pen, mouseDownPosition, Geometry.GetArrow(mouseUpPosition, mouseDownPosition)[3]); //рисуем до начала отрисовки стрелочки
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
         }
     }
 }

@@ -57,6 +57,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="pictureBox_Classes.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEAkACQAAD/4QDORXhpZgAATU0AKgAAAAgAAwE7AAIAAAARAAAAModpAAQAAAAB
+        AAAARJydAAEAAAAiAAAApAAAAABOYXN0eWEga3VzaGtvZXZhAAAABJADAAIAAAAUAAAAepAEAAIAAAAU
+        AAAAjpKRAAIAAAADNzgAAJKSAAIAAAADNzgAAAAAAAAyMDIxOjA0OjA5IDEyOjIzOjE0ADIwMjE6MDQ6
+        MDkgMTI6MjM6MTQAAABOAGEAcwB0AHkAYQAgAGsAdQBzAGgAawBvAGUAdgBhAAAA/9sAQwAHBQUGBQQH
+        BgUGCAcHCAoRCwoJCQoVDxAMERgVGhkYFRgXGx4nIRsdJR0XGCIuIiUoKSssKxogLzMvKjInKisq/9sA
+        QwEHCAgKCQoUCwsUKhwYHCoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+        KioqKioq/8AAEQgATwCcAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//E
+        ALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYX
+        GBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SV
+        lpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5
+        +v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMR
+        BAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJ
+        SlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5
+        usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A93urwW0kcfky
+        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
+        FSMJyD/wGtCgD//Z
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>25</value>
   </metadata>
