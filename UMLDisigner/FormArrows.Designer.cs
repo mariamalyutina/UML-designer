@@ -29,6 +29,7 @@ namespace UMLDisigner
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormArrows));
             this.pictureBox_Association = new System.Windows.Forms.PictureBox();
             this.pictureBox_Aggregation = new System.Windows.Forms.PictureBox();
             this.pictureBox_AggregationPlus = new System.Windows.Forms.PictureBox();
@@ -47,12 +48,10 @@ namespace UMLDisigner
             // 
             // pictureBox_Association
             // 
-            this.pictureBox_Association.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesArrows\\association.JPG" +
-    "";
-            this.pictureBox_Association.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox_Association.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_Association.ImageLocation = "ImagesArrows\\association.JPG";
+            this.pictureBox_Association.Location = new System.Drawing.Point(12, 12);
             this.pictureBox_Association.Name = "pictureBox_Association";
-            this.pictureBox_Association.Size = new System.Drawing.Size(62, 22);
+            this.pictureBox_Association.Size = new System.Drawing.Size(78, 28);
             this.pictureBox_Association.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Association.TabIndex = 0;
             this.pictureBox_Association.TabStop = false;
@@ -61,12 +60,10 @@ namespace UMLDisigner
             // pictureBox_Aggregation
             // 
             this.pictureBox_Aggregation.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox_Aggregation.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesArrows\\aggregation.JPG" +
-    "";
-            this.pictureBox_Aggregation.Location = new System.Drawing.Point(88, 10);
-            this.pictureBox_Aggregation.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_Aggregation.ImageLocation = "ImagesArrows\\aggregation.JPG";
+            this.pictureBox_Aggregation.Location = new System.Drawing.Point(110, 12);
             this.pictureBox_Aggregation.Name = "pictureBox_Aggregation";
-            this.pictureBox_Aggregation.Size = new System.Drawing.Size(62, 22);
+            this.pictureBox_Aggregation.Size = new System.Drawing.Size(77, 28);
             this.pictureBox_Aggregation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Aggregation.TabIndex = 1;
             this.pictureBox_Aggregation.TabStop = false;
@@ -75,12 +72,10 @@ namespace UMLDisigner
             // pictureBox_AggregationPlus
             // 
             this.pictureBox_AggregationPlus.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_AggregationPlus.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesArrows\\aggregationPlus" +
-    ".JPG";
-            this.pictureBox_AggregationPlus.Location = new System.Drawing.Point(162, 10);
-            this.pictureBox_AggregationPlus.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_AggregationPlus.ImageLocation = "ImagesArrows\\aggregationPlus.JPG";
+            this.pictureBox_AggregationPlus.Location = new System.Drawing.Point(202, 12);
             this.pictureBox_AggregationPlus.Name = "pictureBox_AggregationPlus";
-            this.pictureBox_AggregationPlus.Size = new System.Drawing.Size(62, 22);
+            this.pictureBox_AggregationPlus.Size = new System.Drawing.Size(77, 28);
             this.pictureBox_AggregationPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_AggregationPlus.TabIndex = 2;
             this.pictureBox_AggregationPlus.TabStop = false;
@@ -89,12 +84,10 @@ namespace UMLDisigner
             // pictureBox_Composition
             // 
             this.pictureBox_Composition.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_Composition.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesArrows\\composition.JPG" +
-    "";
-            this.pictureBox_Composition.Location = new System.Drawing.Point(10, 46);
-            this.pictureBox_Composition.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_Composition.ImageLocation = "ImagesArrows\\composition.JPG";
+            this.pictureBox_Composition.Location = new System.Drawing.Point(12, 58);
             this.pictureBox_Composition.Name = "pictureBox_Composition";
-            this.pictureBox_Composition.Size = new System.Drawing.Size(62, 22);
+            this.pictureBox_Composition.Size = new System.Drawing.Size(78, 27);
             this.pictureBox_Composition.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Composition.TabIndex = 3;
             this.pictureBox_Composition.TabStop = false;
@@ -103,12 +96,11 @@ namespace UMLDisigner
             // pictureBox_CompositionPlus
             // 
             this.pictureBox_CompositionPlus.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_CompositionPlus.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesArrows\\compositionPlus" +
-    ".JPG";
-            this.pictureBox_CompositionPlus.Location = new System.Drawing.Point(88, 46);
-            this.pictureBox_CompositionPlus.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_CompositionPlus.ImageLocation = "ImagesArrows\\compositionPlus.JPG";
+            this.pictureBox_CompositionPlus.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_CompositionPlus.InitialImage")));
+            this.pictureBox_CompositionPlus.Location = new System.Drawing.Point(110, 58);
             this.pictureBox_CompositionPlus.Name = "pictureBox_CompositionPlus";
-            this.pictureBox_CompositionPlus.Size = new System.Drawing.Size(62, 22);
+            this.pictureBox_CompositionPlus.Size = new System.Drawing.Size(77, 27);
             this.pictureBox_CompositionPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_CompositionPlus.TabIndex = 4;
             this.pictureBox_CompositionPlus.TabStop = false;
@@ -117,12 +109,10 @@ namespace UMLDisigner
             // pictureBox_Implementation
             // 
             this.pictureBox_Implementation.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_Implementation.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesArrows\\implementation." +
-    "JPG";
-            this.pictureBox_Implementation.Location = new System.Drawing.Point(162, 46);
-            this.pictureBox_Implementation.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_Implementation.ImageLocation = "ImagesArrows\\implementation.JPG";
+            this.pictureBox_Implementation.Location = new System.Drawing.Point(202, 58);
             this.pictureBox_Implementation.Name = "pictureBox_Implementation";
-            this.pictureBox_Implementation.Size = new System.Drawing.Size(62, 22);
+            this.pictureBox_Implementation.Size = new System.Drawing.Size(77, 27);
             this.pictureBox_Implementation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Implementation.TabIndex = 5;
             this.pictureBox_Implementation.TabStop = false;
@@ -131,12 +121,10 @@ namespace UMLDisigner
             // pictureBox_Inheritance
             // 
             this.pictureBox_Inheritance.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox_Inheritance.ImageLocation = "C:\\Users\\kushk\\source\\repos\\UML-designer\\UMLDisigner\\ImagesArrows\\inheritance.JPG" +
-    "";
-            this.pictureBox_Inheritance.Location = new System.Drawing.Point(87, 80);
-            this.pictureBox_Inheritance.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_Inheritance.ImageLocation = "ImagesArrows\\inheritance.JPG";
+            this.pictureBox_Inheritance.Location = new System.Drawing.Point(109, 100);
             this.pictureBox_Inheritance.Name = "pictureBox_Inheritance";
-            this.pictureBox_Inheritance.Size = new System.Drawing.Size(62, 24);
+            this.pictureBox_Inheritance.Size = new System.Drawing.Size(78, 30);
             this.pictureBox_Inheritance.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Inheritance.TabIndex = 6;
             this.pictureBox_Inheritance.TabStop = false;
@@ -144,9 +132,9 @@ namespace UMLDisigner
             // 
             // FormArrows
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(233, 114);
+            this.ClientSize = new System.Drawing.Size(291, 142);
             this.Controls.Add(this.pictureBox_Inheritance);
             this.Controls.Add(this.pictureBox_Implementation);
             this.Controls.Add(this.pictureBox_CompositionPlus);
@@ -154,14 +142,13 @@ namespace UMLDisigner
             this.Controls.Add(this.pictureBox_AggregationPlus);
             this.Controls.Add(this.pictureBox_Aggregation);
             this.Controls.Add(this.pictureBox_Association);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormArrows";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Arrows";
             this.TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Association)).EndInit();
+           ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Association)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Aggregation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AggregationPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Composition)).EndInit();

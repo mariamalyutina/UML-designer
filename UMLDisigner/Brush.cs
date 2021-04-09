@@ -23,6 +23,7 @@ namespace UMLDisigner
             _tmpBitmap = _mainBitmap;
             pen = new Pen(Color, TrackBarWidth);
             graphics = Graphics.FromImage(_mainBitmap);
+
             graphics.Clear(Color.White);
             this.pb = pb;
             pb.Image = _mainBitmap;
