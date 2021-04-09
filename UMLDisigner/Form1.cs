@@ -16,22 +16,6 @@ namespace UMLDisigner
         public IFigure Figure;
 
 
-=========
-        //Graphics brush.graphics;
-        //Pen brush.pen;
-        //SolidBrush brush.brushBlack;
-        Brush brush;
-        Point mouseDownPosition;
-        Point mouseUpPosition;
-        IFigure figure;
-        Points p;
-        //Graph 
-        //Arrow arrow = new Arrow(graph);
-        //table (graph)
-        //arrow.adasdad(Point)
-      
-       
->>>>>>>>> Temporary merge branch 2
         public Form1()
         {
             InitializeComponent();
@@ -78,16 +62,9 @@ namespace UMLDisigner
             Brush.Clear();            
         }
 
-        
-
-        private void button_ArrowAssociation_Click(object sender, EventArgs e)
+        private void SetArrow(String nameArrow)
         {
-            figure = new ArrowAssociation();
-        }
-
-        private void SetArrow()
-        {
-            switch (_figureName)
+            switch (nameArrow)
             {
                 case "association":
                     Figure = new ArrowAssociation();
@@ -112,38 +89,26 @@ namespace UMLDisigner
                     break;
             }
 
-            pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
-        }
-
->>>>>>>>> Temporary merge branch 2
-
-        private void SetClass(String nameClass)
-        {
-<<<<<<<<< Temporary merge branch 1
-            Figure = new ArrowСompositionPlus();
         }
 
         private void SetClass(String nameClass)
         {
-            Figure = new ArrowImplementation();
-=========
             switch (nameClass)
             {
                 case "Class1":
-                    figure = new Class1();
+                    Figure = new Class1Figure();
                     break;
                 case "Class2":
-                    figure = new Class2();
+                    Figure = new Class2Figure();
                     break;
                 case "Class3":
-                    figure = new Class3();
+                    Figure = new Class3Figure();
                     break;
                 case "ClassStack":
-                    figure = new ClassStack();
+                    Figure = new ClassStackFigure();
                     break;
             }
 
->>>>>>>>> Temporary merge branch 2
         }
 
 
@@ -174,13 +139,6 @@ namespace UMLDisigner
             label2.Text = trackBar1.Value.ToString();
         }
 
-<<<<<<<<< Temporary merge branch 1
-        private void button_Class1_Click(object sender, EventArgs e)
-        {
-            Figure = new Class1Figure();
-        }
-=========
->>>>>>>>> Temporary merge branch 2
 
         private void button_Arrows_MouseHover(object sender, EventArgs e)
         {
@@ -191,47 +149,42 @@ namespace UMLDisigner
             formArrows.ShowDialog();
             if (formArrows.Name != null)
             {
-                SetArrow();
+                SetArrow(formArrows.Name);
                 formArrows.Close();
             }
         }
-
         private void button_Classes_MouseHover(object sender, EventArgs e)
         {
-        private void pictureBox_Classes_MouseHover(object sender, EventArgs e)
-        {
+            
             FormClasses formClasses = new FormClasses();
             formClasses.TopMost = true;
             formClasses.StartPosition = FormStartPosition.Manual;
-            formClasses.Location = pictureBox_Classes.Location;
+            formClasses.Location = button_Classes.Location;
             formClasses.ShowDialog();
             if (formClasses.Name != null)
             {
-                if (formClasses.Name == "close")
-                {
-                    if (_figureName == "association" || _figureName == "inheritance" || _figureName == "aggregation"
-                        || _figureName == "aggregationPlus" || _figureName == "composition" || _figureName == "compositionPlus" || _figureName == "implementation")
-                    {
-                        pictureBox_Classes.ImageLocation = @"ImagesClasses\" + _figureName + ".JPG";
-                    }
-                    else
-                    {
-                        pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
-                    }
-                    pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
-                    formClasses.Close();
-                    return;
-                }
-
-                _figureName = formClasses.Name;
-                SetClass();
-                pictureBox_Classes.ImageLocation = @"ImagesClasses\" + formClasses.Name + ".JPG";
-                pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
+                SetClass(formClasses.Name);
                 formClasses.Close();
             }
+        }
 
 
+        //private void pictureBox2_MouseHover(object sender, EventArgs e)
+        //{
+        //    FormArrows formArrows = new FormArrows();
+        //    formArrows.TopMost = true;
+        //    formArrows.StartPosition = FormStartPosition.Manual;
+        //    formArrows.Location = pictureBox_Arrows.Location;
+        //    formArrows.ShowDialog();
+        //    if (formArrows.Name != null)
+        //    {
+        //        SetArrow(formArrows.Name);
+        //        pictureBox_Arrows.ImageLocation = @("ImagesArrows\aggregation.JPG");
+        //        //pictureBox_Arrows.ImageLocation = ".\\ImagesArrows\\" + formArrows.Name + ".JPG";
+        //        formArrows.Close();
+        //    }
+        //}
 
->>>>>>>>> Temporary merge branch 2
+
     }
 }

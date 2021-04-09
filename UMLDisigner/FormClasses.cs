@@ -19,19 +19,19 @@ namespace UMLDisigner
 
         private void pictureBox_Class1_Click(object sender, EventArgs e)
         {
-            Name = "Classes1";
+            Name = "Class1";
             this.Close();
         }
 
         private void pictureBox_Class2_Click(object sender, EventArgs e)
         {
-            Name = "Classes2";
+            Name = "Class2";
             this.Close();
         }
 
         private void pictureBox_Class3_Click(object sender, EventArgs e)
         {
-            Name = "Classes3";
+            Name = "Class3";
             this.Close();
         }
 
@@ -40,15 +40,5 @@ namespace UMLDisigner
             Name = "ClassStack";
             this.Close();
         }
-
-
-        //private void FormClasses_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    if (e.CloseReason == CloseReason.UserClosing)
-        //    {
-        //        Name = "close";
-        //    }
-
-        //}
     }
 }

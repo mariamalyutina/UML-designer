@@ -13,10 +13,9 @@ namespace UMLDisigner
         public String Name { get; private set; }
 
         public FormArrows()
-        {
+        { 
             InitializeComponent();
         }
-
 
         private void pictureBox_Association_Click(object sender, EventArgs e)
         {
@@ -59,6 +58,5 @@ namespace UMLDisigner
             Name = "inheritance";
             this.Close();
         }
-
     }
 }
