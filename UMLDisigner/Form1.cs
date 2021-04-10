@@ -11,27 +11,11 @@ namespace UMLDisigner
         List<Bitmap> BitmapList= new List<Bitmap>();
 
         private Point _mouseUpPosition;
-
+        private String _figureName;
         public Brush Brush;
         public IFigure Figure;
 
 
-=========
-        //Graphics brush.graphics;
-        //Pen brush.pen;
-        //SolidBrush brush.brushBlack;
-        Brush brush;
-        Point mouseDownPosition;
-        Point mouseUpPosition;
-        IFigure figure;
-        Points p;
-        //Graph 
-        //Arrow arrow = new Arrow(graph);
-        //table (graph)
-        //arrow.adasdad(Point)
-      
-       
->>>>>>>>> Temporary merge branch 2
         public Form1()
         {
             InitializeComponent();
@@ -79,12 +63,6 @@ namespace UMLDisigner
         }
 
         
-
-        private void button_ArrowAssociation_Click(object sender, EventArgs e)
-        {
-            figure = new ArrowAssociation();
-        }
-
         private void SetArrow()
         {
             switch (_figureName)
@@ -115,35 +93,27 @@ namespace UMLDisigner
             pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
         }
 
->>>>>>>>> Temporary merge branch 2
 
-        private void SetClass(String nameClass)
-        {
-<<<<<<<<< Temporary merge branch 1
-            Figure = new ArrowСompositionPlus();
-        }
 
-        private void SetClass(String nameClass)
+        private void SetClass()
         {
-            Figure = new ArrowImplementation();
-=========
-            switch (nameClass)
+            switch (_figureName)
             {
-                case "Class1":
-                    figure = new Class1();
+                case "Classes1":
+                    Figure = new Class1Figure();
                     break;
-                case "Class2":
-                    figure = new Class2();
+                case "Classes2":
+                    Figure = new Class2Figure();
                     break;
-                case "Class3":
-                    figure = new Class3();
+                case "Classes3":
+                    Figure = new Class3Figure();
                     break;
                 case "ClassStack":
-                    figure = new ClassStack();
+                    Figure = new ClassStackFigure();
                     break;
             }
 
->>>>>>>>> Temporary merge branch 2
+            pictureBox_Arrows.ImageLocation = @"ImagesArrows\Arrows.JPG";
         }
 
 
@@ -160,11 +130,11 @@ namespace UMLDisigner
             //pictureBox1.Image = brush.bitmap;
         }
 
-        private void button1_Click_2(object sender, EventArgs e)
+        private void button_Color_Click(object sender, EventArgs e)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                button1.BackColor = colorDialog1.Color;
+                button_Color.BackColor = colorDialog1.Color;
                 Brush.Color = colorDialog1.Color;
             }
         }
@@ -174,31 +144,25 @@ namespace UMLDisigner
             label2.Text = trackBar1.Value.ToString();
         }
 
-<<<<<<<<< Temporary merge branch 1
-        private void button_Class1_Click(object sender, EventArgs e)
-        {
-            Figure = new Class1Figure();
-        }
-=========
->>>>>>>>> Temporary merge branch 2
 
-        private void button_Arrows_MouseHover(object sender, EventArgs e)
+        private void pictureBox_Arrows_MouseHover(object sender, EventArgs e)
         {
             FormArrows formArrows = new FormArrows();
             formArrows.TopMost = true;
             formArrows.StartPosition = FormStartPosition.Manual;
-            formArrows.Location = button_Arrows.Location;
+            formArrows.Location = pictureBox_Arrows.Location;
             formArrows.ShowDialog();
             if (formArrows.Name != null)
             {
+                _figureName = formArrows.Name;
                 SetArrow();
+                pictureBox_Arrows.ImageLocation = @"ImagesArrows\" + _figureName + ".JPG";
+                pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
                 formArrows.Close();
             }
         }
 
-        private void button_Classes_MouseHover(object sender, EventArgs e)
-        {
-        private void pictureBox_Classes_MouseHover(object sender, EventArgs e)
+        private void pictureBox_Classes_MouseHover_1(object sender, EventArgs e)
         {
             FormClasses formClasses = new FormClasses();
             formClasses.TopMost = true;
@@ -207,21 +171,21 @@ namespace UMLDisigner
             formClasses.ShowDialog();
             if (formClasses.Name != null)
             {
-                if (formClasses.Name == "close")
-                {
-                    if (_figureName == "association" || _figureName == "inheritance" || _figureName == "aggregation"
-                        || _figureName == "aggregationPlus" || _figureName == "composition" || _figureName == "compositionPlus" || _figureName == "implementation")
-                    {
-                        pictureBox_Classes.ImageLocation = @"ImagesClasses\" + _figureName + ".JPG";
-                    }
-                    else
-                    {
-                        pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
-                    }
-                    pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
-                    formClasses.Close();
-                    return;
-                }
+                //    if (formClasses.Name == "close")
+                //    {
+                //        if (_figureName == "association" || _figureName == "inheritance" || _figureName == "aggregation"
+                //            || _figureName == "aggregationPlus" || _figureName == "composition" || _figureName == "compositionPlus" || _figureName == "implementation")
+                //        {
+                //            pictureBox_Classes.ImageLocation = @"ImagesClasses\" + _figureName + ".JPG";
+                //        }
+                //        else
+                //        {
+                //            pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
+                //        }
+                //        pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
+                //        formClasses.Close();
+                //        return;
+                //    }
 
                 _figureName = formClasses.Name;
                 SetClass();
@@ -229,9 +193,6 @@ namespace UMLDisigner
                 pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
                 formClasses.Close();
             }
-
-
-
->>>>>>>>> Temporary merge branch 2
+        }
     }
 }
