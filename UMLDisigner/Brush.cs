@@ -9,7 +9,7 @@ namespace UMLDisigner
 {
    public class Brush
     {
-        public Color Color { get; set; } = Color.Black;
+        public Color Color { get; set; } = Color.Black; 
         public int TrackBarWidth;
         Bitmap _mainBitmap;
         Bitmap _tmpBitmap;
@@ -20,7 +20,7 @@ namespace UMLDisigner
         public Brush(PictureBox pb)
         {
             _mainBitmap = new Bitmap(pb.Width, pb.Height);
-            _tmpBitmap = _mainBitmap;
+            _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             pen = new Pen(Color, TrackBarWidth);
             graphics = Graphics.FromImage(_mainBitmap);
 
@@ -28,15 +28,42 @@ namespace UMLDisigner
             this.pb = pb;
             pb.Image = _mainBitmap;
         }
+
+        public void DrawAllFigures(List<IFigure> ListFigures)
+        {
+            _mainBitmap = new Bitmap(pb.Width, pb.Height);
+            graphics = Graphics.FromImage(_mainBitmap);
+            graphics.Clear(Color.White);
+
+            foreach (IFigure figure in ListFigures)
+            {
+                pen.Color = figure.Color;
+                pen.Width = figure.Width;
+                figure.Draw(graphics, pen);
+            }
+            pb.Image = _mainBitmap;
+        }
+         
+        public void DrawMovingFigure(IFigure figure, int deltaX, int deltaY)
+        {
+            _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+            graphics = Graphics.FromImage(_tmpBitmap);
+            pen.Color = figure.Color;
+            pen.Width = figure.Width;
+            figure.Draw(graphics, pen, deltaX, deltaY);
+            pb.Image = _tmpBitmap;
+            GC.Collect();
+        }
+
         public void DrawMoveFigure(IFigure figure)
         {
             _tmpBitmap = (Bitmap)_mainBitmap.Clone(); 
             graphics = Graphics.FromImage(_tmpBitmap);
-            pen.Color = Color;
-            pen.Width = TrackBarWidth;
+            pen.Color = figure.Color;
+            pen.Width = figure.Width;
             figure.Draw(graphics, pen);
-            pb.Image = _tmpBitmap;
-           // GC.Collect();
+            pb.Image = _tmpBitmap; 
+            GC.Collect();
             //pb.Invalidate();
         }
 
@@ -56,7 +83,7 @@ namespace UMLDisigner
 
         public void TmpToMainBitmap()
         {
-            _mainBitmap = _tmpBitmap;
+            _mainBitmap = _tmpBitmap; 
         }
 
         public void Clear()
