@@ -7,6 +7,20 @@ namespace UMLDisigner
 {
     class ArrowСomposition : AbstractArrow
     {
+
+        public ArrowСomposition(Point MouseDownPosition, Point MouseUpPosition)
+        {
+            this.MouseDownPosition = MouseDownPosition;
+            this.MouseUpPosition = MouseUpPosition;
+        }
+        public ArrowСomposition()
+        {
+
+        }
+        public override object Clone()
+        {
+            return new ArrowСomposition(this.MouseDownPosition, this.MouseDownPosition);
+        }
         public override void Draw(Graphics graphics, Pen pen)
         {
             SolidBrush brush = new SolidBrush(pen.Color);

@@ -8,6 +8,19 @@ namespace UMLDisigner
 {
     class ArrowAssociation : AbstractArrow
     {
+        public ArrowAssociation(Point MouseDownPosition, Point MouseUpPosition)
+        {
+            this.MouseDownPosition = MouseDownPosition;
+            this.MouseUpPosition = MouseUpPosition;
+        }
+        public ArrowAssociation()
+        {
+
+        }
+        public override object Clone()
+        {
+            return new ArrowAssociation(this.MouseDownPosition, this.MouseDownPosition);
+        }
         public override void Draw(Graphics graphics, Pen pen)
         {
             graphics.DrawLine(pen, MouseDownPosition, MouseUpPosition);

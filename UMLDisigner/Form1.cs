@@ -10,10 +10,14 @@ namespace UMLDisigner
     {
         List<Bitmap> BitmapList= new List<Bitmap>();
 
-        private Point _mouseUpPosition;
+       // private Point _mouseUpPosition;
         private String _figureName;
         public Brush Brush;
         public IFigure Figure;
+        public List<IFigure> figures;
+        bool editing = false;
+        IFigure _crntFigure;
+        //IFigure Figure;
 
 
         public Form1()
@@ -24,42 +28,97 @@ namespace UMLDisigner
         private void Form1_Load_1(object sender, EventArgs e)
         {
             Brush = new Brush(pictureBox1);
+            figures = new List<IFigure>();
+            
+            
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            //_mouseUpPosition = e.Location;
-            if (e.Button == MouseButtons.Left && e.Location!= _mouseUpPosition && !(Figure is null))
-            {
-                Figure.MouseUpPosition = e.Location;
-                Brush.TrackBarWidth = trackBar1.Value;
-                Brush.DrawMoveFigure(Figure);
-                //pictureBox1.Invalidate();
-
-            }
-
-            //pictureBox1.Image = brush.bitmap;
+            
+                if (!(Figure is null) && e.Button == MouseButtons.Left && e.Location != Figure.MouseDownPosition)
+                {
+                    Figure.MouseUpPosition = e.Location;
+                    Brush.TrackBarWidth = trackBar1.Value;
+                    Brush.DrawMoveFigure(Figure);
+                }
         }             
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (!(Figure is null)) 
+           
+            if (editing)
             {
-                Figure.MouseDownPosition = e.Location;
-            }
-            
-            if(BitmapList.Count>1)
-            {
-                button_StepBack.Enabled = true;
-            }
+                    findSelectedFigure(e);
 
+                    figures.Remove(_crntFigure);
+                    Brush.Clear();
+
+                    Brush.DrawMoveFigure(figures);
+                    // Brush.DrawMoveFigure(_crntFigure);
+                    Figure = _crntFigure;
+            }
+          
+            else
+            {
+                if (!(Figure is null)) 
+                {
+                    Figure.MouseDownPosition = e.Location;
+     
+                }
+                //if (BitmapList.Count > 1)
+                //{
+                //    button_StepBack.Enabled = true;
+                //}
+            }
         }
+       
+
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+
             Brush.TmpToMainBitmap();
+
+            if(Figure!= null)
+            {
+                Figure.MouseUpPosition = e.Location;
+                figures.Add(Figure);
+                Figure = (IFigure)(Figure.Clone());
+            }
+            
+            
+        }
+
+        private void findSelectedFigure(MouseEventArgs e)
+        {
+            foreach (IFigure a in figures)
+            {
+                if (a is AbstractArrow)
+                {
+                    //if (Math.Abs(a.MouseDownPosition.X - e.X) < 10 && Math.Abs(a.MouseDownPosition.Y - e.Y) < 10)
+                    //{
+                    //    _crntFigure = a;
+                    //    break;
+                    //}
+                    if (Math.Abs(a.MouseUpPosition.X - e.X) < 10 && Math.Abs(a.MouseUpPosition.Y - e.Y) < 10)
+                    {
+                        _crntFigure = a;
+                        break;
+                    }
+                }
+                if (a is AbstractClassFigure)
+                {
+                    if (a.MouseDownPosition.X < a.MouseUpPosition.X)
+                    {
+
+                    }
+                }
+
+            }
         }
 
         private void button_Clear_Click(object sender, EventArgs e)
         {
-            Brush.Clear();            
+            Brush.Clear();
+            figures.Clear();
         }
 
         
@@ -128,6 +187,9 @@ namespace UMLDisigner
             //}
 
             //pictureBox1.Image = brush.bitmap;
+
+            
+            Brush.DrawMoveFigure(figures);
         }
 
         private void button_Color_Click(object sender, EventArgs e)
@@ -138,14 +200,7 @@ namespace UMLDisigner
                 Brush.Color = colorDialog1.Color;
             }
         }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            label2.Text = trackBar1.Value.ToString();
-        }
-
-
-        private void pictureBox_Arrows_MouseHover(object sender, EventArgs e)
+        private void pictureBox_Arrows_Click(object sender, EventArgs e)
         {
             FormArrows formArrows = new FormArrows();
             formArrows.TopMost = true;
@@ -162,7 +217,7 @@ namespace UMLDisigner
             }
         }
 
-        private void pictureBox_Classes_MouseHover_1(object sender, EventArgs e)
+        private void pictureBox_Classes_Click(object sender, EventArgs e)
         {
             FormClasses formClasses = new FormClasses();
             formClasses.TopMost = true;
@@ -194,5 +249,30 @@ namespace UMLDisigner
                 formClasses.Close();
             }
         }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            label2.Text = trackBar1.Value.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(editing)
+            {
+                editing = false;
+                Button b = (Button)sender;
+                b.Text = "Off";
+            }
+            else
+            {
+                editing = true;
+                Button b = (Button)sender;
+                b.Text = "On";
+            }
+            
+            
+        }
+
+
     }
 }

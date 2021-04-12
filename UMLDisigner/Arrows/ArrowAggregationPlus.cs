@@ -6,7 +6,21 @@ using System.Drawing;
 namespace UMLDisigner
 {
     class ArrowAggregationPlus : AbstractArrow
+
     {
+        public ArrowAggregationPlus(Point MouseDownPosition, Point MouseUpPosition)
+        {
+            this.MouseDownPosition = MouseDownPosition;
+            this.MouseUpPosition = MouseUpPosition;
+        }
+        public ArrowAggregationPlus()
+        {
+
+        }
+        public override object Clone()
+        {
+            return new ArrowAggregationPlus(this.MouseDownPosition, this.MouseDownPosition);
+        }
         public override void Draw(Graphics graphics, Pen pen)
         {
             graphics.DrawLine(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)[3], MouseUpPosition);//начинаем прорисовывать линию от конца ромбика
