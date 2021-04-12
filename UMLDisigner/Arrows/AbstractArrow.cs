@@ -10,6 +10,20 @@ namespace UMLDisigner
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
 
+        public AbstractArrow(Point MouseDownPosition, Point MouseUpPosition)
+        {
+            this.MouseDownPosition = MouseDownPosition;
+            this.MouseUpPosition = MouseUpPosition;
+        }
+        public AbstractArrow()
+        {
+
+        }
+
+        public abstract object Clone();
+        
+
         public abstract void Draw(Graphics graphics, Pen pen);
+
     }
 }

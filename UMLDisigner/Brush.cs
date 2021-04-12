@@ -36,9 +36,24 @@ namespace UMLDisigner
             pen.Width = TrackBarWidth;
             figure.Draw(graphics, pen);
             pb.Image = _tmpBitmap;
-            GC.Collect();
+           // GC.Collect();
             //pb.Invalidate();
         }
+
+        public void DrawMoveFigure(List<IFigure> figure)
+        {
+
+            graphics = Graphics.FromImage(_mainBitmap);
+            pen.Color = Color;
+            pen.Width = TrackBarWidth;
+            foreach (IFigure a in figure)
+            {
+                a.Draw(graphics, pen);
+            }
+            pb.Invalidate();
+
+        }
+
         public void TmpToMainBitmap()
         {
             _mainBitmap = _tmpBitmap;
@@ -50,5 +65,6 @@ namespace UMLDisigner
             graphics.Clear(Color.White);
             pb.Image = _mainBitmap;
         }
+
     }
 }

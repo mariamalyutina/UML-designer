@@ -7,6 +7,20 @@ namespace UMLDisigner
 {
     class ArrowImplementation : AbstractArrow
     {
+        public ArrowImplementation(Point MouseDownPosition, Point MouseUpPosition)
+        {
+            this.MouseDownPosition = MouseDownPosition;
+            this.MouseUpPosition = MouseUpPosition;
+        }
+        public ArrowImplementation()
+        {
+
+        }
+        public override object Clone()
+        {
+            return new ArrowImplementation(this.MouseDownPosition, this.MouseDownPosition);
+        }
+
         public override void Draw(Graphics graphics, Pen pen)
         {
             graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
