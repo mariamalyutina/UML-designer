@@ -10,12 +10,14 @@ namespace UMLDisigner
     {
         List<Bitmap> BitmapList= new List<Bitmap>();
 
-       // private Point _mouseUpPosition;
+        private Point _mouseUpPosition;
+        private Point _pointMovingMouseDownPosition;
         private String _figureName;
         public Brush Brush;
         public IFigure Figure;
         public List<IFigure> figures;
         bool editing = false;
+        bool isMoving = false;
         IFigure _crntFigure;
         //IFigure Figure;
 

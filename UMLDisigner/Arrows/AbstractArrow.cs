@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -25,12 +25,16 @@ namespace UMLDisigner
         public abstract object Clone();
         
 
-        public abstract void Draw(Graphics graphics, Pen pen);
 
         public abstract void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
         public bool IsHavingPoint(Point checkedPoint)
         {
             return false;
+        }
+
+        public void Move(double delta)
+        {
+            throw new NotImplementedException();
         }
     }
 }
