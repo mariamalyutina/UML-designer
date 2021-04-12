@@ -7,6 +7,7 @@ namespace UMLDisigner
 {
     class ArrowAggregationPlus : AbstractArrow
     {
+
         public override void Draw(Graphics graphics, Pen pen)
         {
             graphics.DrawLine(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)[3], MouseUpPosition);//начинаем прорисовывать линию от конца ромбика
@@ -15,5 +16,9 @@ namespace UMLDisigner
             graphics.DrawPolygon(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)); //ромбик на конце , меняем местами mouseUp и mouseDown, чтобы ромбик рисовался в конце линии
         }
 
+        public override object Clone()
+        {
+            return new ArrowAggregationPlus();
+        }
     }
 }

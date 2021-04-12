@@ -50,6 +50,7 @@ namespace UMLDisigner
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             Brush.TmpToMainBitmap();
+            Figure = (IFigure)Figure.Clone();
         }
 
         private void button_Clear_Click(object sender, EventArgs e)

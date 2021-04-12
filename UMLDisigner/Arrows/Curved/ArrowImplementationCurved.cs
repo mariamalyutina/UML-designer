@@ -21,8 +21,11 @@ namespace UMLDisigner
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
                 graphics.DrawPolygon(pen, Geometry.GetArrow(arrowEnd, arrowStart));
             }
+        }
 
-
+        public override object Clone()
+        {
+            return new ArrowImplementationCurved();
         }
     }
 }

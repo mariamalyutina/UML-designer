@@ -15,5 +15,9 @@ namespace UMLDisigner
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
         }
 
+        public override object Clone()
+        {
+            return new ArrowImplementation();
+        }
     }
 }

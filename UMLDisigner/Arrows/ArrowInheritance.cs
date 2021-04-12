@@ -12,5 +12,10 @@ namespace UMLDisigner
             graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]);
             graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
         }
+
+        public override object Clone()
+        {
+            return new ArrowInheritance();
+        }
     }
 }

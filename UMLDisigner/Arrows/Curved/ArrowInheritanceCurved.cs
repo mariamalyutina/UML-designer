@@ -19,7 +19,11 @@ namespace UMLDisigner
                 graphics.DrawPolygon(pen, Geometry.GetArrow(arrowEnd, arrowStart));
                 graphics.DrawLines(pen, GetPoints(MouseDownPosition, lineEnd).ToArray());
             }
+        }
 
+        public override object Clone()
+        {
+            return new ArrowInheritanceCurved();
         }
     }
 }

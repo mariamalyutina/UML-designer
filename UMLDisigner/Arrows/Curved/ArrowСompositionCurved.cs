@@ -21,7 +21,11 @@ namespace UMLDisigner
                 graphics.FillPolygon(brush, Geometry.GetRomb(rombEnd, rombStart));
                 graphics.DrawLines(pen, GetPoints(MouseDownPosition, lineEnd).ToArray());
             }
+        }
 
+        public override object Clone()
+        {
+            return new ArrowСompositionCurved();
         }
     }
 }

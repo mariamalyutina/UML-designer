@@ -19,7 +19,12 @@ namespace UMLDisigner
                 graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(arrowEnd, arrowStart)[0]); //отрисовка крыльев стрелки
                 graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(arrowEnd, arrowStart)[2]); //отрисовка крыльев стрелки
             }
-
         }
+
+        public override object Clone()
+        {
+            return new ArrowAssociationCurved();
+        }
+
     }
 }

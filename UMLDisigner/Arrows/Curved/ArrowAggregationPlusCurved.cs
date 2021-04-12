@@ -27,5 +27,10 @@ namespace UMLDisigner
             }
 
         }
+
+        public override object Clone()
+        {
+            return new ArrowAggregationPlusCurved();
+        }
     }
 }

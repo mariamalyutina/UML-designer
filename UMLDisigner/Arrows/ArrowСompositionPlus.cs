@@ -16,5 +16,10 @@ namespace UMLDisigner
             graphics.DrawPolygon(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)); //ромбик на конце , меняем местами mouseUp и mouseDown, чтобы ромбик рисовался в конце линии
             graphics.FillPolygon(brush, Geometry.GetRomb(MouseDownPosition, MouseUpPosition));
         }
+
+        public override object Clone()
+        {
+            return new ArrowСompositionPlus();
+        }
     }
 }

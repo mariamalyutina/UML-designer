@@ -7,11 +7,16 @@ namespace UMLDisigner
 {
     class ArrowAggregation : AbstractArrow
     {
+
         public override void Draw(Graphics graphics, Pen pen)
         {
             graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]);
             graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
         }
 
+        public override object Clone()
+        {
+            return new ArrowAggregation();
+        }
     }
 }

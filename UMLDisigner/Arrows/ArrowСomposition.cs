@@ -14,5 +14,10 @@ namespace UMLDisigner
             graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
             graphics.FillPolygon(brush, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
         }
+
+        public override object Clone()
+        {
+            return new ArrowСomposition();
+        }
     }
 }
