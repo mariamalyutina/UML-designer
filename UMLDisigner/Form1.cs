@@ -10,7 +10,6 @@ namespace UMLDisigner
     {
         List<Bitmap> BitmapList= new List<Bitmap>();
 
-        private Point _mouseUpPosition;
         private String _figureName;
         public Brush Brush;
         public IFigure Figure;
@@ -27,17 +26,13 @@ namespace UMLDisigner
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            //_mouseUpPosition = e.Location;
-            if (e.Button == MouseButtons.Left && e.Location!= _mouseUpPosition && !(Figure is null))
+            if (e.Button == MouseButtons.Left && e.Location!= Figure.MouseDownPosition && !(Figure is null))
             {
                 Figure.MouseUpPosition = e.Location;
                 Brush.TrackBarWidth = trackBar1.Value;
                 Brush.DrawMoveFigure(Figure);
-                //pictureBox1.Invalidate();
-
             }
 
-            //pictureBox1.Image = brush.bitmap;
         }             
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -68,25 +63,74 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-                    Figure = new ArrowAssociation();
+                    if (buttonLineOptions.Text == "Curved")
+                    {
+                        Figure = new ArrowAssociationCurved();
+                    }
+                    else
+                    {
+                        Figure = new ArrowAssociation();
+                    }
                     break;
                 case "inheritance":
-                    Figure = new ArrowInheritance();
+                    if (buttonLineOptions.Text == "Curved")
+                    {
+                        Figure = new ArrowInheritanceCurved();
+                    }
+                    else
+                    {
+                        Figure = new ArrowInheritance();
+                    }
                     break;
                 case "aggregation":
-                    Figure = new ArrowAggregation();
+                    if (buttonLineOptions.Text == "Curved")
+                    {
+                        Figure = new ArrowAggregationCurved();
+                    }
+                    else
+                    {
+                        Figure = new ArrowAggregation();
+                    }
                     break;
                 case "aggregationPlus":
-                    Figure = new ArrowAggregationPlus();
+                    if (buttonLineOptions.Text == "Curved")
+                    {
+                        Figure = new ArrowAggregationPlusCurved();
+                    }
+                    else
+                    {
+                        Figure = new ArrowAggregationPlus();
+                    }
                     break;
                 case "composition":
-                    Figure = new ArrowСomposition();
+                    if (buttonLineOptions.Text == "Curved")
+                    {
+                        Figure = new ArrowСompositionCurved();
+                    }
+                    else
+                    {
+                        Figure = new ArrowСomposition();
+                    }
                     break;
                 case "compositionPlus":
-                    Figure = new ArrowСompositionPlus();
+                    if (buttonLineOptions.Text == "Curved")
+                    {
+                        Figure = new ArrowСompositionPlusCurved();
+                    }
+                    else
+                    {
+                        Figure = new ArrowСompositionPlus();
+                    }
                     break;
                 case "implementation":
-                    Figure = new ArrowImplementation();
+                    if (buttonLineOptions.Text == "Curved")
+                    {
+                        Figure = new ArrowImplementationCurved();
+                    }
+                    else
+                    {
+                        Figure = new ArrowImplementation();
+                    }
                     break;
             }
 
@@ -194,5 +238,12 @@ namespace UMLDisigner
                 formClasses.Close();
             }
         }
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonLineOptions.Text = comboBox1.Text;
+        }
+
     }
 }

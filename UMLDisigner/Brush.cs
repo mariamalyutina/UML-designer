@@ -39,6 +39,20 @@ namespace UMLDisigner
             GC.Collect();
             //pb.Invalidate();
         }
+
+        public void DrawMoveFigureCurved(IFigure figure)
+        {
+            _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+            graphics = Graphics.FromImage(_tmpBitmap);
+            pen.Color = Color;
+            pen.Width = TrackBarWidth;
+            
+            figure.Draw(graphics, pen);
+            pb.Image = _tmpBitmap;
+            GC.Collect();
+            //pb.Invalidate();
+        }
+
         public void TmpToMainBitmap()
         {
             _mainBitmap = _tmpBitmap;
