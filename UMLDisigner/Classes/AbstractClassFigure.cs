@@ -12,11 +12,7 @@ namespace UMLDisigner
 
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
-
-        public object Clone()
-        {
-            throw new NotImplementedException();
-        }
+        public bool IsCurved { get; set; }
 
         public abstract void Draw(Graphics graphics, Pen pen);
     }

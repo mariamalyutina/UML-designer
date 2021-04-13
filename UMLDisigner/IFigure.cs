@@ -6,10 +6,11 @@ using System.Windows.Forms;
 
 namespace UMLDisigner
 {
-    public interface IFigure: ICloneable
+    public interface IFigure
     {
         Point MouseUpPosition { get; set; }
         Point MouseDownPosition { get; set; }
+        public bool IsCurved { get; set; }
 
         void Draw(Graphics graphics, Pen pen);
 

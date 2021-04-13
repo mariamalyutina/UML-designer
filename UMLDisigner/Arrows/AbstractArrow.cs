@@ -10,15 +10,9 @@ namespace UMLDisigner
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
 
-        public AbstractArrow()
-        {
-
-        }
-
+        public bool IsCurved { get; set; }
 
         public abstract void Draw(Graphics graphics, Pen pen);
-
-        //public abstract void DrawCurved(Graphics graphics, Pen pen);
 
         protected List<Point> GetPoints(Point startPoint, Point endPoint) //точки для ломания линий (start point и end point у каждой линии разные из-за разных наконечников)
         {
@@ -35,6 +29,5 @@ namespace UMLDisigner
             return points;
         }
 
-        public abstract object Clone();
     }
 }

@@ -8,6 +8,8 @@ namespace UMLDisigner
 {
     public partial class Form1 : Form
     {
+
+
         List<Bitmap> BitmapList= new List<Bitmap>();
 
         private String _figureName;
@@ -26,8 +28,17 @@ namespace UMLDisigner
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && e.Location!= Figure.MouseDownPosition && !(Figure is null))
+                if (!(Figure is null) && e.Button == MouseButtons.Left && e.Location!= Figure.MouseDownPosition)
             {
+                if (buttonLineOptions.Text == "Curved")
+                {
+                    Figure.IsCurved = true;
+                }
+                else
+                {
+                    Figure.IsCurved = false;
+                }
+
                 Figure.MouseUpPosition = e.Location;
                 Brush.TrackBarWidth = trackBar1.Value;
                 Brush.DrawMoveFigure(Figure);
@@ -50,7 +61,6 @@ namespace UMLDisigner
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             Brush.TmpToMainBitmap();
-            Figure = (IFigure)Figure.Clone();
         }
 
         private void button_Clear_Click(object sender, EventArgs e)
@@ -64,74 +74,25 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-                    if (buttonLineOptions.Text == "Curved")
-                    {
-                        Figure = new ArrowAssociationCurved();
-                    }
-                    else
-                    {
-                        Figure = new ArrowAssociation();
-                    }
+                    Figure = new ArrowAssociation();
                     break;
                 case "inheritance":
-                    if (buttonLineOptions.Text == "Curved")
-                    {
-                        Figure = new ArrowInheritanceCurved();
-                    }
-                    else
-                    {
-                        Figure = new ArrowInheritance();
-                    }
+                    Figure = new ArrowInheritance();
                     break;
                 case "aggregation":
-                    if (buttonLineOptions.Text == "Curved")
-                    {
-                        Figure = new ArrowAggregationCurved();
-                    }
-                    else
-                    {
-                        Figure = new ArrowAggregation();
-                    }
+                    Figure = new ArrowAggregation();
                     break;
                 case "aggregationPlus":
-                    if (buttonLineOptions.Text == "Curved")
-                    {
-                        Figure = new ArrowAggregationPlusCurved();
-                    }
-                    else
-                    {
-                        Figure = new ArrowAggregationPlus();
-                    }
+                    Figure = new ArrowAggregationPlus();
                     break;
                 case "composition":
-                    if (buttonLineOptions.Text == "Curved")
-                    {
-                        Figure = new ArrowСompositionCurved();
-                    }
-                    else
-                    {
-                        Figure = new ArrowСomposition();
-                    }
+                    Figure = new ArrowСomposition();
                     break;
                 case "compositionPlus":
-                    if (buttonLineOptions.Text == "Curved")
-                    {
-                        Figure = new ArrowСompositionPlusCurved();
-                    }
-                    else
-                    {
-                        Figure = new ArrowСompositionPlus();
-                    }
+                    Figure = new ArrowСompositionPlus();
                     break;
                 case "implementation":
-                    if (buttonLineOptions.Text == "Curved")
-                    {
-                        Figure = new ArrowImplementationCurved();
-                    }
-                    else
-                    {
-                        Figure = new ArrowImplementation();
-                    }
+                    Figure = new ArrowImplementation();
                     break;
             }
 

@@ -64,13 +64,13 @@ namespace UMLDisigner
             return RombsSholders;
         }
 
-    
-
 
         public static Point[] GetRectangle(Point mouseUpPosition, Point mouseDownPosition)
         {
             return new Point[] { new Point(mouseDownPosition.X, mouseDownPosition.Y),new Point(mouseDownPosition.X, mouseUpPosition.Y),
         new Point(mouseUpPosition.X, mouseUpPosition.Y),new Point(mouseUpPosition.X, mouseDownPosition.Y)}; //правильная последоватьльность точек)
         }
+
+
     }
 }
