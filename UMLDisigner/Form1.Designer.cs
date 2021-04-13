@@ -40,6 +40,7 @@ namespace UMLDisigner
             this.button_Clear = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonLineOptions = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrows)).BeginInit();
@@ -117,7 +118,7 @@ namespace UMLDisigner
             this.pictureBox_Arrows.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Arrows.TabIndex = 16;
             this.pictureBox_Arrows.TabStop = false;
-            this.pictureBox_Arrows.MouseHover += new System.EventHandler(this.pictureBox_Arrows_MouseHover);
+            this.pictureBox_Arrows.Click += new System.EventHandler(this.pictureBox_Arrows_Click);
             // 
             // pictureBox_Classes
             // 
@@ -129,7 +130,7 @@ namespace UMLDisigner
             this.pictureBox_Classes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Classes.TabIndex = 17;
             this.pictureBox_Classes.TabStop = false;
-            this.pictureBox_Classes.MouseHover += new System.EventHandler(this.pictureBox_Classes_MouseHover_1);
+            this.pictureBox_Classes.Click += new System.EventHandler(this.pictureBox_Classes_Click);
             // 
             // button_Clear
             // 
@@ -164,6 +165,16 @@ namespace UMLDisigner
             this.buttonLineOptions.TabIndex = 19;
             this.buttonLineOptions.Text = "Line options";
             this.buttonLineOptions.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(992, -4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(135, 89);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Off";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -212,6 +223,7 @@ namespace UMLDisigner
         private System.Windows.Forms.Button button_Clear;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonLineOptions;
+        private System.Windows.Forms.Button button1;
     }
 }
 

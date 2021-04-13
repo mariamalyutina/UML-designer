@@ -7,8 +7,20 @@ namespace UMLDisigner
 {
     class ArrowСompositionPlus : AbstractArrow
     {
+        public ArrowСompositionPlus()
+        {
 
-        public override void Draw(Graphics graphics, Pen pen)
+        }
+
+        ArrowСompositionPlus(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        {
+            MouseDownPosition = mouseDownPosition;
+            MouseUpPosition = mouseUpPosition;
+            Color = color;
+            Width = width;
+        }
+
+        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
             SolidBrush brush = new SolidBrush(pen.Color);
 
@@ -40,6 +52,11 @@ namespace UMLDisigner
                 graphics.FillPolygon(brush, Geometry.GetRomb(MouseDownPosition, MouseUpPosition));
             }
             
+        }
+
+        public override object Clone()
+        {
+            return new ArrowСompositionPlus(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
 }
