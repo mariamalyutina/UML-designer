@@ -22,10 +22,12 @@ namespace UMLDisigner
 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
-            graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]); //рисуем до начала отрисовки стрелочки
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
+            graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
+           
+            
         }
 
         public override object Clone()
