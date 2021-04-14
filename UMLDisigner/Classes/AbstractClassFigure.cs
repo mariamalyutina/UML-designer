@@ -14,10 +14,11 @@ namespace UMLDisigner
         public Point MouseDownPosition { get; set; }
         public Color Color { get; set; } = Color.Black;
         public int Width { get; set; } = 1;
+        public bool IsCurved { get; set; }
 
         public abstract object Clone();
 
-        public abstract void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY);
+        public abstract void Draw(Graphics graphics, Pen pen);
 
         public bool IsHavingPoint(Point checkedPoint)
         {

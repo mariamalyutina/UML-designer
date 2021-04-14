@@ -9,10 +9,9 @@ namespace UMLDisigner
 
     {
         public ArrowAggregationPlus(){
-
         }
 
-        ArrowAggregationPlus(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowAggregationPlus(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
@@ -20,17 +19,39 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        public override void Draw(Graphics graphics, Pen pen)
         {
-            graphics.DrawLine(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)[3], MouseUpPosition);//начинаем прорисовывать линию от конца ромбика
-            graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[0]); //отрисовка крыльев стрелки
-            graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[2]); //отрисовка крыльев стрелки
-            graphics.DrawPolygon(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)); //ромбик на конце , меняем местами mouseUp и mouseDown, чтобы ромбик рисовался в конце линии
+            if (IsCurved)
+            {
+                Point arrowStart = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
+                Point arrowEnd = MouseUpPosition;
+
+                Point rombStart = MouseDownPosition;
+                Point rombEnd = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[1];
+
+                Point lineStart = Geometry.GetRomb(rombStart, rombEnd)[3]; //Линия начинается от конца ромбика
+
+                if (arrowStart != arrowEnd && rombStart != rombEnd)
+                {
+                    graphics.DrawLines(pen, GetPoints(lineStart, MouseUpPosition).ToArray());
+                    graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(arrowEnd, arrowStart)[0]); //отрисовка крыльев стрелки
+                    graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(arrowEnd, arrowStart)[2]); //отрисовка крыльев стрелки
+                    graphics.DrawPolygon(pen, Geometry.GetRomb(rombStart, rombEnd));
+                }
+            }
+            else
+            {
+                graphics.DrawLine(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)[3], MouseUpPosition);//начинаем прорисовывать линию от конца ромбика
+                graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[0]); //отрисовка крыльев стрелки
+                graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[2]); //отрисовка крыльев стрелки
+                graphics.DrawPolygon(pen, Geometry.GetRomb(MouseDownPosition, MouseUpPosition)); //ромбик на конце , меняем местами mouseUp и mouseDown, чтобы ромбик рисовался в конце линии
+            }
         }
 
         public override object Clone()
         {   
             return new ArrowAggregationPlus(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
+
     }
 }
