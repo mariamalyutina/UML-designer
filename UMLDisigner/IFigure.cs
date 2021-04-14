@@ -15,23 +15,11 @@ namespace UMLDisigner
         int Width { get; set; }
 
 
-        void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
+        void Draw(Graphics graphics, Pen pen);
 
         void Move(double delta);
 
         bool IsHavingPoint(Point checkedPoint);
-
-        Object Clone();
-        protected List<Point> GetPoints()
-        {
-            List<Point> points = new List<Point>();
-
-            points.Add(MouseDownPosition);
-
-            points.Add(MouseUpPosition);
-
-            return points;
-        }
     }
 
 }

@@ -20,7 +20,7 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        public override void Draw(Graphics graphics, Pen pen)
         {
             graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]);
             graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
@@ -29,7 +29,7 @@ namespace UMLDisigner
             {
                 Point rombStart = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
                 Point rombEnd = MouseUpPosition;
-                Point lineEnd = Geometry.GetRomb(rombEnd, rombStart)[3]; //����� ������������� ���, ��� ���������� ������
+                Point lineEnd = Geometry.GetRomb(rombEnd, rombStart)[3]; 
 
                 if (rombStart != rombEnd)
                 {

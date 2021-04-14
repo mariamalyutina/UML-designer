@@ -22,7 +22,7 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        public override void Draw(Graphics graphics, Pen pen)
         {
             if (IsCurved)
             {

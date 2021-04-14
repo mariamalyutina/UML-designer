@@ -23,7 +23,7 @@ namespace UMLDisigner
             _brush = brush;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        public override void Draw(Graphics graphics, Pen pen)
         {
 
             SolidBrush _whiteBrush = new SolidBrush(Color.White);
@@ -31,10 +31,10 @@ namespace UMLDisigner
             int j = 0;
             for (int i = 0; i < 5; i++, j += 5)
             {
-                int crntMouseDownX = MouseDownPosition.X + j + deltaX;
-                int crntMouseDownY = MouseDownPosition.Y + j + deltaY;
-                int crntMouseUpX = MouseUpPosition.X + j + deltaX;
-                int crntMouseUpY = MouseUpPosition.Y + j + deltaY;
+                int crntMouseDownX = MouseDownPosition.X + j;
+                int crntMouseDownY = MouseDownPosition.Y + j;
+                int crntMouseUpX = MouseUpPosition.X + j;
+                int crntMouseUpY = MouseUpPosition.Y + j;
                 graphics.DrawPolygon(pen, Geometry.GetRectangle(new Point (crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
                 graphics.FillPolygon(_whiteBrush, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
             }
@@ -43,23 +43,23 @@ namespace UMLDisigner
             {
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X, MouseUpPosition.Y + 10));
 
                 }
                 else if (MouseUpPosition.X - MouseDownPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X, MouseUpPosition.Y + 10));
                 }
             }
             if ((MouseUpPosition.Y - MouseDownPosition.Y) > 20)
             {
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X, MouseDownPosition.Y + 10));
                 }
                 else if (MouseUpPosition.X - MouseDownPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X, MouseDownPosition.Y + 10));
                 }
             }
 

@@ -41,6 +41,7 @@ namespace UMLDisigner
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonLineOptions = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrows)).BeginInit();
@@ -176,11 +177,22 @@ namespace UMLDisigner
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1184, 1);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(132, 127);
+            this.button3.TabIndex = 22;
+            this.button3.Text = "Off";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1326, 760);
+            this.ClientSize = new System.Drawing.Size(1317, 806);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.buttonLineOptions);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button_Clear);
@@ -194,7 +206,7 @@ namespace UMLDisigner
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Off";
             this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -224,6 +236,7 @@ namespace UMLDisigner
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonLineOptions;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
     }
 }
 

@@ -18,7 +18,7 @@ namespace UMLDisigner
 
         public abstract object Clone();
 
-        public abstract void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY);
+        public abstract void Draw(Graphics graphics, Pen pen);
 
         public bool IsHavingPoint(Point checkedPoint)
         {
