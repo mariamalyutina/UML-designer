@@ -12,7 +12,7 @@ namespace UMLDisigner
 
         }
 
-        ArrowСomposition(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowСomposition(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;

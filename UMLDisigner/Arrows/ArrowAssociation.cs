@@ -13,7 +13,7 @@ namespace UMLDisigner
 
         }
 
-        ArrowAssociation(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+      public  ArrowAssociation(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
@@ -21,19 +21,12 @@ namespace UMLDisigner
             Width = width;
         }
 
-        //public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
-        //{
-        //    graphics.DrawLine(pen, MouseDownPosition, MouseUpPosition);
-        //    graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[0]); //отрисовка крыльев стрелки
-        //    graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[2]); //отрисовка крыльев стрелки
-        //} 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
             graphics.DrawLine(pen, MouseDownPosition, MouseUpPosition);
-            graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow( MouseDownPosition, MouseUpPosition)[0]); //отрисовка крыльев стрелки
-            graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseDownPosition, MouseUpPosition)[2]); //отрисовка крыльев стрелки
+            graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[0]); //отрисовка крыльев стрелки
+            graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[2]); //отрисовка крыльев стрелки
         }
-
 
         public override object Clone()
         {

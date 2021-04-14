@@ -12,7 +12,7 @@ namespace UMLDisigner
 
         }
 
-        ArrowImplementation(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowImplementation(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
