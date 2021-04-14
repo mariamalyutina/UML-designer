@@ -20,6 +20,12 @@ namespace UMLDisigner
             Width = width;
         }
 
+        //public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        //{
+        //    graphics.DrawLine(pen, MouseDownPosition, MouseUpPosition);
+        //    graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[0]); //отрисовка крыльев стрелки
+        //    graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[2]); //отрисовка крыльев стрелки
+        //} 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
             if (IsCurved)
@@ -42,6 +48,7 @@ namespace UMLDisigner
                 graphics.DrawLine(pen, MouseUpPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[2]); //отрисовка крыльев стрелки
             }
         }
+
 
         public override object Clone()
         {

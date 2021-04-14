@@ -20,6 +20,7 @@ namespace UMLDisigner
         bool editing = false;
         bool isMoving = false;
         IFigure _crntFigure;
+        bool isEnd = false;
         //IFigure Figure;
 
 
@@ -37,13 +38,12 @@ namespace UMLDisigner
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            // начало движения классов с помощью правой клавиши мыши
+            //начало движения классов с помощью правой клавиши мыши
             //if (e.Button == MouseButtons.Left && e.Location != _mouseUpPosition && !(Figure is null))
             //{
             //    Figure.MouseUpPosition = e.Location;
             //    Brush.DrawMoveFigure(Figure);
             //    //pictureBox1.Invalidate();
-
             //}
                 if (!(Figure is null) && e.Button == MouseButtons.Left && e.Location!= Figure.MouseDownPosition)
             {
@@ -56,19 +56,28 @@ namespace UMLDisigner
                     Figure.IsCurved = false;
                 }
 
-                Figure.MouseUpPosition = e.Location;
-                Brush.TrackBarWidth = trackBar1.Value;
-                Brush.DrawMoveFigure(Figure);
-            }
 
             //if(e.Button == MouseButtons.Right && isMoving == true)
+            //if (e.Button == MouseButtons.Right && isMoving == true)
             //{
             //    int deltaX = e.Location.X - _pointMovingMouseDownPosition.X;
             //    int deltaY = e.Location.Y - _pointMovingMouseDownPosition.Y;
             //    Brush.DrawMovingFigure(Figure, deltaX, deltaY);
             //}
-                        //конец движения классов
+            //конец движения классов
 
+                if(isEnd)
+                {
+                    Figure.MouseDownPosition = e.Location;
+                }
+                else
+                {
+                    Figure.MouseUpPosition = e.Location;
+
+                }
+                Brush.TrackBarWidth = trackBar1.Value;
+                Brush.DrawMoveFigure(Figure);
+            }
         }             
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -101,14 +110,14 @@ namespace UMLDisigner
 
             if (editing)
             {
-                    findSelectedFigure(e);
+                findSelectedFigure(e);
+                figures.Remove(_crntFigure);
+                Brush.Clear();
 
-                    figures.Remove(_crntFigure);
-                    Brush.Clear();
-
-                    Brush.DrawMoveFigure(figures);
-                    // Brush.DrawMoveFigure(_crntFigure);
-                    Figure = _crntFigure;
+                Brush.DrawMoveFigure(figures);
+                
+                // Brush.DrawMoveFigure(_crntFigure);
+                Figure = _crntFigure;
             }
           
             else
@@ -118,10 +127,7 @@ namespace UMLDisigner
                     Figure.MouseDownPosition = e.Location;
      
                 }
-                //if (BitmapList.Count > 1)
-                //{
-                //    button_StepBack.Enabled = true;
-                //}
+                
             }
         }
        
@@ -149,10 +155,21 @@ namespace UMLDisigner
 
             if(Figure!= null)
             {
-                Figure.MouseUpPosition = e.Location;
+                if (isEnd)
+                {
+                    Figure.MouseDownPosition = e.Location;
+                }
+                else
+                {
+                    Figure.MouseUpPosition = e.Location;
+
+                }
                 figures.Add(Figure);
                 Figure = (IFigure)(Figure.Clone());
             }
+
+            
+            _crntFigure = null;
             
             
         }
@@ -163,23 +180,50 @@ namespace UMLDisigner
             {
                 if (a is AbstractArrow)
                 {
-                    //if (Math.Abs(a.MouseDownPosition.X - e.X) < 10 && Math.Abs(a.MouseDownPosition.Y - e.Y) < 10)
-                    //{
-                    //    _crntFigure = a;
-                    //    break;
-                    //}
+                    if (Math.Abs(a.MouseDownPosition.X - e.X) < 10 && Math.Abs(a.MouseDownPosition.Y - e.Y) < 10)
+                    {
+                        isEnd = true;
+                        _crntFigure = a;
+                        break;
+                    }
                     if (Math.Abs(a.MouseUpPosition.X - e.X) < 10 && Math.Abs(a.MouseUpPosition.Y - e.Y) < 10)
                     {
+                        isEnd = false;
                         _crntFigure = a;
                         break;
                     }
                 }
                 if (a is AbstractClassFigure)
                 {
-                    if (a.MouseDownPosition.X < a.MouseUpPosition.X)
-                    {
+                    Point[] Rectangle = Geometry.GetRectangle(a.MouseUpPosition, a.MouseDownPosition);
 
+
+                    for(int i=0;i<4;++i)
+                    {
+                        if (Math.Abs(Rectangle[i].X - e.X) < 10 && Math.Abs(Rectangle[i].Y - e.Y) < 10)
+                        {
+                            if (i == 0)
+                            {
+                                Point tmp = a.MouseDownPosition;
+                                a.MouseDownPosition = a.MouseUpPosition;
+                                a.MouseUpPosition = tmp;
+                            }
+                            if (i == 1)
+                            {
+                                a.MouseDownPosition = Rectangle[3];
+                                a.MouseUpPosition = Rectangle[1];
+                            }
+                            if (i==3)
+                            {
+                                a.MouseDownPosition =  Rectangle[1];
+                                a.MouseUpPosition =  Rectangle[3];
+                            }
+                            
+                            _crntFigure = a;
+                            break;
+                        }
                     }
+
                 }
 
             }
