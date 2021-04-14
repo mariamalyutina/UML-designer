@@ -11,7 +11,7 @@ namespace UMLDisigner
         public ArrowAggregationPlus(){
         }
 
-        ArrowAggregationPlus(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowAggregationPlus(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;

@@ -45,6 +45,13 @@ namespace UMLDisigner
             //    Brush.DrawMoveFigure(Figure);
             //    //pictureBox1.Invalidate();
             //}
+            if (e.Button == MouseButtons.Right && isMoving == true)
+            {
+                int deltaX = e.Location.X - _pointMovingMouseDownPosition.X;
+                int deltaY = e.Location.Y - _pointMovingMouseDownPosition.Y;
+
+                Brush.DrawMoveFigure(Figure, deltaX, deltaY);
+            }
                 if (!(Figure is null) && e.Button == MouseButtons.Left && e.Location!= Figure.MouseDownPosition)
             {
                 if (buttonLineOptions.Text == "Curved")
@@ -66,6 +73,8 @@ namespace UMLDisigner
             //}
             //конец движения классов
 
+
+
                 if(isEnd)
                 {
                     Figure.MouseDownPosition = e.Location;
@@ -75,29 +84,29 @@ namespace UMLDisigner
                     Figure.MouseUpPosition = e.Location;
 
                 }
-                Brush.TrackBarWidth = trackBar1.Value;
+               
                 Brush.DrawMoveFigure(Figure);
             }
         }             
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-                       // начало движения классов с помощью правой клавиши мыши
-            //if (ListFigures != null && e.Button == MouseButtons.Right)
-            //{
-            //    foreach (IFigure figure in ListFigures)
-            //    {
-            //        if (figure.IsHavingPoint(e.Location))
-            //        {
-            //            ListFigures.Remove(figure);
-            //            Figure = (IFigure)figure.Clone();
-            //            isMoving = true;
-            //            _pointMovingMouseDownPosition = e.Location;
-            //            Brush.DrawAllFigures(ListFigures);
-            //            return;
-            //        }
-            //    }
-            //}
-             
+            // начало движения классов с помощью правой клавиши мыши
+            if (figures != null && e.Button == MouseButtons.Right)
+            {
+                foreach (IFigure figure in figures)
+                {
+                    if (figure.IsHavingPoint(e.Location))
+                    {
+                        figures.Remove(figure);
+                        Figure = (IFigure)figure.Clone();
+                        isMoving = true;
+                        _pointMovingMouseDownPosition = e.Location;
+                        Brush.DrawAllFigures(figures);
+                        return;
+                    }
+                }
+            }
+
             //if (!(Figure is null) && e.Button == MouseButtons.Left) 
             //{
             //    isMoving = false;
@@ -111,11 +120,14 @@ namespace UMLDisigner
             if (editing)
             {
                 findSelectedFigure(e);
-                figures.Remove(_crntFigure);
+                
+                
                 Brush.Clear();
 
+                Brush.DrawMoveTmpFigure(figures);
+                figures.Remove(_crntFigure);
                 Brush.DrawMoveFigure(figures);
-                
+                //Brush.DrawMoveFigure(figures);
                 // Brush.DrawMoveFigure(_crntFigure);
                 Figure = _crntFigure;
             }
@@ -141,15 +153,15 @@ namespace UMLDisigner
             //    ListFigures.Add((IFigure)Figure.Clone());
             //}
 
-            //if (isMoving)
-            //{
-            //    Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
-            //    Figure.MouseDownPosition = Point.Add(Figure.MouseDownPosition, delta);
-            //    Figure.MouseUpPosition = Point.Add(Figure.MouseUpPosition, delta);
-            //    ListFigures.Add((IFigure)Figure.Clone());
-            //    isMoving = false;
-            //}
-                        //конец движения классов
+            if (isMoving)
+            {
+                Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
+                Figure.MouseDownPosition = Point.Add(Figure.MouseDownPosition, delta);
+                Figure.MouseUpPosition = Point.Add(Figure.MouseUpPosition, delta);
+                figures.Add((IFigure)Figure.Clone());
+                isMoving = false;
+            }
+            //конец движения классов
 
             Brush.TmpToMainBitmap();
 
@@ -241,25 +253,25 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-                    Figure = new ArrowAssociation();
+                    Figure = new ArrowAssociation(new Point(),new Point(),Brush.Color, Brush.TrackBarWidth );
                     break;
                 case "inheritance":
-                    Figure = new ArrowInheritance();
+                    Figure = new ArrowInheritance(new Point(), new Point(), Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregation":
-                    Figure = new ArrowAggregation();
+                    Figure = new ArrowAggregation(new Point(), new Point(), Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregationPlus":
-                    Figure = new ArrowAggregationPlus();
+                    Figure = new ArrowAggregationPlus(new Point(), new Point(), Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "composition":
-                    Figure = new ArrowСomposition();
+                    Figure = new ArrowСomposition(new Point(), new Point(), Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "compositionPlus":
-                    Figure = new ArrowСompositionPlus();
+                    Figure = new ArrowСompositionPlus(new Point(), new Point(), Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "implementation":
-                    Figure = new ArrowImplementation();
+                    Figure = new ArrowImplementation(new Point(), new Point(), Brush.Color, Brush.TrackBarWidth);
                     break;
             }
 
@@ -312,6 +324,7 @@ namespace UMLDisigner
             {
                 button_Color.BackColor = colorDialog1.Color;
                 Brush.Color = colorDialog1.Color;
+                Figure.Color = colorDialog1.Color;
             }
         }
         private void pictureBox_Arrows_Click(object sender, EventArgs e)
@@ -368,6 +381,7 @@ namespace UMLDisigner
         {
             label2.Text = trackBar1.Value.ToString();
             Brush.TrackBarWidth = trackBar1.Value;
+            Figure.Width = trackBar1.Value;
         }
 
         private void button1_Click(object sender, EventArgs e)

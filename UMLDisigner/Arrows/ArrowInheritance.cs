@@ -14,7 +14,7 @@ namespace UMLDisigner
         {
         }
 
-        ArrowInheritance(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowInheritance(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
