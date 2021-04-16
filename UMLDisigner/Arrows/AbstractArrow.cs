@@ -7,27 +7,21 @@ namespace UMLDisigner
 {
     abstract class AbstractArrow : IFigure
     {
+        //protected ICap _capType;
+        protected AbstractCap _capType;
+
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
+
         public Color Color { get; set; } = Color.Black;
         public int Width { get; set; } = 1;
+
         public bool IsCurved { get; set; }
-
-        public AbstractArrow(Point MouseDownPosition, Point MouseUpPosition)
-        {
-            this.MouseDownPosition = MouseDownPosition;
-            this.MouseUpPosition = MouseUpPosition;
-        }
-        public AbstractArrow()
-        {
-
-        }
 
         public abstract object Clone();
         
+        public abstract void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY);
 
-
-        public abstract void Draw(Graphics graphics, Pen pen);
         public bool IsHavingPoint(Point checkedPoint)
         {
             return false;
@@ -53,6 +47,5 @@ namespace UMLDisigner
 
             return points;
         }
-
     }
 }

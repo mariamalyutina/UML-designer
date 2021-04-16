@@ -8,18 +8,16 @@ namespace UMLDisigner
     class ArrowAggregationPlus : AbstractArrow
 
     {
-        public ArrowAggregationPlus(){
-        }
 
-        public ArrowAggregationPlus(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowAggregationPlus(Color color, int width)
         {
-            MouseDownPosition = mouseDownPosition;
-            MouseUpPosition = mouseUpPosition;
+            //MouseDownPosition = mouseDownPosition;
+            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
         {
             if (IsCurved)
             {
@@ -49,8 +47,9 @@ namespace UMLDisigner
         }
 
         public override object Clone()
-        {   
-            return new ArrowAggregationPlus(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
+        {
+            return new ArrowAggregationPlus(this.Color, this.Width);
+
         }
 
     }

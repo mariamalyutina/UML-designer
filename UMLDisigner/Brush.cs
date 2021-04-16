@@ -31,6 +31,21 @@ namespace UMLDisigner
             pb.Image = _mainBitmap;
         }
 
+
+        public void DrawMoveFigure(List<IFigure> figure)
+        {
+            graphics = Graphics.FromImage(_mainBitmap);
+
+            foreach (IFigure a in figure)
+            {
+                pen.Color = a.Color;
+                pen.Width = a.Width;
+                a.Draw(graphics, pen);
+            }
+            pb.Invalidate();
+
+        }
+
         public void DrawAllFigures(List<IFigure> ListFigures)
         {
             _mainBitmap = new Bitmap(pb.Width, pb.Height);
@@ -46,34 +61,6 @@ namespace UMLDisigner
             pb.Image = _mainBitmap;
         }
 
-        //public void DrawMovingFigure(IFigure figure, int deltaX, int deltaY)
-        //{
-        //    _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-        //    graphics = Graphics.FromImage(_tmpBitmap);
-        //    pen.Color = figure.Color;
-        //    pen.Width = figure.Width;
-        //    figure.Draw(graphics, pen, deltaX, deltaY);
-        //    pb.Image = _tmpBitmap;
-        //    GC.Collect();
-        //}
-
-        //public void DrawMoveFigure(IFigure figure)
-        //{
-        //    _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-        //    graphics = Graphics.FromImage(_tmpBitmap);
-
-        //    figure.Color = Color;
-        //    figure.Width = TrackBarWidth;
-
-        //    pen.Color = Color;
-        //    pen.Width = TrackBarWidth;
-
-        //    figure.Draw(graphics, pen);
-        //    pb.Image = _tmpBitmap;
-        //    GC.Collect();
-        //    //pb.Invalidate();
-        //}
-
         public void DrawMoveFigure(IFigure figure, int deltaX = 0, int deltaY = 0)
         {
             _tmpBitmap = (Bitmap)_mainBitmap.Clone();
@@ -86,21 +73,6 @@ namespace UMLDisigner
             //pb.Invalidate();
         }
 
-
-        public void DrawMoveFigure(List<IFigure> figure)
-        {
-
-            graphics = Graphics.FromImage(_mainBitmap);
-            
-            foreach (IFigure a in figure)
-            {
-                pen.Color = a.Color;
-                pen.Width = a.Width;
-                a.Draw(graphics, pen);
-            }
-            pb.Invalidate();
-
-        }
 
         public void DrawMoveTmpFigure(List<IFigure> figure)
         {

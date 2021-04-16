@@ -7,19 +7,16 @@ namespace UMLDisigner
 {
     class ArrowImplementation : AbstractArrow
     {
-        public ArrowImplementation()
-        {
-        }
 
-        public ArrowImplementation(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowImplementation(Color color, int width)
         {
-            MouseDownPosition = mouseDownPosition;
-            MouseUpPosition = mouseUpPosition;
+            //MouseDownPosition = mouseDownPosition;
+            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
         {
             if (IsCurved)
             {
@@ -48,7 +45,7 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new ArrowImplementation(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
+            return new ArrowImplementation(this.Color, this.Width);
         }
     }
 }

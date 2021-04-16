@@ -8,20 +8,18 @@ namespace UMLDisigner
 {
     class ArrowAssociation : AbstractArrow
     {
-        public ArrowAssociation()
-        {
-        }
 
-      public  ArrowAssociation(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+
+      public  ArrowAssociation(Color color, int width)
         {
-            MouseDownPosition = mouseDownPosition;
-            MouseUpPosition = mouseUpPosition;
+            //MouseDownPosition = mouseDownPosition;
+            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
         }
 
         
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
         {
             if (IsCurved)
             {
@@ -46,7 +44,7 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new ArrowAssociation(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
+            return new ArrowAssociation(this.Color, this.Width);
         }
     }
 }
