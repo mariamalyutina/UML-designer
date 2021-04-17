@@ -8,6 +8,7 @@ namespace UMLDisigner
     class ArrowInheritance : AbstractArrow
     {
         AbstractCap _capType = new TriangleCap();
+        AbstractLine _lineType = new StraightLine();
 
         public ArrowInheritance(Color color, int width)
         {
@@ -20,7 +21,7 @@ namespace UMLDisigner
         public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
         {
             Pen pen1 = new Pen(Color, Width);
-            //Line.Draw();
+            _lineType.Draw(graphics, pen1, MouseDownPosition, MouseUpPosition);
 
             graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]);
             _capType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
