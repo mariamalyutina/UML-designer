@@ -7,20 +7,22 @@ namespace UMLDisigner
 {
     class ClassStackFigure : AbstractClassFigure
     {
-
-        public ClassStackFigure()
+        public ClassStackFigure(Color color, int width)
         {
-
+            Color = color;
+            Width = width;
+            //_font = font;
+            //_brush = brush;
         }
 
-        ClassStackFigure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width, Font font, SolidBrush brush)
+        public ClassStackFigure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
-            _font = font;
-            _brush = brush;
+            //_font = font;
+            //_brush = brush;
         }
 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
@@ -35,7 +37,7 @@ namespace UMLDisigner
                 int crntMouseDownY = MouseDownPosition.Y + j + deltaY;
                 int crntMouseUpX = MouseUpPosition.X + j + deltaX;
                 int crntMouseUpY = MouseUpPosition.Y + j + deltaY;
-                graphics.DrawPolygon(pen, Geometry.GetRectangle(new Point (crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
+                graphics.DrawPolygon(pen, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
                 graphics.FillPolygon(_whiteBrush, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
             }
 
@@ -67,7 +69,7 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new ClassStackFigure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width, this._font, this._brush);
+            return new ClassStackFigure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
 }

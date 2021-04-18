@@ -9,19 +9,20 @@ namespace UMLDisigner
     {
         int _topLineHeight = 40;
 
-        public Class2Figure()
+        public Class2Figure(Color color, int width)
         {
-
+            Color = color;
+            Width = width;
         }
 
-        Class2Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width, Font font, SolidBrush brush)
+        public Class2Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
-            _font = font;
-            _brush = brush;
+            //_font = font;
+            //_brush = brush;
         }
 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
@@ -36,7 +37,7 @@ namespace UMLDisigner
 
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X +  deltaX, MouseUpPosition.Y + 10 + deltaY));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
 
                 }
                 else if (MouseUpPosition.X - MouseDownPosition.X > 10)
@@ -63,7 +64,8 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new Class2Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width, this._font, this._brush);
+            return new Class1Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
+
 }

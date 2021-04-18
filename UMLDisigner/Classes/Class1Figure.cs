@@ -7,19 +7,20 @@ namespace UMLDisigner
 {
     class Class1Figure : AbstractClassFigure
     {
-        public Class1Figure()
-        {
+        //Point mouseDownPosition, Point mouseUpPosition, 
 
+        public Class1Figure(Color color, int width)
+        {
+            Color = color;
+            Width = width;
         }
 
-        Class1Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width, Font font, SolidBrush brush)
+        public Class1Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
-            _font = font;
-            _brush = brush;
         }
 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
@@ -54,7 +55,7 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new Class1Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width, this._font, this._brush);
+            return new Class3Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
 }

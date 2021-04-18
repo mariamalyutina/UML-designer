@@ -10,19 +10,20 @@ namespace UMLDisigner
         int _topLineHeight = 40;
         int _bottomLineHeight = 40;
 
-        public Class3Figure()
+        public Class3Figure(Color color, int width)
         {
-
+            Color = color;
+            Width = width;
         }
 
-        Class3Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width, Font font, SolidBrush brush)
+        public Class3Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
-            _font = font;
-            _brush = brush;
+            //_font = font;
+            //_brush = brush;
         }
 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
@@ -63,7 +64,7 @@ namespace UMLDisigner
             if ((MouseDownPosition.Y - MouseUpPosition.Y) > _bottomLineHeight + _topLineHeight)
             {
                 graphics.DrawLine(pen, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight+ deltaY));
+                    new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY));
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
                     graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - 20 + deltaY));
@@ -92,7 +93,7 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new Class3Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width, this._font, this._brush);
+            return new Class3Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
 }
