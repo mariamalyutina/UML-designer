@@ -22,58 +22,102 @@ namespace UMLDisigner
 
         public abstract void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
 
-        public bool IsHavingPoint(Point checkedPoint)
+
+        public bool IsHavingPointForMoving(Point checkedPoint)
         {
-            //    if (Math.Min(MouseDownPosition.X, MouseUpPosition.X) <= checkedPoint.X && Math.Max(MouseDownPosition.X, MouseUpPosition.X) >= checkedPoint.X 
-            //        && Math.Min(MouseDownPosition.Y, MouseUpPosition.Y) <= checkedPoint.Y && Math.Max(MouseDownPosition.Y, MouseUpPosition.Y) >= checkedPoint.Y)
-            //    {
-            //        return true;
-            //    }
-
-            //    return false;
-
-            int xMax;
-            int xMin;
-            int yMax;
-            int yMin;
-
-            if (MouseDownPosition.X > MouseUpPosition.X)
-            {
-                xMax = MouseDownPosition.X;
-                xMin = MouseUpPosition.X;
-            }
-            else
-            {
-                xMin = MouseDownPosition.X;
-                xMax = MouseUpPosition.X;
-            }
-
-            if (MouseDownPosition.Y > MouseUpPosition.Y)
-            {
-                yMax = MouseDownPosition.Y;
-                yMin = MouseUpPosition.Y;
-            }
-            else
-            {
-                yMin = MouseDownPosition.Y;
-                yMax = MouseUpPosition.Y;
-            }
-
-            if (checkedPoint.X <= xMax && checkedPoint.X >= xMin
-             && checkedPoint.Y <= yMax && checkedPoint.Y >= yMin)
+            if (Math.Min(MouseDownPosition.X, MouseUpPosition.X) + 5 <= checkedPoint.X && Math.Max(MouseDownPosition.X, MouseUpPosition.X) - 5 >= checkedPoint.X
+                && Math.Min(MouseDownPosition.Y, MouseUpPosition.Y) + 5 <= checkedPoint.Y && Math.Max(MouseDownPosition.Y, MouseUpPosition.Y) - 5 >= checkedPoint.Y)
             {
                 return true;
             }
-            else
+
+            return false;
+        }
+
+        public Side SideForResizing(Point checkedPoint)
+        {
+            int minX = Math.Min(MouseDownPosition.X, MouseUpPosition.X);
+            int maxX = Math.Max(MouseDownPosition.X, MouseUpPosition.X);
+            int minY = Math.Min(MouseDownPosition.Y, MouseUpPosition.Y);
+            int maxY = Math.Max(MouseDownPosition.Y, MouseUpPosition.Y);
+
+            if (minX + 5 >= checkedPoint.X && minX - 3 <= checkedPoint.X && minY + 3 < checkedPoint.Y && maxY - 3 > checkedPoint.Y)
             {
-                return false;
+                return Side.Left;
+            }
+             
+            if (maxX - 5 >= checkedPoint.X && maxX + 3 <= checkedPoint.X && minY + 3 < checkedPoint.Y && maxY - 3 > checkedPoint.Y)
+            {
+                return Side.Right;
+            }
+
+
+            if (minY + 5 >= checkedPoint.Y && minY - 3 <= checkedPoint.Y && minX + 3 < checkedPoint.X && maxX - 3 > checkedPoint.X)
+            {
+                return Side.Up;
+            }
+
+            if (maxY - 5 >= checkedPoint.Y && maxY + 3 <= checkedPoint.Y && minX + 3 < checkedPoint.X && maxX - 3 > checkedPoint.X)
+            {
+                return Side.Down;
+            }
+
+            return Side.None; 
+        }
+
+        public Vertex VertexForResizing(Point checkedPoint)
+        {
+            int minX = Math.Min(MouseDownPosition.X, MouseUpPosition.X);
+            int maxX = Math.Max(MouseDownPosition.X, MouseUpPosition.X);
+            int minY = Math.Min(MouseDownPosition.Y, MouseUpPosition.Y);
+            int maxY = Math.Max(MouseDownPosition.Y, MouseUpPosition.Y);
+
+            if (minX + 3 >= checkedPoint.X && minX - 3 <= checkedPoint.X && minY - 3 <= checkedPoint.Y && minY + 3 >= checkedPoint.Y)
+            {
+                return Vertex.LeftUp;
+            }
+
+            if (minX + 3 >= checkedPoint.X && minX - 3 <= checkedPoint.X && maxY - 3 <= checkedPoint.Y && maxY + 3 >= checkedPoint.Y)
+            {
+                return Vertex.LeftDown;
+            }
+
+            if (maxX + 3 >= checkedPoint.X && maxX - 3 <= checkedPoint.X && minY - 3 <= checkedPoint.Y && minY + 3 >= checkedPoint.Y)
+            {
+                return Vertex.RightUp;
+            }
+
+            if (maxX + 3 >= checkedPoint.X && maxX - 3 <= checkedPoint.X && maxY - 3 <= checkedPoint.Y && maxY + 3 >= checkedPoint.Y)
+            {
+                return Vertex.RightDown;
+            }
+
+            return Vertex.None;
+        }
+
+        public void Resize(Side side)
+        {
+            if(side == Side.Left)
+            {
+
+            }
+
+            if (side == Side.Right)
+            {
+
+            }
+
+            if (side == Side.Up)
+            {
+
+            }
+
+            if (side == Side.Down)
+            {
+
             }
         }
 
-        public  void Move(double delta)
-        {
-
-        }
 
     }
 }

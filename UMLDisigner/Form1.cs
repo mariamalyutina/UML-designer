@@ -11,14 +11,19 @@ namespace UMLDisigner
 
 
         List<Bitmap> BitmapList= new List<Bitmap>();
+
+        private Point _mouseUpPosition;
+        private Point _mouseDownPosition;
+        private Point _pointMovingMouseDownPosition;
+        private String _figureName;
         public Brush Brush;
         public IFigure Figure;
         public List<IFigure> Figures;
-
-        Point _pointMovingMouseDownPosition;
-        string _figureName;
         bool _editing = false;
         bool _isMoving = false;
+        bool _isResizing = false;
+        Vertex _vertex;
+        Side _side;
         IFigure _crntFigure;
         bool _isEnd = false;
 
@@ -57,6 +62,11 @@ namespace UMLDisigner
                 }
 
                 if (_isEnd)
+            if(e.Button == MouseButtons.Right && _isResizing == true)
+            {
+                int deltaX = e.Location.X - _pointMovingMouseDownPosition.X;
+                int deltaY = e.Location.Y - _pointMovingMouseDownPosition.Y;
+                if (_side != Side.None)
                 {
                     Figure.MouseDownPosition = e.Location;
                 }
@@ -64,86 +74,113 @@ namespace UMLDisigner
                 {
                     Figure.MouseUpPosition = e.Location;
 
+                    switch (_side)
+                    {
+                        case Side.Left:
+                            Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                            break;
+                        case Side.Right:
+                            Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                            break;
+                        case Side.Up:
+                            Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                            break;
+                        case Side.Down:
+                            Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                            break;
+
+                    }
+                   
+                    Brush.DrawResizingFigure(Figure, deltaX, deltaY, _side);
                 }
                 Brush.DrawMoveFigure(Figure);
             }
-        }             
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            // начало движения классов с помощью правой клавиши мыши
-            if (Figures != null && e.Button == MouseButtons.Right)
+
+            //}
+            //конец движения классов
+
+            if (editing)
             {
-                foreach (IFigure figure in Figures)
-                {
-                    if (figure.IsHavingPoint(e.Location))
-                    {
-                        Figures.Remove(figure);
-                        Figure = (IFigure)figure.Clone();
-                        _isMoving = true;
-                        _pointMovingMouseDownPosition = e.Location;
-                        //Brush.DrawMoveFigure(Figures);
-                        Brush.DrawAllFigures(Figures);
-                        return;
-                    }
-                }
+                    findSelectedFigure(e);
+
+                    figures.Remove(_crntFigure);
+                    Brush.Clear();
+
+                    Brush.DrawMoveFigure(figures);
+                    // Brush.DrawMoveFigure(_crntFigure);
+                    Figure = _crntFigure;
             }
 
-            if (_editing)
-            {
-                findSelectedFigure(e);
-
-                Brush.Clear();
-
-                Brush.DrawMoveTmpFigure(Figures);
-                Figures.Remove(_crntFigure);
-                Brush.DrawMoveFigure(Figures);
-                Figure = _crntFigure;
-            }
-          
-            else
+            if (!(Figure is null) && e.Button == MouseButtons.Left)
             {
                 if (!(Figure is null)) 
                 {
                     Figure.MouseDownPosition = e.Location;
      
                 }
-                
+                //if (BitmapList.Count > 1)
+                //{
+                //    button_StepBack.Enabled = true;
+                //}
             }
+            //конец движения классов
+
+            //if (editing)
+            //{
+            //        findSelectedFigure(e);
+
+            //        figures.Remove(_crntFigure);
+            //        Brush.Clear();
+
+            //        Brush.DrawMoveFigure(figures);
+            //        // Brush.DrawMoveFigure(_crntFigure);
+            //        Figure = _crntFigure;
+            //}
+
+            //else
+            //{
+            //    if (!(Figure is null)) 
+            //    {
+            //        Figure.MouseDownPosition = e.Location;
+
+            //    }
+            //    //if (BitmapList.Count > 1)
+            //    //{
+            //    //    button_StepBack.Enabled = true;
+            //    //}
+            //}
         }
        
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
 
-            if (_isMoving)
-            {
-                Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
-                Figure.MouseDownPosition = Point.Add(Figure.MouseDownPosition, delta);
-                Figure.MouseUpPosition = Point.Add(Figure.MouseUpPosition, delta);
-                Figures.Add((IFigure)Figure.Clone());
-                _isMoving = false;
-            }
-            //конец движения классов
+            // начало движения классов с помощью правой клавиши мыши
+            //if(!isMoving && !(Figure is null))
+            //{               
+            //    ListFigures.Add((IFigure)Figure.Clone());
+            //}
+
+            //if (isMoving)
+            //{
+            //    Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
+            //    Figure.MouseDownPosition = Point.Add(Figure.MouseDownPosition, delta);
+            //    Figure.MouseUpPosition = Point.Add(Figure.MouseUpPosition, delta);
+            //    ListFigures.Add((IFigure)Figure.Clone());
+            //    isMoving = false;
+            //}
+                        //конец движения классов
 
             Brush.TmpToMainBitmap();
 
             if(Figure!= null)
             {
-                if (_isEnd)
-                {
-                    Figure.MouseDownPosition = e.Location;
-                }
-                else
-                {
-                    Figure.MouseUpPosition = e.Location;
-
-                }
-                Figures.Add(Figure);
+                Figure.MouseUpPosition = e.Location;
+                figures.Add(Figure);
                 Figure = (IFigure)(Figure.Clone());
             }
-
-            _crntFigure = null;
-               
+            
+            
         }
 
         private void findSelectedFigure(MouseEventArgs e)
