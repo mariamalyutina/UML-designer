@@ -36,6 +36,8 @@ namespace UMLDisigner
         private void Form1_Load_1(object sender, EventArgs e)
         {
             Brush = new Brush(pictureBox1);
+            //this.Controls.Add(pictureBox1);
+            //pictureBox1.PreviewKeyDown += new PreviewKeyDownEventHandler(KeyDeleteUp);
             Figures = new List<IFigure>();
             
             
@@ -118,12 +120,13 @@ namespace UMLDisigner
                 {
                     if (figure.IsHavingPoint(e.Location))
                     {
+                        Brush.Clear();
+                        Brush.DrawMoveTmpFigure(Figures);
                         Figures.Remove(figure);
+                        Brush.DrawMoveFigure(Figures);
                         Figure = (IFigure)figure.Clone();
                         _isMoving = true;
                         _pointMovingMouseDownPosition = e.Location;
-                        //Brush.DrawMoveFigure(Figures);
-                        Brush.DrawAllFigures(Figures);
                         return;
                     }
                 }
@@ -398,5 +401,23 @@ namespace UMLDisigner
             buttonLineOptions.Text = comboBox1.Text; //смена с ломаной на прямую
         }
 
+        //private void KeyDeleteUp(object sender, PreviewKeyDownEventArgs e)
+        //{
+        //    switch (e.KeyCode)
+        //    {
+        //        case Keys.Delete:
+        //            Figures.RemoveAt(Figures.Count - 1);
+        //            Brush.Clear();
+        //            Brush.DrawMoveFigure(Figure);
+        //            break;
+        //    }
+        //}
+
+        private void button_DeleteFigure_Click(object sender, EventArgs e)
+        {
+            Figures.RemoveAt(Figures.Count - 1);
+            Brush.Clear();
+            Brush.DrawMoveFigure(Figures);
+        }
     }
 }
