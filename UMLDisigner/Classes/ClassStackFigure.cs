@@ -7,23 +7,25 @@ namespace UMLDisigner
 {
     class ClassStackFigure : AbstractClassFigure
     {
-
-        public ClassStackFigure()
+        public ClassStackFigure(Color color, int width)
         {
-
+            Color = color;
+            Width = width;
+            //_font = font;
+            //_brush = brush;
         }
 
-        ClassStackFigure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width, Font font, SolidBrush brush)
+        public ClassStackFigure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
-            _font = font;
-            _brush = brush;
+            //_font = font;
+            //_brush = brush;
         }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
 
             SolidBrush _whiteBrush = new SolidBrush(Color.White);
@@ -31,11 +33,11 @@ namespace UMLDisigner
             int j = 0;
             for (int i = 0; i < 5; i++, j += 5)
             {
-                int crntMouseDownX = MouseDownPosition.X + j;
-                int crntMouseDownY = MouseDownPosition.Y + j;
-                int crntMouseUpX = MouseUpPosition.X + j;
-                int crntMouseUpY = MouseUpPosition.Y + j;
-                graphics.DrawPolygon(pen, Geometry.GetRectangle(new Point (crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
+                int crntMouseDownX = MouseDownPosition.X + j + deltaX;
+                int crntMouseDownY = MouseDownPosition.Y + j + deltaY;
+                int crntMouseUpX = MouseUpPosition.X + j + deltaX;
+                int crntMouseUpY = MouseUpPosition.Y + j + deltaY;
+                graphics.DrawPolygon(pen, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
                 graphics.FillPolygon(_whiteBrush, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
             }
 
@@ -43,23 +45,23 @@ namespace UMLDisigner
             {
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X, MouseUpPosition.Y + 10));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
 
                 }
                 else if (MouseUpPosition.X - MouseDownPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X, MouseUpPosition.Y + 10));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
                 }
             }
             if ((MouseUpPosition.Y - MouseDownPosition.Y) > 20)
             {
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X, MouseDownPosition.Y + 10));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
                 }
                 else if (MouseUpPosition.X - MouseDownPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X, MouseDownPosition.Y + 10));
+                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
                 }
             }
 
@@ -67,7 +69,7 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new ClassStackFigure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width, this._font, this._brush);
+            return new ClassStackFigure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
 }

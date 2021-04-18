@@ -7,21 +7,24 @@ namespace UMLDisigner
 {
     class ArrowСomposition : AbstractArrow
     {
-        public ArrowСomposition()
-        {
 
-        }
 
-        public ArrowСomposition(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public ArrowСomposition(Color color, int width)
         {
-            MouseDownPosition = mouseDownPosition;
-            MouseUpPosition = mouseUpPosition;
+            //MouseDownPosition = mouseDownPosition;
+            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
+            Point tmpMouseDownPosition = MouseDownPosition;
+            Point tmpMouseUpPosition = MouseUpPosition;
+            Size delta = new Size(deltaX, deltaY);
+            MouseDownPosition = Point.Add(MouseDownPosition, delta);
+            MouseUpPosition = Point.Add(MouseUpPosition, delta);
+
             SolidBrush brush = new SolidBrush(pen.Color);
 
             if (IsCurved)
@@ -43,12 +46,19 @@ namespace UMLDisigner
                 graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
                 graphics.FillPolygon(brush, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
             }
-
+            MouseDownPosition = tmpMouseDownPosition;
+            MouseUpPosition = tmpMouseUpPosition;
         }
 
         public override object Clone()
         {
-            return new ArrowСomposition(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
+            return new ArrowСomposition(this.Color, this.Width)
+            {
+                MouseDownPosition = this.MouseDownPosition,
+                MouseUpPosition = this.MouseUpPosition
+            };
+
         }
+    
     }
 }

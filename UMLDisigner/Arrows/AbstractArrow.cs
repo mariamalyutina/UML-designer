@@ -7,33 +7,47 @@ namespace UMLDisigner
 {
     abstract class AbstractArrow : IFigure
     {
+        //protected ICap _capType;
+        protected AbstractCap _capType;
+
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
+
         public Color Color { get; set; } = Color.Black;
         public int Width { get; set; } = 1;
-        public bool IsCurved { get; set; }
 
+        public bool IsCurved { get; set; }
         public AbstractArrow(Point MouseDownPosition, Point MouseUpPosition)
         {
             this.MouseDownPosition = MouseDownPosition;
             this.MouseUpPosition = MouseUpPosition;
         }
+
         public AbstractArrow()
         {
-
         }
 
         public abstract object Clone();
-        
+        public abstract void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
 
-
-        public abstract void Draw(Graphics graphics, Pen pen);
         public bool IsHavingPoint(Point checkedPoint)
         {
-            return false;
+            if(Geometry.FindPointInClass(MouseUpPosition, MouseDownPosition, checkedPoint))
+            {
+                return Geometry.FindPointInArrow(MouseUpPosition, MouseDownPosition, checkedPoint);
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void Move(double delta)
+        public Side SideForResizing(Point checkedPoint)
+        {
+            return Side.None;
+        }
+
+        public Vertex VertexForResizing(Point checkedPoint)
         {
             throw new NotImplementedException();
         }
@@ -53,6 +67,5 @@ namespace UMLDisigner
 
             return points;
         }
-
     }
 }

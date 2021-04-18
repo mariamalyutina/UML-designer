@@ -7,23 +7,21 @@ namespace UMLDisigner
 {
     class ArrowAggregation : AbstractArrow
     {
-        public ArrowAggregation()
+        public ArrowAggregation(Color color, int width)
         {
-
-        }
-
-        public ArrowAggregation(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
-        {
-            MouseDownPosition = mouseDownPosition;
-            MouseUpPosition = mouseUpPosition;
+            //MouseDownPosition = mouseDownPosition;
+            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
-            graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]);
-            graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
+            Point tmpMouseDownPosition = MouseDownPosition;
+            Point tmpMouseUpPosition = MouseUpPosition;
+            Size delta = new Size(deltaX, deltaY);
+            MouseDownPosition = Point.Add(MouseDownPosition, delta);
+            MouseUpPosition = Point.Add(MouseUpPosition, delta);
 
             if (IsCurved)
             {
@@ -42,11 +40,17 @@ namespace UMLDisigner
                 graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]);
                 graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
             }
+
+            MouseDownPosition = tmpMouseDownPosition;
+            MouseUpPosition = tmpMouseUpPosition;
         }
 
         public override object Clone()
         {
-            return new ArrowAggregation(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width); 
+            return new ArrowAggregation(this.Color, this.Width) {
+                MouseDownPosition = this.MouseDownPosition, 
+                MouseUpPosition = this.MouseUpPosition}; 
+
         }
 
     }
