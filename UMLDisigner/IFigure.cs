@@ -18,7 +18,7 @@ namespace UMLDisigner
 
         void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
 
-        bool IsHavingPointForMoving(Point checkedPoint);
+        bool IsHavingPoint(Point checkedPoint);
         Side SideForResizing(Point checkedPoint);
         Vertex VertexForResizing(Point checkedPoint);
 

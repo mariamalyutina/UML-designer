@@ -16,8 +16,14 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
+            Point tmpMouseDownPosition = MouseDownPosition;
+            Point tmpMouseUpPosition = MouseUpPosition;
+            Size delta = new Size(deltaX, deltaY);
+            MouseDownPosition = Point.Add(MouseDownPosition, delta);
+            MouseUpPosition = Point.Add(MouseUpPosition, delta);
+
             if (IsCurved)
             {
                 Point arrowStart = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
@@ -40,12 +46,19 @@ namespace UMLDisigner
                 graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]); //рисуем до начала отрисовки стрелочки
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
             }
-            
+            MouseDownPosition = tmpMouseDownPosition;
+            MouseUpPosition = tmpMouseUpPosition;
         }
 
         public override object Clone()
         {
-            return new ArrowImplementation(this.Color, this.Width);
+            return new ArrowImplementation(this.Color, this.Width)
+            {
+                MouseDownPosition = this.MouseDownPosition,
+                MouseUpPosition = this.MouseUpPosition
+            };
+
         }
+    
     }
 }

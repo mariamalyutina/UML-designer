@@ -15,8 +15,13 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
+            Point tmpMouseDownPosition = MouseDownPosition;
+            Point tmpMouseUpPosition = MouseUpPosition;
+            Size delta = new Size(deltaX, deltaY);
+            MouseDownPosition = Point.Add(MouseDownPosition, delta);
+            MouseUpPosition = Point.Add(MouseUpPosition, delta);
 
             if (IsCurved)
             {
@@ -35,6 +40,9 @@ namespace UMLDisigner
                 graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]);
                 graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
             }
+
+            MouseDownPosition = tmpMouseDownPosition;
+            MouseUpPosition = tmpMouseUpPosition;
         }
 
         public override object Clone()

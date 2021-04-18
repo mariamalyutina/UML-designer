@@ -23,15 +23,9 @@ namespace UMLDisigner
         public abstract void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
 
 
-        public bool IsHavingPointForMoving(Point checkedPoint)
+        public bool IsHavingPoint(Point checkedPoint)
         {
-            if (Math.Min(MouseDownPosition.X, MouseUpPosition.X) + 5 <= checkedPoint.X && Math.Max(MouseDownPosition.X, MouseUpPosition.X) - 5 >= checkedPoint.X
-                && Math.Min(MouseDownPosition.Y, MouseUpPosition.Y) + 5 <= checkedPoint.Y && Math.Max(MouseDownPosition.Y, MouseUpPosition.Y) - 5 >= checkedPoint.Y)
-            {
-                return true;
-            }
-
-            return false;
+            return Geometry.FindPointInClass(MouseUpPosition, MouseDownPosition, checkedPoint);
         }
 
         public Side SideForResizing(Point checkedPoint)

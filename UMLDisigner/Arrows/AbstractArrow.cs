@@ -25,13 +25,21 @@ namespace UMLDisigner
 
         public AbstractArrow()
         {
+        }
 
         public abstract object Clone();
         public abstract void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
 
         public bool IsHavingPoint(Point checkedPoint)
         {
-            return false;
+            if(Geometry.FindPointInClass(MouseUpPosition, MouseDownPosition, checkedPoint))
+            {
+                return Geometry.FindPointInArrow(MouseUpPosition, MouseDownPosition, checkedPoint);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public Side SideForResizing(Point checkedPoint)

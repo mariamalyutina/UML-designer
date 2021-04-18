@@ -18,14 +18,22 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
+        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
+            Point tmpMouseDownPosition = MouseDownPosition;
+            Point tmpMouseUpPosition = MouseUpPosition;
+            Size delta = new Size(deltaX, deltaY);
+            MouseDownPosition = Point.Add(MouseDownPosition, delta);
+            MouseUpPosition = Point.Add(MouseUpPosition, delta);
+
             Pen pen1 = new Pen(Color, Width);
             _lineType.Draw(graphics, pen1, MouseDownPosition, MouseUpPosition);
 
             graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]);
             _capType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
 
+            MouseDownPosition = tmpMouseDownPosition;
+            MouseUpPosition = tmpMouseUpPosition;
 
             //if (IsCurved)
             //{
@@ -45,12 +53,18 @@ namespace UMLDisigner
             //    graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]);
             //    graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
             //}
-            
+
         }
 
         public override object Clone()
         {
-            return new ArrowInheritance(this.Color, this.Width);
+            return new ArrowInheritance(this.Color, this.Width)
+            {
+                MouseDownPosition = this.MouseDownPosition,
+                MouseUpPosition = this.MouseUpPosition
+            };
+
         }
+    
     }
 }
