@@ -26,6 +26,7 @@ namespace UMLDisigner
         Side _side;
         IFigure _crntFigure;
         bool _isEnd = false;
+        AbstractLine _lineType;
 
 
         public Form1()
@@ -39,8 +40,8 @@ namespace UMLDisigner
             //this.Controls.Add(pictureBox1);
             //pictureBox1.PreviewKeyDown += new PreviewKeyDownEventHandler(KeyDeleteUp);
             Figures = new List<IFigure>();
-            
-            
+            _lineType = new StraightLine();
+
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -54,15 +55,6 @@ namespace UMLDisigner
 
             if (!(Figure is null) && e.Button == MouseButtons.Left && e.Location != Figure.MouseDownPosition)
             {
-                if (buttonLineOptions.Text == "Curved")
-                {
-                    Figure.IsCurved = true;
-                }
-                else
-                {
-                    Figure.IsCurved = false;
-                }
-
                 if (_isEnd)
                 {
                     Figure.MouseDownPosition = e.Location;
@@ -258,25 +250,26 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-                    Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth );
+
+                    Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "inheritance":
-                    Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "aggregation":
-                    Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "aggregationPlus":
-                    Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "composition":
-                    Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "compositionPlus":
-                    Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "implementation":
-                    Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
             }
 
@@ -398,7 +391,21 @@ namespace UMLDisigner
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             buttonLineOptions.Text = comboBox1.Text; //смена с ломаной на прямую
+            if(buttonLineOptions.Text == "Curved")
+            {
+                _lineType = new CurvedLine();
+            } 
+            else
+            {
+                _lineType = new StraightLine();
+            }
+            if (!(Figure is null))
+            {
+                Figure.LineType = _lineType;
+            }
+            
         }
 
         //private void KeyDeleteUp(object sender, PreviewKeyDownEventArgs e)

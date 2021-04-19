@@ -11,8 +11,6 @@ namespace UMLDisigner
         {
             Color = color;
             Width = width;
-            //_font = font;
-            //_brush = brush;
         }
 
         public ClassStackFigure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
@@ -21,15 +19,13 @@ namespace UMLDisigner
             MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
-            //_font = font;
-            //_brush = brush;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        public override void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0)
         {
-
+            Pen pen1 = new Pen(Color, Width);
             SolidBrush _whiteBrush = new SolidBrush(Color.White);
-            pen.Width += 1;
+            pen1.Width += 1;
             int j = 0;
             for (int i = 0; i < 5; i++, j += 5)
             {
@@ -37,7 +33,7 @@ namespace UMLDisigner
                 int crntMouseDownY = MouseDownPosition.Y + j + deltaY;
                 int crntMouseUpX = MouseUpPosition.X + j + deltaX;
                 int crntMouseUpY = MouseUpPosition.Y + j + deltaY;
-                graphics.DrawPolygon(pen, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
+                graphics.DrawPolygon(pen1, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
                 graphics.FillPolygon(_whiteBrush, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
             }
 

@@ -8,57 +8,50 @@ namespace UMLDisigner
     class ArrowImplementation : AbstractArrow
     {
 
-        public ArrowImplementation(Color color, int width)
+        public ArrowImplementation(Color color, int width, AbstractLine lineType)
         {
-            //MouseDownPosition = mouseDownPosition;
-            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
+            LineType = lineType;
+            _capTypeBeginning = new TriangleCap();
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        public override void Draw(Graphics graphics, int deltaX, int deltaY)
         {
             Point tmpMouseDownPosition = MouseDownPosition;
             Point tmpMouseUpPosition = MouseUpPosition;
             Size delta = new Size(deltaX, deltaY);
             MouseDownPosition = Point.Add(MouseDownPosition, delta);
             MouseUpPosition = Point.Add(MouseUpPosition, delta);
+            Pen pen1 = new Pen(Color, Width);
+            pen1.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            LineType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
+            pen1.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
 
-            if (IsCurved)
+            Point capBeginningStartPoint;
+            if (LineType is StraightLine)
             {
-                Point arrowStart = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
-                Point arrowEnd = MouseUpPosition;
-
-                Point lineEnd = Geometry.GetArrow(arrowEnd, arrowStart)[3]; //рисуем до начала отрисовки стрелочки
-
-                if (arrowStart != arrowEnd)
-                {
-                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                    graphics.DrawLines(pen, GetPoints(MouseDownPosition, lineEnd).ToArray());
-                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
-                    graphics.DrawPolygon(pen, Geometry.GetArrow(arrowEnd, arrowStart));
-                }
+                capBeginningStartPoint = MouseDownPosition;
             }
             else
             {
-                graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
-                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]); //рисуем до начала отрисовки стрелочки
-                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid; //возвращение линии к норм типу
+                capBeginningStartPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
             }
+
+            _capTypeBeginning.Draw(graphics, pen1, MouseUpPosition, capBeginningStartPoint);
+
             MouseDownPosition = tmpMouseDownPosition;
             MouseUpPosition = tmpMouseUpPosition;
         }
 
+
         public override object Clone()
         {
-            return new ArrowImplementation(this.Color, this.Width)
+            return new ArrowImplementation(this.Color, this.Width, this.LineType)
             {
                 MouseDownPosition = this.MouseDownPosition,
                 MouseUpPosition = this.MouseUpPosition
             };
-
         }
-    
     }
 }

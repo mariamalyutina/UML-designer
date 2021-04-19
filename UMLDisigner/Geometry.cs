@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -30,11 +30,11 @@ namespace UMLDisigner
             double Y6 = Y4 - (Yp / d) * 15;
 
             Point[] ArrowsSholders = new Point[] {new Point ((int)X5, (int)Y5), new Point(endPoint.X, endPoint.Y),
-                                                        new Point((int)X6, (int)Y6), new Point((int)X4, (int)Y4)};
+                                                        new Point((int)X6, (int)Y6), new Point((int)X4, (int)Y4)}; 
             return ArrowsSholders;
         }
 
-        public static Point[] GetRomb(Point endPoint, Point startPoint) //ромбик в начале
+        public static Point[] GetRomb(Point endPoint, Point startPoint) //ромбик
         {
             double d = Math.Sqrt(Math.Pow(endPoint.X - startPoint.X, 2) + Math.Pow(endPoint.Y - startPoint.Y, 2));
 
@@ -72,6 +72,21 @@ namespace UMLDisigner
         new Point(mouseUpPosition.X, mouseUpPosition.Y),new Point(mouseUpPosition.X, mouseDownPosition.Y)}; //правильная последоватьльность точек)
         }
 
+        public static List<Point> GetCurvedPoints(Point startPoint, Point endPoint) //точки для ломания линий 
+        {
+            List<Point> points = new List<Point>();
+            points.Add(startPoint);
+
+            int middleX = (startPoint.X + endPoint.X) / 2;
+
+            points.Add(new Point(middleX, startPoint.Y)); //1-ый излом
+            points.Add(new Point(middleX, endPoint.Y));//2-ой излом
+
+            points.Add(endPoint);
+
+            return points;
+        }
+        
         public static bool FindPointInArrow(Point leftPosition, Point rightPosition, Point checkedPoint)
         {
             int delta = 5;
@@ -79,7 +94,6 @@ namespace UMLDisigner
             int maxX = Math.Max(leftPosition.X, rightPosition.X);
             int minY = Math.Min(leftPosition.Y, rightPosition.Y);
             int maxY = Math.Max(leftPosition.Y, rightPosition.Y);
-
             int middleX = minX + (maxX - minX) / 2;
             int middleY = minY + (maxY - minY) / 2;
 
