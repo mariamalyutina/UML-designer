@@ -7,50 +7,23 @@ namespace UMLDisigner
 {
     class ArrowInheritance : AbstractArrow
     {
-        AbstractCap _capType = new TriangleCap();
-        AbstractLine _lineType = new StraightLine();
 
-        public ArrowInheritance(Color color, int width)
+        public ArrowInheritance(Color color, int width, AbstractLine lineType)
         {
-            //MouseDownPosition = mouseDownPosition;
-            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
+            LineType = lineType;
+            _capTypeBeginning = new TriangleCap();
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
+        public override void Draw(Graphics graphics, int deltaX, int deltaY)
         {
-            Pen pen1 = new Pen(Color, Width);
-            _lineType.Draw(graphics, pen1, MouseDownPosition, MouseUpPosition);
-
-            graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]);
-            _capType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
-
-
-            //if (IsCurved)
-            //{
-            //    Point arrowStart = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
-            //    Point arrowEnd = MouseUpPosition;
-
-            //    Point lineEnd = Geometry.GetArrow(arrowEnd, arrowStart)[3]; //рисуем до начала отрисовки стрелочки
-
-            //    if (arrowStart != arrowEnd)
-            //    {
-            //        graphics.DrawPolygon(pen, Geometry.GetArrow(arrowEnd, arrowStart));
-            //        graphics.DrawLines(pen, GetPoints(MouseDownPosition, lineEnd).ToArray());
-            //    }
-            //}
-            //else
-            //{
-            //    graphics.DrawLine(pen, MouseDownPosition, Geometry.GetArrow(MouseUpPosition, MouseDownPosition)[3]);
-            //    graphics.DrawPolygon(pen, Geometry.GetArrow(MouseUpPosition, MouseDownPosition));
-            //}
-            
+            SetArrow(graphics, false);
         }
 
         public override object Clone()
         {
-            return new ArrowInheritance(this.Color, this.Width);
+            return new ArrowInheritance(this.Color, this.Width, this.LineType);
         }
     }
 }

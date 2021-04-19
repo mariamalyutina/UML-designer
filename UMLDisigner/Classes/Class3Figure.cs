@@ -22,19 +22,18 @@ namespace UMLDisigner
             MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
-            //_font = font;
-            //_brush = brush;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+        public override void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0)
         {
+            Pen pen1 = new Pen(Color, Width);
             Size delta = new Size(deltaX, deltaY);
-            graphics.DrawPolygon(pen, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
+            graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
 
 
             if ((MouseDownPosition.Y - MouseUpPosition.Y) > _topLineHeight)
             {
-                graphics.DrawLine(pen, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY),
+                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY),
                     new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY));
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
@@ -48,7 +47,7 @@ namespace UMLDisigner
             }
             else if ((MouseUpPosition.Y - MouseDownPosition.Y) > _topLineHeight)
             {
-                graphics.DrawLine(pen, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY),
+                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY),
                     new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY));
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
@@ -63,7 +62,7 @@ namespace UMLDisigner
 
             if ((MouseDownPosition.Y - MouseUpPosition.Y) > _bottomLineHeight + _topLineHeight)
             {
-                graphics.DrawLine(pen, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY),
+                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY),
                     new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY));
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
@@ -77,7 +76,7 @@ namespace UMLDisigner
             }
             else if ((MouseUpPosition.Y - MouseDownPosition.Y) > _bottomLineHeight + _topLineHeight)
             {
-                graphics.DrawLine(pen, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y - _bottomLineHeight + deltaY),
+                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y - _bottomLineHeight + deltaY),
                     new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y - _bottomLineHeight + deltaY));
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {

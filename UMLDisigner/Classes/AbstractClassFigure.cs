@@ -16,11 +16,11 @@ namespace UMLDisigner
         public Color Color { get; set; } = Color.Black;
         public int Width { get; set; } = 1;
 
-        public bool IsCurved { get; set; } //только для стрелочки
+        public AbstractLine LineType { get; set; }
 
         public abstract object Clone();
 
-        public abstract void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
+        public abstract void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0);
 
         public bool IsHavingPoint(Point checkedPoint)
         {
@@ -70,7 +70,7 @@ namespace UMLDisigner
             }
         }
 
-        public  void Move(double delta)
+        public void Move(double delta)
         {
 
         }

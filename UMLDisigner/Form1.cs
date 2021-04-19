@@ -21,6 +21,7 @@ namespace UMLDisigner
         bool _isMoving = false;
         IFigure _crntFigure;
         bool _isEnd = false;
+        AbstractLine _lineType;
 
 
         public Form1()
@@ -32,8 +33,8 @@ namespace UMLDisigner
         {
             Brush = new Brush(pictureBox1);
             Figures = new List<IFigure>();
-            
-            
+            _lineType = new StraightLine();
+
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -47,15 +48,6 @@ namespace UMLDisigner
 
             if (!(Figure is null) && e.Button == MouseButtons.Left && e.Location != Figure.MouseDownPosition)
             {
-                if (buttonLineOptions.Text == "Curved")
-                {
-                    Figure.IsCurved = true;
-                }
-                else
-                {
-                    Figure.IsCurved = false;
-                }
-
                 if (_isEnd)
                 {
                     Figure.MouseDownPosition = e.Location;
@@ -122,6 +114,8 @@ namespace UMLDisigner
                 Figure.MouseUpPosition = Point.Add(Figure.MouseUpPosition, delta);
                 Figures.Add((IFigure)Figure.Clone());
                 _isMoving = false;
+                Brush.TmpToMainBitmap();
+                return;
             }
             //конец движения классов
 
@@ -213,25 +207,26 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-                    Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth );
+
+                    Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "inheritance":
-                    Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "aggregation":
-                    Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "aggregationPlus":
-                    Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "composition":
-                    Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "compositionPlus":
-                    Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
                 case "implementation":
-                    Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth);
+                    Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     break;
             }
 
@@ -272,7 +267,7 @@ namespace UMLDisigner
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 button_Color.BackColor = colorDialog1.Color;
-                Brush.Color = colorDialog1.Color;
+                //Brush.Color = colorDialog1.Color;
                 Figure.Color = colorDialog1.Color;
             }
         }
@@ -280,7 +275,7 @@ namespace UMLDisigner
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label2.Text = trackBar1.Value.ToString();
-            Brush.TrackBarWidth = trackBar1.Value;
+            //Brush.TrackBarWidth = trackBar1.Value;
             Figure.Width = trackBar1.Value;
         }
 
@@ -353,7 +348,21 @@ namespace UMLDisigner
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             buttonLineOptions.Text = comboBox1.Text; //смена с ломаной на прямую
+            if(buttonLineOptions.Text == "Curved")
+            {
+                _lineType = new CurvedLine();
+            } 
+            else
+            {
+                _lineType = new StraightLine();
+            }
+            if (!(Figure is null))
+            {
+                Figure.LineType = _lineType;
+            }
+            
         }
 
     }

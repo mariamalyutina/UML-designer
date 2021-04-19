@@ -7,9 +7,9 @@ namespace UMLDisigner
 {
     class StraightLine : AbstractLine
     {
-        public override void Draw(Graphics graphics, Pen pen, Point startPoint, Point endPoint)
+        public override void Draw(Graphics graphics, Pen pen, Point endPoint, Point startPoint)
         {
-            graphics.DrawLine(pen, startPoint, Geometry.GetArrow(endPoint, startPoint)[3]);
+            graphics.DrawLine(pen, endPoint, startPoint);
         }
     }
 }

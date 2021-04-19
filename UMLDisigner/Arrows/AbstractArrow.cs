@@ -7,20 +7,17 @@ namespace UMLDisigner
 {
     abstract class AbstractArrow : IFigure
     {
-        //protected ICap _capType;
-        protected AbstractCap _capType;
-
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
 
-        public Color Color { get; set; } = Color.Black;
-        public int Width { get; set; } = 1;
+        public Color Color { get; set; }
+        public int Width { get; set; }
 
-        public bool IsCurved { get; set; }
+        public AbstractLine LineType { get; set; }
+        protected AbstractCap _capTypeBeginning;
+        protected AbstractCap _capTypeEnding;
 
-        public abstract object Clone();
-        
-        public abstract void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY);
+        public abstract void Draw(Graphics graphics, int deltaX, int deltaY);
 
         public bool IsHavingPoint(Point checkedPoint)
         {
@@ -32,20 +29,31 @@ namespace UMLDisigner
             throw new NotImplementedException();
         }
 
+        public abstract object Clone();
 
-        protected List<Point> GetPoints(Point startPoint, Point endPoint) //точки для ломания линий (start point и end point у каждой линии разные из-за разных наконечников)
+        protected void SetArrow(Graphics graphics, bool twoCaps)
         {
-            List<Point> points = new List<Point>();
-            points.Add(startPoint);
+            Pen pen1 = new Pen(Color, Width);
+            LineType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
 
-            int middleX = (startPoint.X + endPoint.X) / 2;
+            Point capBeginningStartPoint;
+            Point capEndingEndPoint;
+            if (LineType is StraightLine)
+            {
+                capBeginningStartPoint = MouseDownPosition;
+                capEndingEndPoint = MouseUpPosition;
+            }
+            else
+            {
+                capBeginningStartPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
+                capEndingEndPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[1];
+            }
+            _capTypeBeginning.Draw(graphics, pen1, MouseUpPosition, capBeginningStartPoint);
 
-            points.Add(new Point(middleX, startPoint.Y)); //1-ый излом
-            points.Add(new Point(middleX, endPoint.Y));//2-ой излом
-
-            points.Add(endPoint);
-
-            return points;
+            if (twoCaps)
+            {
+                _capTypeEnding.Draw(graphics, pen1, MouseDownPosition, capEndingEndPoint);
+            }
         }
     }
 }

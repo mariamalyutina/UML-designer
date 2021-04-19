@@ -7,41 +7,22 @@ namespace UMLDisigner
 {
     class ArrowAggregation : AbstractArrow
     {
-        public ArrowAggregation(Color color, int width)
+        public ArrowAggregation(Color color, int width, AbstractLine lineType)
         {
-            //MouseDownPosition = mouseDownPosition;
-            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
+            LineType = lineType;
+            _capTypeBeginning = new WhiteRombCap();
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
+        public override void Draw(Graphics graphics, int deltaX, int deltaY)
         {
-
-            if (IsCurved)
-            {
-                Point rombStart = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
-                Point rombEnd = MouseUpPosition;
-                Point lineEnd = Geometry.GetRomb(rombEnd, rombStart)[3]; 
-
-                if (rombStart != rombEnd)
-                {
-                    graphics.DrawLines(pen, GetPoints(MouseDownPosition, lineEnd).ToArray());
-                    graphics.DrawPolygon(pen, Geometry.GetRomb(rombEnd, rombStart));
-                }
-            } 
-            else
-            {
-                graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]);
-                graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
-            }
+            SetArrow(graphics, false);
         }
 
         public override object Clone()
         {
-            return new ArrowAggregation(this.Color, this.Width) {
-                MouseDownPosition = this.MouseDownPosition, 
-                MouseUpPosition = this.MouseUpPosition}; 
+            return new ArrowAggregation(this.Color, this.Width, this.LineType);
 
         }
 

@@ -23,10 +23,13 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
+
+
+        public override void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0)
         {
+            Pen pen1 = new Pen(Color, Width);
             Size delta = new Size(deltaX, deltaY);
-            graphics.DrawPolygon(pen, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
+            graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
 
             if ((MouseDownPosition.Y - MouseUpPosition.Y) > 20)
             {
@@ -55,7 +58,7 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new Class3Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
+            return new Class1Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
 }

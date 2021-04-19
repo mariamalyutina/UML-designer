@@ -9,43 +9,22 @@ namespace UMLDisigner
     {
 
 
-        public ArrowСomposition(Color color, int width)
+        public ArrowСomposition(Color color, int width, AbstractLine lineType)
         {
-            //MouseDownPosition = mouseDownPosition;
-            //MouseUpPosition = mouseUpPosition;
             Color = color;
             Width = width;
+            LineType = lineType;
+            _capTypeBeginning = new FilledRombCap();
         }
 
-        public override void Draw(Graphics graphics, Pen pen, int deltaX, int deltaY)
+        public override void Draw(Graphics graphics, int deltaX, int deltaY)
         {
-            SolidBrush brush = new SolidBrush(pen.Color);
-
-            if (IsCurved)
-            {
-                Point rombStart = GetPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
-                Point rombEnd = MouseUpPosition;
-                Point lineEnd = Geometry.GetRomb(rombEnd, rombStart)[3]; //линия заканчивается там, где начинается ромбик
-
-                if (rombStart != rombEnd)
-                {
-                    graphics.DrawPolygon(pen, Geometry.GetRomb(rombEnd, rombStart));
-                    graphics.FillPolygon(brush, Geometry.GetRomb(rombEnd, rombStart));
-                    graphics.DrawLines(pen, GetPoints(MouseDownPosition, lineEnd).ToArray());
-                }
-            }
-            else
-            {
-                graphics.DrawLine(pen, MouseDownPosition, Geometry.GetRomb(MouseUpPosition, MouseDownPosition)[3]); //рисуем линию до начала ромбика
-                graphics.DrawPolygon(pen, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
-                graphics.FillPolygon(brush, Geometry.GetRomb(MouseUpPosition, MouseDownPosition));
-            }
-
+            SetArrow(graphics, false);
         }
 
         public override object Clone()
         {
-            return new ArrowСomposition(this.Color, this.Width);
+            return new ArrowСomposition(this.Color, this.Width, this.LineType);
         }
     }
 }

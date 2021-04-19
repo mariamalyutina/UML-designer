@@ -11,12 +11,12 @@ namespace UMLDisigner
         Point MouseUpPosition { get; set; }
         Point MouseDownPosition { get; set; }
 
-        Color Color { get; set; } 
+        Color Color { get; set; }
         int Width { get; set; }
 
-        public bool IsCurved { get; set; }
+        public AbstractLine LineType { get; set; }
 
-        void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
+        void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0);
 
         void Move(double delta);
 
