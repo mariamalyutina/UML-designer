@@ -30,7 +30,11 @@ namespace UMLDisigner
 
         public override object Clone()
         {
-            return new ArrowInheritance(this.Color, this.Width, this.LineType);
+            return new ArrowInheritance(this.Color, this.Width, this.LineType)
+            {
+                MouseDownPosition = this.MouseDownPosition,
+                MouseUpPosition = this.MouseUpPosition
+            };
         }
     
     }

@@ -25,14 +25,18 @@ namespace UMLDisigner
             Size delta = new Size(deltaX, deltaY);
             MouseDownPosition = Point.Add(MouseDownPosition, delta);
             MouseUpPosition = Point.Add(MouseUpPosition, delta);
-            SetArrow(graphics, false);
+            SetArrow(graphics, true);
             MouseDownPosition = tmpMouseDownPosition;
             MouseUpPosition = tmpMouseUpPosition;
         }
 
         public override object Clone()
         {
-            return new ArrowAggregationPlus(this.Color, this.Width, this.LineType);
+            return new ArrowAggregationPlus(this.Color, this.Width, this.LineType)
+            {
+                MouseDownPosition = this.MouseDownPosition,
+                MouseUpPosition = this.MouseUpPosition
+            };
 
         }
 

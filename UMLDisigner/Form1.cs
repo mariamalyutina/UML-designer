@@ -310,7 +310,7 @@ namespace UMLDisigner
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 button_Color.BackColor = colorDialog1.Color;
-                //Brush.Color = colorDialog1.Color;
+                Brush.Color = colorDialog1.Color;
                 Figure.Color = colorDialog1.Color;
             }
         }
@@ -318,7 +318,7 @@ namespace UMLDisigner
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label2.Text = trackBar1.Value.ToString();
-            //Brush.TrackBarWidth = trackBar1.Value;
+            Brush.TrackBarWidth = trackBar1.Value;
             Figure.Width = trackBar1.Value;
         }
 

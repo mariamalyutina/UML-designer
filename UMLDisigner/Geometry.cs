@@ -74,8 +74,8 @@ namespace UMLDisigner
 
         public static List<Point> GetCurvedPoints(Point startPoint, Point endPoint) //точки для ломания линий 
         {
-            points.Add(startPoint);
             List<Point> points = new List<Point>();
+            points.Add(startPoint);
 
             int middleX = (startPoint.X + endPoint.X) / 2;
 

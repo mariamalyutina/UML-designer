@@ -78,7 +78,7 @@ namespace UMLDisigner
             graphics = Graphics.FromImage(_tmpBitmap);
             pen.Color = figure.Color;
             pen.Width = figure.Width;
-            figure.Draw(graphics, pen, deltaX, deltaY);
+            figure.Draw(graphics, deltaX, deltaY);
             pb.Image = _tmpBitmap; 
             GC.Collect();
             //pb.Invalidate();
