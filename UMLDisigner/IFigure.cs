@@ -18,9 +18,22 @@ namespace UMLDisigner
 
         void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0);
 
-        void Move(double delta);
-
         bool IsHavingPoint(Point checkedPoint);
+        Side SideForResizing(Point checkedPoint);
+        Vertex VertexForResizing(Point checkedPoint);
+
+        Object Clone();
+
+        protected List<Point> GetPoints()
+        {
+            List<Point> points = new List<Point>();
+
+            points.Add(MouseDownPosition);
+
+            points.Add(MouseUpPosition);
+
+            return points;
+        }
     }
 
 }

@@ -11,14 +11,19 @@ namespace UMLDisigner
 
 
         List<Bitmap> BitmapList= new List<Bitmap>();
+
+        private Point _mouseUpPosition;
+        private Point _mouseDownPosition;
+        private Point _pointMovingMouseDownPosition;
+        private String _figureName;
         public Brush Brush;
         public IFigure Figure;
         public List<IFigure> Figures;
-
-        Point _pointMovingMouseDownPosition;
-        string _figureName;
         bool _editing = false;
         bool _isMoving = false;
+        bool _isResizing = false;
+        Vertex _vertex;
+        Side _side;
         IFigure _crntFigure;
         bool _isEnd = false;
         AbstractLine _lineType;
@@ -32,6 +37,8 @@ namespace UMLDisigner
         private void Form1_Load_1(object sender, EventArgs e)
         {
             Brush = new Brush(pictureBox1);
+            //this.Controls.Add(pictureBox1);
+            //pictureBox1.PreviewKeyDown += new PreviewKeyDownEventHandler(KeyDeleteUp);
             Figures = new List<IFigure>();
             _lineType = new StraightLine();
 
@@ -57,24 +64,61 @@ namespace UMLDisigner
                     Figure.MouseUpPosition = e.Location;
 
                 }
+
                 Brush.DrawMoveFigure(Figure);
             }
-        }             
+
+
+                //if (e.Button == MouseButtons.Right && _isResizing == true)
+                //{
+                //    int deltaX = e.Location.X - _pointMovingMouseDownPosition.X;
+                //    int deltaY = e.Location.Y - _pointMovingMouseDownPosition.Y;
+                //    if (_side != Side.None)
+                //    {
+                //        Figure.MouseDownPosition = e.Location;
+                //    }
+                //    else
+                //    {
+                //        Figure.MouseUpPosition = e.Location;
+
+                //        switch (_side)
+                //        {
+                //            case Side.Left:
+                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                //                break;
+                //            case Side.Right:
+                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                //                break;
+                //            case Side.Up:
+                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                //                break;
+                //            case Side.Down:
+                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
+                //                break;
+
+                //        }
+
+                //        Brush.DrawResizingFigure(Figure, deltaX, deltaY, _side);
+                //    }
+                //    Brush.DrawMoveFigure(Figure);
+                //}
+         }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            // начало движения классов с помощью правой клавиши мыши
             if (Figures != null && e.Button == MouseButtons.Right)
             {
                 foreach (IFigure figure in Figures)
                 {
                     if (figure.IsHavingPoint(e.Location))
                     {
+                        Brush.Clear();
+                        Brush.DrawMoveTmpFigure(Figures);
                         Figures.Remove(figure);
+                        Brush.DrawMoveFigure(Figures);
                         Figure = (IFigure)figure.Clone();
                         _isMoving = true;
                         _pointMovingMouseDownPosition = e.Location;
-                        //Brush.DrawMoveFigure(Figures);
-                        Brush.DrawAllFigures(Figures);
                         return;
                     }
                 }
@@ -91,18 +135,18 @@ namespace UMLDisigner
                 Brush.DrawMoveFigure(Figures);
                 Figure = _crntFigure;
             }
-          
+
             else
             {
-                if (!(Figure is null)) 
+                if (!(Figure is null))
                 {
                     Figure.MouseDownPosition = e.Location;
-     
+
                 }
-                
+
             }
         }
-       
+
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -117,7 +161,6 @@ namespace UMLDisigner
                 Brush.TmpToMainBitmap();
                 return;
             }
-            //конец движения классов
 
             Brush.TmpToMainBitmap();
 
@@ -136,8 +179,8 @@ namespace UMLDisigner
                 Figure = (IFigure)(Figure.Clone());
             }
 
-            _crntFigure = null;
-               
+            _crntFigure = null;         
+            
         }
 
         private void findSelectedFigure(MouseEventArgs e)
@@ -365,5 +408,23 @@ namespace UMLDisigner
             
         }
 
+        //private void KeyDeleteUp(object sender, PreviewKeyDownEventArgs e)
+        //{
+        //    switch (e.KeyCode)
+        //    {
+        //        case Keys.Delete:
+        //            Figures.RemoveAt(Figures.Count - 1);
+        //            Brush.Clear();
+        //            Brush.DrawMoveFigure(Figure);
+        //            break;
+        //    }
+        //}
+
+        private void button_DeleteFigure_Click(object sender, EventArgs e)
+        {
+            Figures.RemoveAt(Figures.Count - 1);
+            Brush.Clear();
+            Brush.DrawMoveFigure(Figures);
+        }
     }
 }

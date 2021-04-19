@@ -21,10 +21,22 @@ namespace UMLDisigner
 
         public bool IsHavingPoint(Point checkedPoint)
         {
-            return false;
+            if(Geometry.FindPointInClass(MouseUpPosition, MouseDownPosition, checkedPoint))
+            {
+                return Geometry.FindPointInArrow(MouseUpPosition, MouseDownPosition, checkedPoint);
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void Move(double delta)
+        public Side SideForResizing(Point checkedPoint)
+        {
+            return Side.None;
+        }
+
+        public Vertex VertexForResizing(Point checkedPoint)
         {
             throw new NotImplementedException();
         }

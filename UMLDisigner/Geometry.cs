@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -7,6 +7,7 @@ namespace UMLDisigner
 {
     public static class Geometry
     {
+        
         public static Point[] GetArrow(Point endPoint, Point stratPoint) //стрелочки в начале
         {
             double d = Math.Sqrt(Math.Pow(endPoint.X - stratPoint.X, 2) + Math.Pow(endPoint.Y - stratPoint.Y, 2));
@@ -73,8 +74,8 @@ namespace UMLDisigner
 
         public static List<Point> GetCurvedPoints(Point startPoint, Point endPoint) //точки для ломания линий 
         {
-            List<Point> points = new List<Point>();
             points.Add(startPoint);
+            List<Point> points = new List<Point>();
 
             int middleX = (startPoint.X + endPoint.X) / 2;
 
@@ -84,6 +85,44 @@ namespace UMLDisigner
             points.Add(endPoint);
 
             return points;
+        }
+        
+        public static bool FindPointInArrow(Point leftPosition, Point rightPosition, Point checkedPoint)
+        {
+            int delta = 5;
+            int minX = Math.Min(leftPosition.X, rightPosition.X);
+            int maxX = Math.Max(leftPosition.X, rightPosition.X);
+            int minY = Math.Min(leftPosition.Y, rightPosition.Y);
+            int maxY = Math.Max(leftPosition.Y, rightPosition.Y);
+            int middleX = minX + (maxX - minX) / 2;
+            int middleY = minY + (maxY - minY) / 2;
+
+            if (middleX + delta >= checkedPoint.X && middleX - delta <= checkedPoint.X && middleY + delta >= checkedPoint.Y && middleY - delta <= checkedPoint.Y)
+            {
+                return true;
+            }
+            if (maxX - minX <= delta && maxY - minY <= delta)
+            {
+                return false;
+            }
+            if (FindPointInArrow(leftPosition, new Point(middleX, middleY), checkedPoint)
+                || FindPointInArrow(new Point(middleX, middleY), rightPosition, checkedPoint))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool FindPointInClass(Point mouseUpPosition, Point mouseDownPosition, Point checkedPoint)
+        {
+            if (Math.Min(mouseDownPosition.X, mouseUpPosition.X) + 5 <= checkedPoint.X && Math.Max(mouseDownPosition.X, mouseUpPosition.X) - 5 >= checkedPoint.X
+                 && Math.Min(mouseDownPosition.Y, mouseUpPosition.Y) + 5 <= checkedPoint.Y && Math.Max(mouseDownPosition.Y, mouseUpPosition.Y) - 5 >= checkedPoint.Y)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

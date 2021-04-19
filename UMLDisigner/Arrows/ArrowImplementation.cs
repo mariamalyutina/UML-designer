@@ -18,6 +18,11 @@ namespace UMLDisigner
 
         public override void Draw(Graphics graphics, int deltaX, int deltaY)
         {
+            Point tmpMouseDownPosition = MouseDownPosition;
+            Point tmpMouseUpPosition = MouseUpPosition;
+            Size delta = new Size(deltaX, deltaY);
+            MouseDownPosition = Point.Add(MouseDownPosition, delta);
+            MouseUpPosition = Point.Add(MouseUpPosition, delta);
             Pen pen1 = new Pen(Color, Width);
             pen1.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             LineType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
@@ -35,6 +40,8 @@ namespace UMLDisigner
 
             _capTypeBeginning.Draw(graphics, pen1, MouseUpPosition, capBeginningStartPoint);
 
+            MouseDownPosition = tmpMouseDownPosition;
+            MouseUpPosition = tmpMouseUpPosition;
         }
 
 
@@ -42,6 +49,5 @@ namespace UMLDisigner
         {
             return new ArrowImplementation(this.Color, this.Width, this.LineType);
         }
-
     }
 }

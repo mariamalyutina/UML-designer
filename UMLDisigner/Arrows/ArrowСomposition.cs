@@ -19,12 +19,20 @@ namespace UMLDisigner
 
         public override void Draw(Graphics graphics, int deltaX, int deltaY)
         {
+            Point tmpMouseDownPosition = MouseDownPosition;
+            Point tmpMouseUpPosition = MouseUpPosition;
+            Size delta = new Size(deltaX, deltaY);
+            MouseDownPosition = Point.Add(MouseDownPosition, delta);
+            MouseUpPosition = Point.Add(MouseUpPosition, delta);
             SetArrow(graphics, false);
+            MouseDownPosition = tmpMouseDownPosition;
+            MouseUpPosition = tmpMouseUpPosition;
         }
 
         public override object Clone()
         {
             return new ArrowСomposition(this.Color, this.Width, this.LineType);
         }
+    
     }
 }
