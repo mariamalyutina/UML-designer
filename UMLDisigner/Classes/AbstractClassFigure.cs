@@ -22,7 +22,6 @@ namespace UMLDisigner
 
         public abstract void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0);
 
-
         public bool IsHavingPoint(Point checkedPoint)
         {
             return Geometry.FindPointInClass(MouseUpPosition, MouseDownPosition, checkedPoint);
@@ -111,7 +110,5 @@ namespace UMLDisigner
 
             }
         }
-
-
     }
 }

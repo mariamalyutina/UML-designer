@@ -22,7 +22,9 @@ namespace UMLDisigner
             Size delta = new Size(deltaX, deltaY);
             MouseDownPosition = Point.Add(MouseDownPosition, delta);
             MouseUpPosition = Point.Add(MouseUpPosition, delta);
+
             SetArrow(graphics, false);
+
             MouseDownPosition = tmpMouseDownPosition;
             MouseUpPosition = tmpMouseUpPosition;
         }

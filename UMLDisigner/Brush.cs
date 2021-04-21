@@ -104,7 +104,8 @@ namespace UMLDisigner
 
         public void TmpToMainBitmap()
         {
-            _mainBitmap = _tmpBitmap; 
+            _mainBitmap = _tmpBitmap;
+            
         }
 
         public void Clear()

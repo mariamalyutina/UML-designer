@@ -45,11 +45,14 @@ namespace UMLDisigner
 
         protected void SetArrow(Graphics graphics, bool twoCaps)
         {
-            Pen pen1 = new Pen(Color, Width);
-            LineType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
+            Pen pen = new Pen(Color, Width);
+            SolidBrush brush = new SolidBrush(Color.White);
+
+            LineType.Draw(graphics, pen, MouseUpPosition, MouseDownPosition);
 
             Point capBeginningStartPoint;
             Point capEndingEndPoint;
+
             if (LineType is StraightLine)
             {
                 capBeginningStartPoint = MouseDownPosition;
@@ -60,12 +63,17 @@ namespace UMLDisigner
                 capBeginningStartPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
                 capEndingEndPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[1];
             }
-            _capTypeBeginning.Draw(graphics, pen1, MouseUpPosition, capBeginningStartPoint);
+            _capTypeBeginning.Draw(graphics, pen, brush, MouseUpPosition, capBeginningStartPoint);
 
             if (twoCaps)
             {
-                _capTypeEnding.Draw(graphics, pen1, MouseDownPosition, capEndingEndPoint);
+                _capTypeEnding.Draw(graphics, pen, brush, MouseDownPosition, capEndingEndPoint);
             }
+        }
+
+        public void Draw(Graphics graphics, bool twoCaps, int deltaX, int deltaY)
+        {
+            throw new NotImplementedException();
         }
     }
 }

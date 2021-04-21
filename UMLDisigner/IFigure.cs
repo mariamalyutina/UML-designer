@@ -14,7 +14,7 @@ namespace UMLDisigner
         Color Color { get; set; }
         int Width { get; set; }
 
-        public AbstractLine LineType { get; set; }
+        //public AbstractLine LineType { get; set; }
 
         void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0);
 
@@ -22,18 +22,18 @@ namespace UMLDisigner
         Side SideForResizing(Point checkedPoint);
         Vertex VertexForResizing(Point checkedPoint);
 
-        Object Clone();
+        public Object Clone();
 
-        protected List<Point> GetPoints()
-        {
-            List<Point> points = new List<Point>();
+        //protected List<Point> GetPoints()
+        //{
+        //    List<Point> points = new List<Point>();
 
-            points.Add(MouseDownPosition);
+        //    points.Add(MouseDownPosition);
 
-            points.Add(MouseUpPosition);
+        //    points.Add(MouseUpPosition);
 
-            return points;
-        }
+        //    return points;
+        //}
     }
 
 }

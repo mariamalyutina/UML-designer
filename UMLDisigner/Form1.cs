@@ -9,11 +9,8 @@ namespace UMLDisigner
     public partial class Form1 : Form
     {
 
-
-        List<Bitmap> BitmapList= new List<Bitmap>();
-
-        private Point _mouseUpPosition;
-        private Point _mouseDownPosition;
+        //private Point _mouseUpPosition;
+        //private Point _mouseDownPosition;
         private Point _pointMovingMouseDownPosition;
         private String _figureName;
         public Brush Brush;
@@ -26,7 +23,9 @@ namespace UMLDisigner
         Side _side;
         IFigure _crntFigure;
         bool _isEnd = false;
-        AbstractLine _lineType;
+
+        AbstractFactory _factory;
+
 
 
         public Form1()
@@ -40,7 +39,6 @@ namespace UMLDisigner
             //this.Controls.Add(pictureBox1);
             //pictureBox1.PreviewKeyDown += new PreviewKeyDownEventHandler(KeyDeleteUp);
             Figures = new List<IFigure>();
-            _lineType = new StraightLine();
 
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -116,7 +114,8 @@ namespace UMLDisigner
                         Brush.DrawMoveTmpFigure(Figures);
                         Figures.Remove(figure);
                         Brush.DrawMoveFigure(Figures);
-                        Figure = (IFigure)figure.Clone();
+                       Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth
+                    , Figure.MouseDownPosition, Figure.MouseUpPosition);
                         _isMoving = true;
                         _pointMovingMouseDownPosition = e.Location;
                         return;
@@ -156,7 +155,10 @@ namespace UMLDisigner
                 Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
                 Figure.MouseDownPosition = Point.Add(Figure.MouseDownPosition, delta);
                 Figure.MouseUpPosition = Point.Add(Figure.MouseUpPosition, delta);
-                Figures.Add((IFigure)Figure.Clone());
+                // Figures.Add((IFigure)Figure.Clone());
+                Figures.Add(_factory.GetShape(Brush.Color, Brush.TrackBarWidth
+                    , Figure.MouseDownPosition, Figure.MouseUpPosition));
+
                 _isMoving = false;
                 Brush.TmpToMainBitmap();
                 return;
@@ -164,7 +166,7 @@ namespace UMLDisigner
 
             Brush.TmpToMainBitmap();
 
-            if(Figure!= null)
+            if(Figure!= null && e.Button != MouseButtons.Right)
             {
                 if (_isEnd)
                 {
@@ -176,7 +178,9 @@ namespace UMLDisigner
 
                 }
                 Figures.Add(Figure);
-                Figure = (IFigure)(Figure.Clone());
+                //Figure = (IFigure)(Figure.Clone());
+                Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth
+                    , Figure.MouseDownPosition, Figure.MouseUpPosition);
             }
 
             _crntFigure = null;         
@@ -187,7 +191,7 @@ namespace UMLDisigner
         {
             foreach (IFigure a in Figures)
             {
-                if (a is AbstractArrow)
+                if (a is Arrow)
                 {
                     if (Math.Abs(a.MouseDownPosition.X - e.X) < 10 && Math.Abs(a.MouseDownPosition.Y - e.Y) < 10)
                     {
@@ -250,33 +254,88 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-
-                    Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new AssociationFactory(false);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "inheritance":
-                    Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new InheritanceFactory(false);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregation":
-                    Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new AggregationFactory(false);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregationPlus":
-                    Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new AggregationPlusFactory(false);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "composition":
-                    Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new CompositionFactory(false);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "compositionPlus":
-                    Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new CompositionPlusFactory(false);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "implementation":
-                    Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new ImplementationFactory(false);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    
                     break;
             }
 
-            pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
+            //pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
         }
 
-
+        private void SetCurvedArrow()
+        {
+            switch (_figureName)
+            {
+                case "association":
+                    //    Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    //    break;
+                    _factory = new AssociationFactory(true);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    break;
+                case "inheritance":
+                    //Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new InheritanceFactory(true);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    break;
+                case "aggregation":
+                    //    Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new AggregationFactory(true);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    break;
+                case "aggregationPlus":
+                    //    Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new AggregationPlusFactory(true);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    break;
+                case "composition":
+                    //Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new CompositionFactory(true);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    break;
+                case "compositionPlus":
+                    //    Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new CompositionPlusFactory(true);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    break;
+                case "implementation":
+                    //Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth, _lineType);
+                    _factory = new ImplementationFactory(true);
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    break;
+            }
+        }
 
         private void SetClass()
         {
@@ -307,11 +366,16 @@ namespace UMLDisigner
 
         private void button_Color_Click(object sender, EventArgs e)
         {
+
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 button_Color.BackColor = colorDialog1.Color;
                 Brush.Color = colorDialog1.Color;
-                Figure.Color = colorDialog1.Color;
+                if (!(Figure is null))
+                {
+                    Figure.Color = colorDialog1.Color;
+                }
+                    
             }
         }
 
@@ -319,7 +383,11 @@ namespace UMLDisigner
         {
             label2.Text = trackBar1.Value.ToString();
             Brush.TrackBarWidth = trackBar1.Value;
-            Figure.Width = trackBar1.Value;
+            if (!(Figure is null))
+            {
+                Figure.Width = trackBar1.Value;
+            }
+                
         }
 
         private void pictureBox_Arrows_Click(object sender, EventArgs e)
@@ -332,7 +400,15 @@ namespace UMLDisigner
             if (formArrows.Name != null)
             {
                 _figureName = formArrows.Name;
-                SetArrow();
+                //SetArrow();
+                if (buttonLineOptions.Text == "Curved")
+                {
+                    SetCurvedArrow();
+                }
+                else
+                {
+                    SetArrow();
+                }
                 pictureBox_Arrows.ImageLocation = @"ImagesArrows\" + _figureName + ".JPG";
                 pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
                 formArrows.Close();
@@ -391,21 +467,16 @@ namespace UMLDisigner
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             buttonLineOptions.Text = comboBox1.Text; //смена с ломаной на прямую
-            if(buttonLineOptions.Text == "Curved")
+            if (buttonLineOptions.Text == "Curved")
             {
-                _lineType = new CurvedLine();
-            } 
+                SetCurvedArrow();
+            }
             else
             {
-                _lineType = new StraightLine();
+                SetArrow();
             }
-            if (!(Figure is null))
-            {
-                Figure.LineType = _lineType;
-            }
-            
+
         }
 
         //private void KeyDeleteUp(object sender, PreviewKeyDownEventArgs e)

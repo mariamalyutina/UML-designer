@@ -7,7 +7,7 @@ namespace UMLDisigner
 {
     class WingsCap : AbstractCap
     {
-        public override void Draw(Graphics graphics, Pen pen, Point endPoint, Point startPoint)
+        public override void Draw(Graphics graphics, Pen pen, SolidBrush brush, Point endPoint, Point startPoint)
         {
             if (endPoint != startPoint)
             {

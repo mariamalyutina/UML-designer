@@ -23,10 +23,12 @@ namespace UMLDisigner
             Size delta = new Size(deltaX, deltaY);
             MouseDownPosition = Point.Add(MouseDownPosition, delta);
             MouseUpPosition = Point.Add(MouseUpPosition, delta);
-            Pen pen1 = new Pen(Color, Width);
-            pen1.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            LineType.Draw(graphics, pen1, MouseUpPosition, MouseDownPosition);
-            pen1.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            Pen pen = new Pen(Color, Width);
+            SolidBrush brush = new SolidBrush(Color.White);
+
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            LineType.Draw(graphics, pen, MouseUpPosition, MouseDownPosition);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
 
             Point capBeginningStartPoint;
             if (LineType is StraightLine)
@@ -38,7 +40,7 @@ namespace UMLDisigner
                 capBeginningStartPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
             }
 
-            _capTypeBeginning.Draw(graphics, pen1, MouseUpPosition, capBeginningStartPoint);
+            _capTypeBeginning.Draw(graphics, pen, brush, MouseUpPosition, capBeginningStartPoint);
 
             MouseDownPosition = tmpMouseDownPosition;
             MouseUpPosition = tmpMouseUpPosition;
