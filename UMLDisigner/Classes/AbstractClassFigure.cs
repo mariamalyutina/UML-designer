@@ -15,6 +15,11 @@ namespace UMLDisigner
 
         public Color Color { get; set; } = Color.Black;
         public int Width { get; set; } = 1;
+        public List<string> Text { get; set; } = new List<string>() { "Classname", "+ field : type", "+ field : type", "+ field : type", "", "", "", "", "", "", "", "", "" };
+
+        // public string Text { get; set; }
+        public int Size { get; set; }
+        public int CountString { get; set; }
 
         public bool IsCurved { get; set; } //только для стрелочки
 

@@ -13,7 +13,10 @@ namespace UMLDisigner
 
         Color Color { get; set; } 
         int Width { get; set; }
-
+        public List<string> Text { get; set; }
+      //  public string Text { get; set; }
+        public int Size { get; set; }
+        public int CountString { get; set; }
         public bool IsCurved { get; set; }
 
         void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);

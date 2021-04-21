@@ -7,7 +7,7 @@ namespace UMLDisigner
 {
     class Class2Figure : AbstractClassFigure
     {
-        int _topLineHeight = 40;
+        int _topLineHeight = 25;
 
         public Class2Figure(Color color, int width)
         {
@@ -15,56 +15,82 @@ namespace UMLDisigner
             Width = width;
         }
 
-        public Class2Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public Class2Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width,
+            List<string> text, int size, int countString = 4)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
+
             Color = color;
             Width = width;
+            Text = text;
+            //  Text[0] = "ClassName";
+            //  Size = size;
+            CountString = countString;
             //_font = font;
             //_brush = brush;
         }
 
         public override void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0)
         {
-            Size delta = new Size(deltaX, deltaY);
+          int  tmpMouseDownPositionX = MouseDownPosition.X;
+          int  tmpMouseDownPositionY = MouseDownPosition.Y;
+          int  tmpMouseUpPositionX = MouseUpPosition.X;
+          int tmpMouseUpPositionY = MouseUpPosition.Y;
+
+              Size delta = new Size(deltaX, deltaY);
             graphics.DrawPolygon(pen, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
-
-            if ((MouseDownPosition.Y - MouseUpPosition.Y) > _topLineHeight)
+            int k = 25;
+            int indent = 0;
+            for (int i = 0; i <= CountString; i++)
             {
-                graphics.DrawLine(pen, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY));
+                int fac = k * (i);
 
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
 
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
+                if ((tmpMouseDownPositionY - tmpMouseUpPositionY) > fac)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
-                }
-            }
-            else if ((MouseUpPosition.Y - MouseDownPosition.Y) > _topLineHeight)
-            {
-                graphics.DrawLine(pen, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY));
+                    if (tmpMouseDownPositionX - tmpMouseUpPositionX > 10+Size)
+                    {
+                        graphics.DrawLine(pen, new Point(tmpMouseDownPositionX + deltaX, tmpMouseUpPositionY + _topLineHeight + deltaY),
+                      new Point(tmpMouseUpPositionX + deltaX, tmpMouseUpPositionY + _topLineHeight + deltaY));
+                        graphics.DrawString(Text[i], _font, _brush, new Point(tmpMouseUpPositionX + deltaX + indent, tmpMouseUpPositionY + fac + deltaY));
 
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    }
+                    else if (tmpMouseUpPositionX - tmpMouseDownPositionX > 10 + Size)
+                    {
+                        graphics.DrawLine(pen, new Point(tmpMouseDownPositionX + deltaX, tmpMouseUpPositionY + deltaY + k), new Point(tmpMouseUpPositionX + deltaX, tmpMouseUpPositionY + deltaY + k));
+                        if (tmpMouseUpPositionX - tmpMouseDownPositionX  < Size)
+                        {
+                            tmpMouseUpPositionY +=10;
+                            tmpMouseUpPositionX +=10;
+
+                        }
+                        graphics.DrawString(Text[i], _font, _brush, new Point(tmpMouseDownPositionX + deltaX+ indent, tmpMouseUpPositionY + deltaY + fac));
+                    }
                 }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
+                if ((tmpMouseUpPositionY - tmpMouseDownPositionY) > fac)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    if (tmpMouseDownPositionX  - tmpMouseUpPositionX  > 10 + Size)
+                    {
+                        graphics.DrawLine(pen, new Point(tmpMouseDownPositionX + deltaX, tmpMouseDownPositionY + deltaY + _topLineHeight),
+                        new Point(tmpMouseUpPositionX + deltaX, tmpMouseDownPositionY + deltaY + _topLineHeight));
+                        graphics.DrawString(Text[i], _font, _brush, new Point(tmpMouseUpPositionX + deltaX+ indent, tmpMouseDownPositionY + deltaY + fac));
+                    }
+                    else if (tmpMouseUpPositionX - tmpMouseDownPositionX > 10 + Size)
+                    {
+                        graphics.DrawLine(pen, new Point(tmpMouseDownPositionX + deltaX, tmpMouseDownPositionY + deltaY + _topLineHeight),
+                        new Point(tmpMouseUpPositionX + deltaX, tmpMouseDownPositionY + deltaY + _topLineHeight));
+                        graphics.DrawString(Text[i], _font, _brush, new Point(tmpMouseDownPositionX + deltaX + indent, tmpMouseDownPositionY + deltaY + fac));
+                    }
                 }
+
             }
         }
 
 
         public override object Clone()
         {
-            return new Class1Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
+            return new Class2Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width, Text, Size, CountString);
         }
     }
 

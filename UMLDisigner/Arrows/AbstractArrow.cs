@@ -17,6 +17,11 @@ namespace UMLDisigner
         public int Width { get; set; } = 1;
 
         public bool IsCurved { get; set; }
+        public string Text { get; set; }
+          List<string> IFigure.Text { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Size { get; set; }
+        public int CountString { get; set; }
+
         public AbstractArrow(Point MouseDownPosition, Point MouseUpPosition)
         {
             this.MouseDownPosition = MouseDownPosition;
