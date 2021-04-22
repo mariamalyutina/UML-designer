@@ -6,37 +6,20 @@ using System.Windows.Forms;
 
 namespace UMLDisigner
 {
-    public interface IFigure : ICloneable
+    public interface IFigure
     {
         Point MouseUpPosition { get; set; }
         Point MouseDownPosition { get; set; }
 
-        Color Color { get; set; } 
+        Color Color { get; set; }
         int Width { get; set; }
-        public List<string> Text { get; set; }
-      //  public string Text { get; set; }
         public int Size { get; set; }
         public int CountString { get; set; }
         public bool IsCurved { get; set; }
-
-        void Draw(Graphics graphics, Pen pen, int deltaX = 0, int deltaY = 0);
+        public List<string> Text { get; set; }
 
         bool IsHavingPoint(Point checkedPoint);
-        Side SideForResizing(Point checkedPoint);
-        Vertex VertexForResizing(Point checkedPoint);
 
-        Object Clone();
-
-        protected List<Point> GetPoints()
-        {
-            List<Point> points = new List<Point>();
-
-            points.Add(MouseDownPosition);
-
-            points.Add(MouseUpPosition);
-
-            return points;
-        }
     }
 
 }

@@ -5,11 +5,13 @@ using System.Text;
 
 namespace UMLDisigner
 {
-    class TriangleCap : AbstractCap
+    class DashStraightLine : StraightLine
     {
         public override void Draw(Graphics graphics, Pen pen, Point endPoint, Point startPoint)
         {
-            graphics.DrawPolygon(pen, Geometry.GetArrow(endPoint, startPoint));
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            graphics.DrawLine(pen, endPoint, startPoint);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
         }
     }
 }

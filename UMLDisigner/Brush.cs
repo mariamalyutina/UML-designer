@@ -40,7 +40,7 @@ namespace UMLDisigner
             {
                 pen.Color = a.Color;
                 pen.Width = a.Width;
-                a.Draw(graphics, pen);
+                a.Draw(graphics);
             }
             pb.Invalidate();
 
@@ -56,21 +56,11 @@ namespace UMLDisigner
             {
                 pen.Color = figure.Color;
                 pen.Width = figure.Width;
-                figure.Draw(graphics, pen);
+                figure.Draw(graphics);
             }
             pb.Image = _mainBitmap;
         }
          
-        public void DrawResizingFigure(IFigure figure, int deltaX, int deltaY, Side side = Side.None, Vertex vertex = Vertex.None)
-        {
-            _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-            graphics = Graphics.FromImage(_tmpBitmap);
-            pen.Color = figure.Color;
-            pen.Width = figure.Width;
-            figure.Draw(graphics, pen, deltaX, deltaY);
-            pb.Image = _tmpBitmap;
-            GC.Collect();
-        }
 
         public void DrawMoveFigure(IFigure figure, int deltaX = 0, int deltaY = 0)
         {
@@ -78,7 +68,7 @@ namespace UMLDisigner
             graphics = Graphics.FromImage(_tmpBitmap);
             pen.Color = figure.Color;
             pen.Width = figure.Width;
-            figure.Draw(graphics, pen, deltaX, deltaY);
+            figure.Draw(graphics, deltaX, deltaY);
             pb.Image = _tmpBitmap; 
             GC.Collect();
             //pb.Invalidate();
@@ -94,7 +84,7 @@ namespace UMLDisigner
             {
                 pen.Color = a.Color;
                 pen.Width = a.Width;
-                a.Draw(graphics, pen);
+                a.Draw(graphics);
             }
             pb.Image = _tempBitmap;
             pb.Invalidate();
@@ -104,7 +94,8 @@ namespace UMLDisigner
 
         public void TmpToMainBitmap()
         {
-            _mainBitmap = _tmpBitmap; 
+            _mainBitmap = _tmpBitmap;
+            
         }
 
         public void Clear()
