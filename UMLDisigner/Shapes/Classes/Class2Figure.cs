@@ -9,6 +9,10 @@ namespace UMLDisigner
     {
         int _topLineHeight = 40;
 
+        public Class2Figure()
+        {
+
+        }
         public Class2Figure(Color color, int width)
         {
             Color = color;

@@ -8,6 +8,9 @@ namespace UMLDisigner
     class Class1Figure : AbstractClassFigure
     {
         //Point mouseDownPosition, Point mouseUpPosition, 
+        public Class1Figure()
+        {
+        }
 
         public Class1Figure(Color color, int width)
         {
