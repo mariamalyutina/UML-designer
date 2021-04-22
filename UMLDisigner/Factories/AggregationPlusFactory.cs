@@ -18,11 +18,5 @@ namespace UMLDisigner
             Arrow figure = new Arrow(color, width, _lineType, _firstCap, _endCap);
             return figure;
         }
-
-        public override IFigure GetShape(Color color, int Width, Point MouseDownPosition, Point MouseUpPosition)
-        {
-            
-            throw new NotImplementedException();
-        }
     }
 }

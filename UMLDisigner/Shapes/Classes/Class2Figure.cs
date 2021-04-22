@@ -5,18 +5,17 @@ using System.Drawing;
 
 namespace UMLDisigner
 {
-    class Class3Figure : AbstractClassFigure
+    class Class2Figure : AbstractClassFigure
     {
         int _topLineHeight = 40;
-        int _bottomLineHeight = 40;
 
-        public Class3Figure(Color color, int width)
+        public Class2Figure(Color color, int width)
         {
             Color = color;
             Width = width;
         }
 
-        public Class3Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public Class2Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
@@ -30,11 +29,11 @@ namespace UMLDisigner
             Size delta = new Size(deltaX, deltaY);
             graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
 
-
             if ((MouseDownPosition.Y - MouseUpPosition.Y) > _topLineHeight)
             {
                 graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY),
                     new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY));
+
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
                     graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
@@ -49,6 +48,7 @@ namespace UMLDisigner
             {
                 graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY),
                     new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY));
+
                 if (MouseDownPosition.X - MouseUpPosition.X > 10)
                 {
                     graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
@@ -58,41 +58,7 @@ namespace UMLDisigner
                     graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
                 }
             }
-
-
-            if ((MouseDownPosition.Y - MouseUpPosition.Y) > _bottomLineHeight + _topLineHeight)
-            {
-                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY));
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - 20 + deltaY));
-
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y - 20 + deltaY));
-                }
-            }
-            else if ((MouseUpPosition.Y - MouseDownPosition.Y) > _bottomLineHeight + _topLineHeight)
-            {
-                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y - _bottomLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y - _bottomLineHeight + deltaY));
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y - 20 + deltaY));
-
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y - 20 + deltaY));
-                }
-            }
-        }
-
-        public override object Clone()
-        {
-            return new Class3Figure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
+
 }

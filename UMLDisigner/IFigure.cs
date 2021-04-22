@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace UMLDisigner
 {
-    public interface IFigure : ICloneable
+    public interface IFigure
     {
         Point MouseUpPosition { get; set; }
         Point MouseDownPosition { get; set; }
@@ -14,26 +14,10 @@ namespace UMLDisigner
         Color Color { get; set; }
         int Width { get; set; }
 
-        //public AbstractLine LineType { get; set; }
-
         void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0);
 
         bool IsHavingPoint(Point checkedPoint);
-        Side SideForResizing(Point checkedPoint);
-        Vertex VertexForResizing(Point checkedPoint);
 
-        public Object Clone();
-
-        //protected List<Point> GetPoints()
-        //{
-        //    List<Point> points = new List<Point>();
-
-        //    points.Add(MouseDownPosition);
-
-        //    points.Add(MouseUpPosition);
-
-        //    return points;
-        //}
     }
 
 }

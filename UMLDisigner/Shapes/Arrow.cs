@@ -17,10 +17,6 @@ namespace UMLDisigner
         protected AbstractCap _capTypeBeginning;
         protected AbstractCap _capTypeEnding;
 
-        public Arrow()
-        {
-            //только для клона, когда уберем клон - можно убрать это
-        }
 
         public Arrow(Color color, int width, AbstractLine lineType, AbstractCap firstCap, AbstractCap endCap)
         {
@@ -78,21 +74,6 @@ namespace UMLDisigner
             {
                 return false;
             }
-        }
-
-        public Side SideForResizing(Point checkedPoint)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Vertex VertexForResizing(Point checkedPoint)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Clone()
-        {
-            return new Arrow();
         }
     }
 }

@@ -11,6 +11,5 @@ namespace UMLDisigner
         public int Width { get; set; }
 
         public abstract IFigure GetShape(Color color, int Width);
-        public abstract IFigure GetShape(Color color, int Width, Point MouseDownPosition, Point MouseUpPosition);
     }
 }

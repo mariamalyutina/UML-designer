@@ -18,9 +18,7 @@ namespace UMLDisigner
         public List<IFigure> Figures;
         bool _editing = false;
         bool _isMoving = false;
-        bool _isResizing = false;
-        Vertex _vertex;
-        Side _side;
+        //bool _isResizing = false;
         IFigure _crntFigure;
         bool _isEnd = false;
 
@@ -65,41 +63,6 @@ namespace UMLDisigner
 
                 Brush.DrawMoveFigure(Figure);
             }
-
-
-                //if (e.Button == MouseButtons.Right && _isResizing == true)
-                //{
-                //    int deltaX = e.Location.X - _pointMovingMouseDownPosition.X;
-                //    int deltaY = e.Location.Y - _pointMovingMouseDownPosition.Y;
-                //    if (_side != Side.None)
-                //    {
-                //        Figure.MouseDownPosition = e.Location;
-                //    }
-                //    else
-                //    {
-                //        Figure.MouseUpPosition = e.Location;
-
-                //        switch (_side)
-                //        {
-                //            case Side.Left:
-                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
-                //                break;
-                //            case Side.Right:
-                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
-                //                break;
-                //            case Side.Up:
-                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
-                //                break;
-                //            case Side.Down:
-                //                Figure.MouseDownPosition = new Point(_mouseDownPosition.X + deltaX, _mouseDownPosition.Y);
-                //                break;
-
-                //        }
-
-                //        Brush.DrawResizingFigure(Figure, deltaX, deltaY, _side);
-                //    }
-                //    Brush.DrawMoveFigure(Figure);
-                //}
          }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -114,8 +77,8 @@ namespace UMLDisigner
                         Brush.DrawMoveTmpFigure(Figures);
                         Figures.Remove(figure);
                         Brush.DrawMoveFigure(Figures);
-                       Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth
-                    , Figure.MouseDownPosition, Figure.MouseUpPosition);
+                        Figure = figure;
+    
                         _isMoving = true;
                         _pointMovingMouseDownPosition = e.Location;
                         return;
@@ -149,22 +112,21 @@ namespace UMLDisigner
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+            Brush.TmpToMainBitmap();
 
             if (_isMoving)
             {
                 Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
                 Figure.MouseDownPosition = Point.Add(Figure.MouseDownPosition, delta);
                 Figure.MouseUpPosition = Point.Add(Figure.MouseUpPosition, delta);
-                // Figures.Add((IFigure)Figure.Clone());
-                Figures.Add(_factory.GetShape(Brush.Color, Brush.TrackBarWidth
-                    , Figure.MouseDownPosition, Figure.MouseUpPosition));
+
+                Figures.Add(Figure);
+                Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
 
                 _isMoving = false;
-                Brush.TmpToMainBitmap();
                 return;
             }
 
-            Brush.TmpToMainBitmap();
 
             if(Figure!= null && e.Button != MouseButtons.Right)
             {
@@ -179,8 +141,7 @@ namespace UMLDisigner
                 }
                 Figures.Add(Figure);
                 //Figure = (IFigure)(Figure.Clone());
-                Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth
-                    , Figure.MouseDownPosition, Figure.MouseUpPosition);
+                Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
             }
 
             _crntFigure = null;         
@@ -291,7 +252,7 @@ namespace UMLDisigner
                     break;
             }
 
-            //pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
+            pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
         }
 
         private void SetCurvedArrow()
@@ -351,7 +312,9 @@ namespace UMLDisigner
                     Figure = new Class3Figure(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "ClassStack":
-                    Figure = new ClassStackFigure(Brush.Color, Brush.TrackBarWidth);
+                    _factory = new ClassStackFactory();
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
+                    //Figure = new ClassStackFigure(Brush.Color, Brush.TrackBarWidth);
                     break;
             }
 
@@ -425,22 +388,6 @@ namespace UMLDisigner
             formClasses.ShowDialog();
             if (formClasses.Name != null)
             {
-                //    if (formClasses.Name == "close")
-                //    {
-                //        if (_figureName == "association" || _figureName == "inheritance" || _figureName == "aggregation"
-                //            || _figureName == "aggregationPlus" || _figureName == "composition" || _figureName == "compositionPlus" || _figureName == "implementation")
-                //        {
-                //            pictureBox_Classes.ImageLocation = @"ImagesClasses\" + _figureName + ".JPG";
-                //        }
-                //        else
-                //        {
-                //            pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
-                //        }
-                //        pictureBox_Classes.SizeMode = PictureBoxSizeMode.Zoom;
-                //        formClasses.Close();
-                //        return;
-                //    }
-
                 _figureName = formClasses.Name;
                 SetClass();
                 pictureBox_Classes.ImageLocation = @"ImagesClasses\" + formClasses.Name + ".JPG";

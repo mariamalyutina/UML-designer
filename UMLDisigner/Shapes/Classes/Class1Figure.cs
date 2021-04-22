@@ -5,15 +5,17 @@ using System.Drawing;
 
 namespace UMLDisigner
 {
-    class ClassStackFigure : AbstractClassFigure
+    class Class1Figure : AbstractClassFigure
     {
-        public ClassStackFigure(Color color, int width)
+        //Point mouseDownPosition, Point mouseUpPosition, 
+
+        public Class1Figure(Color color, int width)
         {
             Color = color;
             Width = width;
         }
 
-        public ClassStackFigure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
+        public Class1Figure(Point mouseDownPosition, Point mouseUpPosition, Color color, int width)
         {
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
@@ -21,21 +23,13 @@ namespace UMLDisigner
             Width = width;
         }
 
+
+
         public override void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0)
         {
             Pen pen1 = new Pen(Color, Width);
-            SolidBrush _whiteBrush = new SolidBrush(Color.White);
-            pen1.Width += 1;
-            int j = 0;
-            for (int i = 0; i < 5; i++, j += 5)
-            {
-                int crntMouseDownX = MouseDownPosition.X + j + deltaX;
-                int crntMouseDownY = MouseDownPosition.Y + j + deltaY;
-                int crntMouseUpX = MouseUpPosition.X + j + deltaX;
-                int crntMouseUpY = MouseUpPosition.Y + j + deltaY;
-                graphics.DrawPolygon(pen1, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
-                graphics.FillPolygon(_whiteBrush, Geometry.GetRectangle(new Point(crntMouseDownX, crntMouseDownY), new Point(crntMouseUpX, crntMouseUpY)));
-            }
+            Size delta = new Size(deltaX, deltaY);
+            graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
 
             if ((MouseDownPosition.Y - MouseUpPosition.Y) > 20)
             {
@@ -60,12 +54,6 @@ namespace UMLDisigner
                     graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
                 }
             }
-
-        }
-
-        public override object Clone()
-        {
-            return new ClassStackFigure(this.MouseDownPosition, this.MouseUpPosition, this.Color, this.Width);
         }
     }
 }
