@@ -89,11 +89,33 @@ namespace UMLDisigner
         
         public static bool FindPointInArrow(Point leftPosition, Point rightPosition, Point checkedPoint)
         {
-            int delta = 5;
-            int minX = Math.Min(leftPosition.X, rightPosition.X);
-            int maxX = Math.Max(leftPosition.X, rightPosition.X);
-            int minY = Math.Min(leftPosition.Y, rightPosition.Y);
-            int maxY = Math.Max(leftPosition.Y, rightPosition.Y);
+            int delta = 10;
+            int minX;
+            int maxX;
+            int minY;
+            int maxY;
+            if (leftPosition.X > rightPosition.X)
+            {
+                minX = rightPosition.X;
+                maxX = leftPosition.X;
+            }
+            else
+            {
+                minX = leftPosition.X;
+                maxX = rightPosition.X;
+            }
+
+            if (leftPosition.Y > rightPosition.Y)
+            {
+                minY = rightPosition.Y;
+                maxY = leftPosition.Y;
+            }
+            else
+            {
+                minY = leftPosition.Y;
+                maxY = rightPosition.Y;
+            }
+
             int middleX = minX + (maxX - minX) / 2;
             int middleY = minY + (maxY - minY) / 2;
 
@@ -110,14 +132,40 @@ namespace UMLDisigner
             {
                 return true;
             }
-
             return false;
         }
 
         public static bool FindPointInClass(Point mouseUpPosition, Point mouseDownPosition, Point checkedPoint)
         {
-            if (Math.Min(mouseDownPosition.X, mouseUpPosition.X) + 5 <= checkedPoint.X && Math.Max(mouseDownPosition.X, mouseUpPosition.X) - 5 >= checkedPoint.X
-                 && Math.Min(mouseDownPosition.Y, mouseUpPosition.Y) + 5 <= checkedPoint.Y && Math.Max(mouseDownPosition.Y, mouseUpPosition.Y) - 5 >= checkedPoint.Y)
+            int delta = 10;
+            int minX;
+            int maxX;
+            int minY;
+            int maxY;
+            if (mouseUpPosition.X > mouseDownPosition.X)
+            {
+                minX = mouseDownPosition.X;
+                maxX = mouseUpPosition.X;
+            }
+            else
+            {
+                minX = mouseUpPosition.X;
+                maxX = mouseDownPosition.X;
+            }
+
+            if (mouseUpPosition.Y > mouseDownPosition.Y)
+            {
+                minY = mouseDownPosition.Y;
+                maxY = mouseUpPosition.Y;
+            }
+            else
+            {
+                minY = mouseUpPosition.Y;
+                maxY = mouseDownPosition.Y;
+            }
+
+            if ( minX - delta <= checkedPoint.X && maxX + delta >= checkedPoint.X
+                 && minY - delta <= checkedPoint.Y && maxY + delta >= checkedPoint.Y)
             {
                 return true;
             }
