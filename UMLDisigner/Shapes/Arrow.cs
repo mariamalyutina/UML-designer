@@ -68,12 +68,26 @@ namespace UMLDisigner
         {
             if (Geometry.FindPointInClass(MouseUpPosition, MouseDownPosition, checkedPoint))
             {
-                return Geometry.FindPointInArrow(MouseUpPosition, MouseDownPosition, checkedPoint);
+                if (LineType is CurvedLine)
+                {
+                    Point capBeginningStartPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
+                    Point capEndingEndPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[1];
+                    if (Geometry.FindPointInArrow(MouseDownPosition, capEndingEndPoint, checkedPoint) 
+                        || Geometry.FindPointInArrow(capEndingEndPoint, capBeginningStartPoint, checkedPoint)
+                        || Geometry.FindPointInArrow(capBeginningStartPoint, MouseUpPosition, checkedPoint))
+                    {
+                        return true;
+                    }
+
+                }
+                else 
+                {
+                    return Geometry.FindPointInArrow(MouseUpPosition, MouseDownPosition, checkedPoint);
+                }
             }
-            else
-            {
-                return false;
-            }
+ 
+            return false;
+            
         }
     }
 }
