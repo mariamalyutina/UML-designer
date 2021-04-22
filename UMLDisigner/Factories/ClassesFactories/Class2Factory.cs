@@ -5,13 +5,11 @@ using System.Text;
 
 namespace UMLDisigner
 {
-    class ClassStackFactory : AbstractClassFactory
+    class Class2Factory : AbstractFactory
     {
-
         public override IFigure GetShape(Color color, int width)
         {
-            _classType = new ClassStackFigure();
-            Class figure = new Class(color, width, _classType);
+            AbstractClassFigure figure = new Class2Figure(color, width);
             return figure;
         }
     }

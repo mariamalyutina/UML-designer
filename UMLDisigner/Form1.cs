@@ -9,8 +9,6 @@ namespace UMLDisigner
     public partial class Form1 : Form
     {
 
-        //private Point _mouseUpPosition;
-        //private Point _mouseDownPosition;
         private Point _pointMovingMouseDownPosition;
         private String _figureName;
         public Brush Brush;
@@ -18,7 +16,6 @@ namespace UMLDisigner
         public List<IFigure> Figures;
         bool _editing = false;
         bool _isMoving = false;
-        //bool _isResizing = false;
         IFigure _crntFigure;
         bool _isEnd = false;
 
@@ -140,7 +137,6 @@ namespace UMLDisigner
 
                 }
                 Figures.Add(Figure);
-                //Figure = (IFigure)(Figure.Clone());
                 Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
             }
 
@@ -215,37 +211,30 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-                    //Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new AssociationFactory(false);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "inheritance":
-                    //Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new InheritanceFactory(false);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregation":
-                    //Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new AggregationFactory(false);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregationPlus":
-                    //Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new AggregationPlusFactory(false);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "composition":
-                    //Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new CompositionFactory(false);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "compositionPlus":
-                    //Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new CompositionPlusFactory(false);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "implementation":
-                    //Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new ImplementationFactory(false);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     
@@ -260,38 +249,30 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "association":
-                    //    Figure = new ArrowAssociation(Brush.Color, Brush.TrackBarWidth, _lineType);
-                    //    break;
                     _factory = new AssociationFactory(true);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "inheritance":
-                    //Figure = new ArrowInheritance(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new InheritanceFactory(true);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregation":
-                    //    Figure = new ArrowAggregation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new AggregationFactory(true);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "aggregationPlus":
-                    //    Figure = new ArrowAggregationPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new AggregationPlusFactory(true);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "composition":
-                    //Figure = new ArrowСomposition(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new CompositionFactory(true);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "compositionPlus":
-                    //    Figure = new ArrowСompositionPlus(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new CompositionPlusFactory(true);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "implementation":
-                    //Figure = new ArrowImplementation(Brush.Color, Brush.TrackBarWidth, _lineType);
                     _factory = new ImplementationFactory(true);
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
@@ -303,18 +284,20 @@ namespace UMLDisigner
             switch (_figureName)
             {
                 case "Classes1":
-                    Figure = new Class1Figure(Brush.Color, Brush.TrackBarWidth);
+                    _factory = new Class1Factory();
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "Classes2":
-                    Figure = new Class2Figure(Brush.Color, Brush.TrackBarWidth);
+                    _factory = new Class2Factory();
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "Classes3":
-                    Figure = new Class3Figure(Brush.Color, Brush.TrackBarWidth);
+                    _factory = new Class3Factory();
+                    Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
                     break;
                 case "ClassStack":
                     _factory = new ClassStackFactory();
                     Figure = _factory.GetShape(Brush.Color, Brush.TrackBarWidth);
-                    //Figure = new ClassStackFigure(Brush.Color, Brush.TrackBarWidth);
                     break;
             }
 
