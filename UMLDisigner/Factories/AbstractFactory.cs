@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UMLDisigner
 {
-    abstract class AbstractFactory
+    public abstract class AbstractFactory
     {
         public Color Color { get; set; }
         public int Width { get; set; }

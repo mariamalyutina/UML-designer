@@ -18,11 +18,15 @@ namespace UMLDisigner
 
         public abstract void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0);
 
+        public List<Point> GetFigurePoints()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool IsHavingPoint(Point checkedPoint)
         {
             return Geometry.FindPointInClass(MouseUpPosition, MouseDownPosition, checkedPoint);
         }
 
-       
     }
 }

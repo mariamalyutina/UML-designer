@@ -128,7 +128,8 @@ namespace UMLDisigner
                 return false;
             }
             if (FindPointInArrow(leftPosition, new Point(middleX, middleY), checkedPoint)
-                || FindPointInArrow(new Point(middleX, middleY), rightPosition, checkedPoint))
+                || FindPointInArrow(new Point(middleX, middleY), rightPosition, checkedPoint) 
+                )
             {
                 return true;
             }

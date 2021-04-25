@@ -53,10 +53,10 @@ namespace UMLDisigner
             // 
             this.button_StepBack.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button_StepBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_StepBack.Location = new System.Drawing.Point(909, 32);
-            this.button_StepBack.Margin = new System.Windows.Forms.Padding(4, 8, 4, 8);
+            this.button_StepBack.Location = new System.Drawing.Point(727, 26);
+            this.button_StepBack.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.button_StepBack.Name = "button_StepBack";
-            this.button_StepBack.Size = new System.Drawing.Size(179, 50);
+            this.button_StepBack.Size = new System.Drawing.Size(143, 40);
             this.button_StepBack.TabIndex = 9;
             this.button_StepBack.Text = "Step back";
             this.button_StepBack.UseVisualStyleBackColor = true;
@@ -64,10 +64,10 @@ namespace UMLDisigner
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(15, 160);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 8, 4, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 128);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1628, 771);
+            this.pictureBox1.Size = new System.Drawing.Size(1302, 617);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -78,10 +78,10 @@ namespace UMLDisigner
             // 
             this.button_Color.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Color.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button_Color.Location = new System.Drawing.Point(430, 32);
+            this.button_Color.Location = new System.Drawing.Point(344, 26);
             this.button_Color.Margin = new System.Windows.Forms.Padding(2);
             this.button_Color.Name = "button_Color";
-            this.button_Color.Size = new System.Drawing.Size(38, 42);
+            this.button_Color.Size = new System.Drawing.Size(30, 34);
             this.button_Color.TabIndex = 12;
             this.button_Color.UseVisualStyleBackColor = false;
             this.button_Color.Click += new System.EventHandler(this.button_Color_Click);
@@ -89,12 +89,12 @@ namespace UMLDisigner
             // trackBar1
             // 
             this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(16, 32);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.trackBar1.Location = new System.Drawing.Point(13, 26);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.trackBar1.Maximum = 5;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(404, 69);
+            this.trackBar1.Size = new System.Drawing.Size(323, 56);
             this.trackBar1.TabIndex = 13;
             this.trackBar1.Value = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -103,20 +103,20 @@ namespace UMLDisigner
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(30, 98);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(24, 78);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 23);
+            this.label2.Size = new System.Drawing.Size(18, 19);
             this.label2.TabIndex = 15;
             this.label2.Text = "1";
             // 
             // pictureBox_Arrows
             // 
             this.pictureBox_Arrows.ImageLocation = "ImagesArrows\\Arrows.JPG";
-            this.pictureBox_Arrows.Location = new System.Drawing.Point(510, 32);
+            this.pictureBox_Arrows.Location = new System.Drawing.Point(408, 26);
             this.pictureBox_Arrows.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox_Arrows.Name = "pictureBox_Arrows";
-            this.pictureBox_Arrows.Size = new System.Drawing.Size(120, 42);
+            this.pictureBox_Arrows.Size = new System.Drawing.Size(96, 34);
             this.pictureBox_Arrows.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Arrows.TabIndex = 16;
             this.pictureBox_Arrows.TabStop = false;
@@ -125,10 +125,10 @@ namespace UMLDisigner
             // pictureBox_Classes
             // 
             this.pictureBox_Classes.ImageLocation = "ImagesClasses\\Classes.JPG";
-            this.pictureBox_Classes.Location = new System.Drawing.Point(685, 12);
+            this.pictureBox_Classes.Location = new System.Drawing.Point(548, 10);
             this.pictureBox_Classes.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox_Classes.Name = "pictureBox_Classes";
-            this.pictureBox_Classes.Size = new System.Drawing.Size(166, 90);
+            this.pictureBox_Classes.Size = new System.Drawing.Size(133, 72);
             this.pictureBox_Classes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Classes.TabIndex = 17;
             this.pictureBox_Classes.TabStop = false;
@@ -136,10 +136,10 @@ namespace UMLDisigner
             // 
             // button_Clear
             // 
-            this.button_Clear.Location = new System.Drawing.Point(1148, 32);
+            this.button_Clear.Location = new System.Drawing.Point(918, 26);
             this.button_Clear.Margin = new System.Windows.Forms.Padding(2);
             this.button_Clear.Name = "button_Clear";
-            this.button_Clear.Size = new System.Drawing.Size(172, 50);
+            this.button_Clear.Size = new System.Drawing.Size(138, 40);
             this.button_Clear.TabIndex = 18;
             this.button_Clear.Text = "Clear";
             this.button_Clear.UseVisualStyleBackColor = true;
@@ -151,10 +151,9 @@ namespace UMLDisigner
             this.comboBox1.Items.AddRange(new object[] {
             "Straight",
             "Curved"});
-            this.comboBox1.Location = new System.Drawing.Point(510, 98);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Location = new System.Drawing.Point(408, 78);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(146, 33);
+            this.comboBox1.Size = new System.Drawing.Size(118, 28);
             this.comboBox1.TabIndex = 20;
             this.comboBox1.Text = "Line options";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -162,10 +161,9 @@ namespace UMLDisigner
             // buttonLineOptions
             // 
             this.buttonLineOptions.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonLineOptions.Location = new System.Drawing.Point(510, 98);
-            this.buttonLineOptions.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonLineOptions.Location = new System.Drawing.Point(408, 78);
             this.buttonLineOptions.Name = "buttonLineOptions";
-            this.buttonLineOptions.Size = new System.Drawing.Size(120, 35);
+            this.buttonLineOptions.Size = new System.Drawing.Size(96, 28);
             this.buttonLineOptions.TabIndex = 19;
             this.buttonLineOptions.Text = "Line options";
             this.buttonLineOptions.UseVisualStyleBackColor = true;
@@ -182,21 +180,21 @@ namespace UMLDisigner
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1480, 1);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(1072, 26);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(165, 159);
+            this.button3.Size = new System.Drawing.Size(142, 40);
             this.button3.TabIndex = 22;
-            this.button3.Text = "Off";
+            this.button3.Text = "Editing";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_DeleteFigure
             // 
             this.button_DeleteFigure.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button_DeleteFigure.Location = new System.Drawing.Point(948, 99);
+            this.button_DeleteFigure.Location = new System.Drawing.Point(758, 79);
+            this.button_DeleteFigure.Margin = new System.Windows.Forms.Padding(2);
             this.button_DeleteFigure.Name = "button_DeleteFigure";
-            this.button_DeleteFigure.Size = new System.Drawing.Size(112, 34);
+            this.button_DeleteFigure.Size = new System.Drawing.Size(90, 27);
             this.button_DeleteFigure.TabIndex = 23;
             this.button_DeleteFigure.Text = "Delete";
             this.button_DeleteFigure.UseVisualStyleBackColor = false;
@@ -204,9 +202,9 @@ namespace UMLDisigner
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1646, 1008);
+            this.ClientSize = new System.Drawing.Size(1317, 806);
             this.Controls.Add(this.button_DeleteFigure);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.buttonLineOptions);
@@ -220,7 +218,7 @@ namespace UMLDisigner
             this.Controls.Add(this.button_StepBack);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Off";
             this.Load += new System.EventHandler(this.Form1_Load_1);

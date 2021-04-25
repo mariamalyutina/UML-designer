@@ -89,5 +89,31 @@ namespace UMLDisigner
             return false;
             
         }
+
+
+        public List<Point> GetFigurePoints()
+        {
+            List<Point> points = new List<Point>();
+            points.Add(MouseDownPosition);
+            if (LineType is CurvedLine)
+            {
+                points.Add(Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition)[1]);
+                points.Add(Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition)[2]);
+            }
+            points.Add(MouseUpPosition);
+            return points;
+        }
+
+        //public void MarkAsSelected(Graphics graphics) //для выделения фигуры точками
+        //{
+        //    Pen pen = new Pen(Color.Red, 2);
+        //    foreach (Point p in GetFigurePoints())
+        //    {
+        //        graphics.DrawEllipse(pen, p.X - (pen.Width * 3) / 2, p.Y - (pen.Width * 3) / 2, pen.Width * 3, pen.Width * 3);
+        //    }
+        //}
+
+
+
     }
 }
