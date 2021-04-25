@@ -18,6 +18,10 @@ namespace UMLDisigner
 
         bool IsHavingPoint(Point checkedPoint);
 
+        List<Point> GetFigurePoints();
+
+        //void MarkAsSelected();
+
     }
 
 }
