@@ -13,5 +13,10 @@ namespace UMLDisigner
             AbstractClassFigure figure = new ClassStackFigure(color, width);
             return figure;
         }
+
+        public override IFigure GetShape(Color color, int width, Point MouseDownPosition, Point MouseUpPosition)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -89,5 +89,23 @@ namespace UMLDisigner
             return false;
             
         }
+
+
+        public List<Point> GetFigurePoints()
+        {
+            List<Point> points = new List<Point>();
+            points.Add(MouseDownPosition);
+            if (LineType is CurvedLine)
+            {
+                points.Add(Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition)[1]);
+                points.Add(Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition)[2]);
+            }
+            points.Add(MouseUpPosition);
+            return points;
+        }
+
+
+
+
     }
 }

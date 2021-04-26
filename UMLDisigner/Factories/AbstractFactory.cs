@@ -5,11 +5,12 @@ using System.Text;
 
 namespace UMLDisigner
 {
-    abstract class AbstractFactory
+    public abstract class AbstractFactory
     {
         public Color Color { get; set; }
         public int Width { get; set; }
 
-        public abstract IFigure GetShape(Color color, int Width);
+        public abstract IFigure GetShape(Color color, int width);
+        public abstract IFigure GetShape(Color color, int width, Point MouseDownPosition, Point MouseUpPosition);
     }
 }
