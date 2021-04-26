@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
 namespace UMLDisigner
 {
-    class WhiteRombCap : AbstractCap
+    public class WhiteRombCap : AbstractCap
     {
 
         public override void Draw(Graphics graphics, Pen pen, SolidBrush brush, Point endPoint, Point startPoint)

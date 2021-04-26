@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
 namespace UMLDisigner
 {
-    class Arrow : IFigure
+    public class Arrow : IFigure
     {
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
@@ -72,7 +72,7 @@ namespace UMLDisigner
                 {
                     Point capBeginningStartPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[2];
                     Point capEndingEndPoint = Geometry.GetCurvedPoints(MouseDownPosition, MouseUpPosition).ToArray()[1];
-                    if (Geometry.FindPointInArrow(MouseDownPosition, capEndingEndPoint, checkedPoint) 
+                    if (Geometry.FindPointInArrow(MouseDownPosition, capEndingEndPoint, checkedPoint)
                         || Geometry.FindPointInArrow(capEndingEndPoint, capBeginningStartPoint, checkedPoint)
                         || Geometry.FindPointInArrow(capBeginningStartPoint, MouseUpPosition, checkedPoint))
                     {
@@ -80,14 +80,40 @@ namespace UMLDisigner
                     }
 
                 }
-                else 
+                else
                 {
                     return Geometry.FindPointInArrow(MouseUpPosition, MouseDownPosition, checkedPoint);
                 }
             }
- 
+
             return false;
-            
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            Arrow arrow = (Arrow)obj;
+            String lineType = Convert.ToString(this.LineType);
+            String lineTypeArrow = Convert.ToString(arrow.LineType);
+            String capTypeBeginning = Convert.ToString(this._capTypeBeginning);
+            String capTypeBeginningArrow = Convert.ToString(arrow._capTypeBeginning);
+            String capTypeEnding = Convert.ToString(this._capTypeEnding);
+            String capTypeEndingArrow = Convert.ToString(arrow._capTypeEnding);
+
+            if (this.MouseUpPosition != arrow.MouseUpPosition || this.MouseDownPosition != arrow.MouseDownPosition
+                || this.Color != arrow.Color || this.Width != arrow.Width || lineType != lineTypeArrow
+                || capTypeBeginning != capTypeBeginningArrow || capTypeEnding != capTypeEndingArrow)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override string ToString()
+        {
+            string s = $"MouseDownPosition: {MouseDownPosition} MouseUpPosition {MouseUpPosition} Color: {Color} Width: {Width} LineType: {LineType} _capTypeBeginnig: {_capTypeBeginning} _capTypeEnding: {_capTypeEnding}";
+
+            return s;
         }
 
 

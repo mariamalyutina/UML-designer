@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
 namespace UMLDisigner
 {
-    class FilledRombCap : AbstractCap
+    public class FilledRombCap : AbstractCap
     {
         AbstractCap rombCap = new WhiteRombCap();
 
