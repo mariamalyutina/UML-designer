@@ -59,7 +59,7 @@ namespace UMLDisigner
                 }
                 else if (MouseUpPosition.X - MouseDownPosition.X > 10)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    graphics.DrawString("Text   ", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
                 }
             }
 
