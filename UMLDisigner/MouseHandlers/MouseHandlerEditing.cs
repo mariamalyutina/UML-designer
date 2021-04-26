@@ -19,6 +19,7 @@ namespace UMLDisigner
         public MouseHandlerEditing()
         {
             Core = Core.GetInstance(new PictureBox());
+            
         }
 
         public void MouseDown(MouseEventArgs e)
@@ -56,67 +57,23 @@ namespace UMLDisigner
                         _pointMovingMouseDownPosition = e.Location;
                         break;
                     }
-                    //else if (figure is AbstractClassFigure)
-                    //{
-                    //    Point[] Rectangle = Geometry.GetRectangle(figure.MouseUpPosition, figure.MouseDownPosition);
-
-                        //    for (int i = 0; i < 4; ++i)
-                        //    {
-                        //        if (Math.Abs(Rectangle[i].X - e.X) < 10 && Math.Abs(Rectangle[i].Y - e.Y) < 10)
-                        //        {
-                        //            if (i == 0)
-                        //            {
-                        //                Point tmp = figure.MouseDownPosition;
-                        //                figure.MouseDownPosition = figure.MouseUpPosition;
-                        //                figure.MouseUpPosition = tmp;
-                        //            }
-                        //            if (i == 1)
-                        //            {
-                        //                figure.MouseDownPosition = Rectangle[3];
-                        //                figure.MouseUpPosition = Rectangle[1];
-                        //            }
-                        //            if (i == 3)
-                        //            {
-                        //                figure.MouseDownPosition = Rectangle[1];
-                        //                figure.MouseUpPosition = Rectangle[3];
-                        //            }
-                        //            _isResizing = true;
-                        //            Core.Figure = figure;
-                        //            break;
-                        //        }
-                        //    }
-                        //}
-                    //else
-                    //{
-                    //    _isMoving = true;
-                    //    Core.Figure = figure;
-                    //    _pointMovingMouseDownPosition = e.Location;
-                    //    break;
-                    //}
+                    
                 }
-
+                else
+                {
+                    //Core.CrntMH = new MouseHandlerSelect();
+                }
             }
 
             if (_isMoving || _isResizing)
             {
                 Core.Brush.Clear();
                 Core.Brush.DrawMoveTmpFigure(Core.Figures);
-                //Core.Brush.DrawMoveFigure(Core.Figures);
                 Core.Figures.Remove(Core.Figure);
                 Core.Brush.DrawMoveFigure(Core.Figures);
                 Core.Brush.MarkAsSelectedTmp(Core.SelectedFigures);
 
             }
-            //if (Core.SelectedFigures.Count > 0)
-            //{
-            //    Core.Brush.Clear();
-
-            //    Core.Brush.DrawMoveFigure(Core.Figures);
-            //    Core.Brush.MarkAsSelected(Core.SelectedFigures);
-            //}
-
-
-
 
         }
 

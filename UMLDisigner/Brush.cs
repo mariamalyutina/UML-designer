@@ -82,19 +82,29 @@ namespace UMLDisigner
 
         public void MarkAsSelectedTmp(List<IFigure> figures)
         {
-            //graphics = Graphics.FromImage(_mainBitmap);
-
             _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             graphics = Graphics.FromImage(_tempBitmap);
             Pen pen = new Pen(Color.Red, 3);
-            foreach(IFigure figure in figures)
+            foreach (IFigure figure in figures)
             {
-                foreach (Point p in figure.GetFigurePoints())
+                if (figure is Arrow)
                 {
-                    graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
+                    foreach (Point p in figure.GetFigurePoints())
+                    {
+                        graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
+                    }
                 }
+                else
+                {
+                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    Size sizeOne = new Size(10, 10);
+                    Size sizeTwo = new Size(-10, -10);
+
+                    graphics.DrawPolygon(pen, Geometry.GetRectangle(Point.Add(figure.MouseUpPosition, sizeOne), Point.Add(figure.MouseDownPosition, sizeTwo)));
+                }
+                pb.Invalidate();
             }
-            pb.Invalidate();
+            
         }
 
         public void MarkAsSelected(List<IFigure> figures)
@@ -114,14 +124,11 @@ namespace UMLDisigner
                 }
                 else
                 {
-                    foreach (Point p in figure.GetFigurePoints())
-                    {
-                        Point MouseDownCopy = figure.MouseDownPosition;
-                        Point MouseUpCopy = figure.MouseDownPosition;
-                        
+                    Size sizeOne = new Size(10,10);
+                    Size sizeTwo = new Size(-10, -10);
+                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    graphics.DrawPolygon(pen, Geometry.GetRectangle(Point.Add(figure.MouseUpPosition,sizeOne), Point.Add(figure.MouseDownPosition, sizeTwo)));
 
-                        graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
-                    }
                 }
             }
             pb.Invalidate();

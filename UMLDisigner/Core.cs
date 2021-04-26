@@ -10,10 +10,13 @@ namespace UMLDisigner
     {
         public Brush Brush;
         public IFigure Figure;
+
         public List<IFigure> Figures;
         public List<IFigure> SelectedFigures;
         public AbstractFactory Factory;
+        public IMouseHandler CrntMH;
         static Core _instance;
+
 
         private Core(PictureBox pb)
         {

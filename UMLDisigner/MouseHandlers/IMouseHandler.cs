@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace UMLDisigner
 {
-    interface IMouseHandler
+    public interface IMouseHandler
     {
         void MouseDown(MouseEventArgs e);
         void MouseMove(MouseEventArgs e);

@@ -11,7 +11,6 @@ namespace UMLDisigner
 
         public Core Core;
         String _figureName;
-        IMouseHandler _crntMH;
 
         public Form1()
         {
@@ -30,7 +29,7 @@ namespace UMLDisigner
         {
             if (!(Core.Figure is null) && e.Button == MouseButtons.Left && e.Location != Core.Figure.MouseDownPosition)
             {
-                _crntMH.MouseMove(e);
+                Core.CrntMH.MouseMove(e);
             }
          }
 
@@ -39,7 +38,7 @@ namespace UMLDisigner
 
             if (!(Core.Figure is null))
             {
-                _crntMH.MouseDown(e);
+                Core.CrntMH.MouseDown(e);
             }
         }
 
@@ -51,7 +50,7 @@ namespace UMLDisigner
 
             if(Core.Figure!= null)
             {
-                _crntMH.MouseUp(e);
+                Core.CrntMH.MouseUp(e);
 
             }
 
@@ -107,10 +106,29 @@ namespace UMLDisigner
                     Core.Factory = new ClassStackFactory();
                     break;
             }
-            Core.Figure = Core.Factory.GetShape(Core.Brush.Color, Core.Brush.TrackBarWidth);
-            _crntMH = new MouseHandlerDrawing();
-            pictureBox_Arrows.ImageLocation = @"ImagesArrows\Arrows.JPG";
-            pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
+            if (Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
+            {
+                for (int i = 0; i < Core.SelectedFigures.Count; i++)
+                {
+                    if (Core.SelectedFigures[i] is Arrow)
+                    {
+                        Core.Figures.Remove(Core.SelectedFigures[i]);
+                        Core.SelectedFigures[i] = Core.Factory.GetShape(Core.SelectedFigures[i].Color, Core.SelectedFigures[i].Width, Core.SelectedFigures[i].MouseDownPosition, Core.SelectedFigures[i].MouseUpPosition);
+                        Core.Figures.Add(Core.SelectedFigures[i]);
+                    }
+                }
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+                Core.Brush.MarkAsSelected(Core.SelectedFigures);
+            }
+            else if (!(Core.Factory is null)) 
+            {
+                Core.Figure = Core.Factory.GetShape(Core.Brush.Color, Core.Brush.TrackBarWidth);
+                Core.CrntMH = new MouseHandlerDrawing();
+                pictureBox_Arrows.ImageLocation = @"ImagesArrows\Arrows.JPG";
+                pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
+            }
+            
         }
 
 
@@ -121,11 +139,20 @@ namespace UMLDisigner
 
         private void button_Color_Click(object sender, EventArgs e)
         {
-
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 button_Color.BackColor = colorDialog1.Color;
                 Core.Brush.Color = colorDialog1.Color;
+                if(Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
+                {
+                    foreach(IFigure figure in Core.SelectedFigures)
+                    {
+                        figure.Color = colorDialog1.Color;
+                    }
+                    Core.Brush.Clear();
+                    Core.Brush.DrawMoveFigure(Core.Figures);
+                    Core.Brush.MarkAsSelected(Core.SelectedFigures);
+                }
                 if (!(Core.Figure is null))
                 {
                     Core.Figure.Color = colorDialog1.Color; //если убрать, рисует сначала старым цветом, потом новым
@@ -138,6 +165,16 @@ namespace UMLDisigner
         {
             label2.Text = trackBar1.Value.ToString();
             Core.Brush.TrackBarWidth = trackBar1.Value;
+            if (Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
+            {
+                foreach (IFigure figure in Core.SelectedFigures)
+                {
+                    figure.Width = trackBar1.Value;
+                }
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+                Core.Brush.MarkAsSelected(Core.SelectedFigures);
+            }
             if (!(Core.Figure is null))
             {
                 Core.Figure.Width = trackBar1.Value;
@@ -183,7 +220,7 @@ namespace UMLDisigner
         private void button1_Click(object sender, EventArgs e)
         {
             //Button b = (Button)sender;
-            _crntMH = new MouseHandlerEditing();
+            Core.CrntMH = new MouseHandlerEditing();
             //if (_editing)
             //{
             //    _editing = false;
