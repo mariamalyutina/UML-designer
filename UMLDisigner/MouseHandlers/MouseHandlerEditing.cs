@@ -101,8 +101,10 @@ namespace UMLDisigner
             {
                 Core.Brush.Clear();
                 Core.Brush.DrawMoveTmpFigure(Core.Figures);
+                //Core.Brush.DrawMoveFigure(Core.Figures);
                 Core.Figures.Remove(Core.Figure);
                 Core.Brush.DrawMoveFigure(Core.Figures);
+                Core.Brush.MarkAsSelectedTmp(Core.SelectedFigures);
 
             }
             //if (Core.SelectedFigures.Count > 0)

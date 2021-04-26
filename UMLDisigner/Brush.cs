@@ -67,7 +67,7 @@ namespace UMLDisigner
         {
             _tempBitmap = (Bitmap)_mainBitmap.Clone();
             graphics = Graphics.FromImage(_tempBitmap);
-            
+
             foreach (IFigure a in figure)
             {
                 //pen.Color = a.Color;
@@ -80,9 +80,28 @@ namespace UMLDisigner
 
         }
 
+        public void MarkAsSelectedTmp(List<IFigure> figures)
+        {
+            //graphics = Graphics.FromImage(_mainBitmap);
+
+            _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+            graphics = Graphics.FromImage(_tempBitmap);
+            Pen pen = new Pen(Color.Red, 3);
+            foreach(IFigure figure in figures)
+            {
+                foreach (Point p in figure.GetFigurePoints())
+                {
+                    graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
+                }
+            }
+            pb.Invalidate();
+        }
+
         public void MarkAsSelected(List<IFigure> figures)
         {
             graphics = Graphics.FromImage(_mainBitmap);
+
+            
             Pen pen = new Pen(Color.Red, 3);
             foreach(IFigure figure in figures)
             { 
