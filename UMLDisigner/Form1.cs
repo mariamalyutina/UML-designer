@@ -12,7 +12,6 @@ namespace UMLDisigner
         public Core Core;
         FontDialog fontDialog1 = new FontDialog();
         String _figureName;
-        IMouseHandler _crntMH;
         int selectRow;
 
         public Form1()
@@ -23,11 +22,7 @@ namespace UMLDisigner
         private void Form1_Load_1(object sender, EventArgs e)
         {
             Core = Core.GetInstance(pictureBox1);
-            //Core.Figures = new List<ICore.Figure>();
-            // textBox1.Visible = false;
-
             panel1.Controls.Add(pictureBox1);
-            // panel1.Controls.Add(textBox1);
             //this.Controls.Add(pictureBox1);
             //pictureBox1.PreviewKeyDown += new PreviewKeyDownEventHandler(KeyDeleteUp);
 
@@ -36,8 +31,7 @@ namespace UMLDisigner
         {
             if (!(Core.Figure is null) && e.Button == MouseButtons.Left && e.Location != Core.Figure.MouseDownPosition)
             {
-                _crntMH.MouseMove(e);
-                //Core.Brush.MarkAsSelected(Core.Figure);
+                Core.CrntMH.MouseMove(e);
             }
         }
 
@@ -46,27 +40,8 @@ namespace UMLDisigner
 
             if (!(Core.Figure is null))
             {
-                _crntMH.MouseDown(e);
+                Core.CrntMH.MouseDown(e);
             }
-
-            //Выделение фигуры точками
-            //if (Core.Figures != null && e.Button == MouseButtons.Left)
-            //{
-            //    foreach (ICore.Figure Core.Figure in Core.Figures)
-            //    {
-            //        if (Core.Figure.IsHavingPoint(e.Location))
-            //        {
-            //            Core.Brush.Clear();
-
-            //            Core.Brush.DrawMoveCore.Figure(Core.Figures);
-            //            Core.Brush.MarkAsSelected(Core.Figure);
-            //        }
-            //        else 
-            //        {
-            //            //_editing = false;
-            //        }
-            //    }
-            //}
         }
 
 
@@ -75,15 +50,11 @@ namespace UMLDisigner
         {
             Core.Brush.TmpToMainBitmap();
 
-            if (Core.Figure != null && e.Button != MouseButtons.Right)
+            if(Core.Figure!= null)
             {
-                _crntMH.MouseUp(e);
+                Core.CrntMH.MouseUp(e);
 
             }
-            //if (_editing)
-            //{
-            //    Core.Brush.MarkAsSelected(_crntCore.Figure);
-            //}
 
         }
 
@@ -91,6 +62,7 @@ namespace UMLDisigner
         {
             Core.Brush.Clear();
             Core.Figures.Clear();
+            Core.SelectedFigures.Clear();
         }
 
 
@@ -137,10 +109,29 @@ namespace UMLDisigner
                     Core.Factory = new ClassStackFactory();
                     break;
             }
-            Core.Figure = Core.Factory.GetShape(Core.Brush.Color, Core.Brush.TrackBarWidth);
-            _crntMH = new MouseHandlerDrawing();
-            pictureBox_Arrows.ImageLocation = @"ImagesArrows\Arrows.JPG";
-            pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
+            if (Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
+            {
+                for (int i = 0; i < Core.SelectedFigures.Count; i++)
+                {
+                    if (Core.SelectedFigures[i] is Arrow)
+                    {
+                        Core.Figures.Remove(Core.SelectedFigures[i]);
+                        Core.SelectedFigures[i] = Core.Factory.GetShape(Core.SelectedFigures[i].Color, Core.SelectedFigures[i].Width, Core.SelectedFigures[i].MouseDownPosition, Core.SelectedFigures[i].MouseUpPosition);
+                        Core.Figures.Add(Core.SelectedFigures[i]);
+                    }
+                }
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+                Core.Brush.MarkAsSelected(Core.SelectedFigures);
+            }
+            else if (!(Core.Factory is null)) 
+            {
+                Core.Figure = Core.Factory.GetShape(Core.Brush.Color, Core.Brush.TrackBarWidth);
+                Core.CrntMH = new MouseHandlerDrawing();
+                pictureBox_Arrows.ImageLocation = @"ImagesArrows\Arrows.JPG";
+                pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
+            }
+            
         }
 
 
@@ -151,11 +142,20 @@ namespace UMLDisigner
 
         private void button_Color_Click(object sender, EventArgs e)
         {
-
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 button_Color.BackColor = colorDialog1.Color;
                 Core.Brush.Color = colorDialog1.Color;
+                if(Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
+                {
+                    foreach(IFigure figure in Core.SelectedFigures)
+                    {
+                        figure.Color = colorDialog1.Color;
+                    }
+                    Core.Brush.Clear();
+                    Core.Brush.DrawMoveFigure(Core.Figures);
+                    Core.Brush.MarkAsSelected(Core.SelectedFigures);
+                }
                 if (!(Core.Figure is null))
                 {
                     Core.Figure.Color = colorDialog1.Color; //если убрать, рисует сначала старым цветом, потом новым
@@ -168,6 +168,16 @@ namespace UMLDisigner
         {
             label2.Text = trackBar1.Value.ToString();
             Core.Brush.TrackBarWidth = trackBar1.Value;
+            if (Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
+            {
+                foreach (IFigure figure in Core.SelectedFigures)
+                {
+                    figure.Width = trackBar1.Value;
+                }
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+                Core.Brush.MarkAsSelected(Core.SelectedFigures);
+            }
             if (!(Core.Figure is null))
             {
                 Core.Figure.Width = trackBar1.Value;
@@ -213,7 +223,7 @@ namespace UMLDisigner
         private void button1_Click(object sender, EventArgs e)
         {
             //Button b = (Button)sender;
-            _crntMH = new MouseHandlerEditing();
+            Core.CrntMH = new MouseHandlerEditing();
             //if (_editing)
             //{
             //    _editing = false;
@@ -246,8 +256,32 @@ namespace UMLDisigner
 
         private void button_DeleteFigure_Click(object sender, EventArgs e)
         {
-            Core.Figures.RemoveAt(Core.Figures.Count - 1);
+            //Core.Figures.RemoveAt(Core.Figures.Count - 1);
             Core.Brush.Clear();
+            //foreach (IFigure figure in Core.Figures)
+            //{
+            //    foreach (IFigure selectedfigure in Core.SelectedFigures)
+            //    {
+            //        if (figure == selectedfigure)
+            //        {
+            //            Core.SelectedFigures.Remove(selectedfigure);
+            //            Core.Figures.Remove(figure);
+            //        }
+            //    }
+            //}
+            for(int i=0;i<Core.Figures.Count; ++i)
+            {
+                for (int j = 0; j < Core.SelectedFigures.Count; ++j)
+                {
+                    if (Core.Figures[i] == Core.SelectedFigures[j])
+                    {
+                        Core.Figures.Remove(Core.SelectedFigures[j]);
+                       
+                    }
+                }
+            }
+            Core.SelectedFigures.Clear();
+
             Core.Brush.DrawMoveFigure(Core.Figures);
         }
 
