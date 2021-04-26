@@ -19,6 +19,7 @@ namespace UMLDisigner
         {
             Brush = new Brush(pb);
             Figures = new List<IFigure>();
+            SelectedFigures = new List<IFigure>();
         }
 
         public static Core GetInstance(PictureBox pb)

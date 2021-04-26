@@ -47,20 +47,6 @@ namespace UMLDisigner
 
         }
 
-        //public void DrawAllFigures(List<IFigure> ListFigures)
-        //{
-        //    _mainBitmap = new Bitmap(pb.Width, pb.Height);
-        //    graphics = Graphics.FromImage(_mainBitmap);
-        //    graphics.Clear(Color.White);
-
-        //    foreach (IFigure figure in ListFigures)
-        //    {
-        //        //pen.Color = figure.Color;
-        //        //pen.Width = figure.Width;
-        //        figure.Draw(graphics);
-        //    }
-        //    pb.Image = _mainBitmap;
-        //}
          
 
         public void DrawMoveFigure(IFigure figure, int deltaX = 0, int deltaY = 0)
@@ -94,13 +80,16 @@ namespace UMLDisigner
 
         }
 
-        public void MarkAsSelected(IFigure figure)
+        public void MarkAsSelected(List<IFigure> figures)
         {
             graphics = Graphics.FromImage(_mainBitmap);
             Pen pen = new Pen(Color.Red, 3);
-            foreach (Point p in figure.GetFigurePoints())
+            foreach(IFigure figure in figures)
             {
-                graphics.DrawEllipse(pen, p.X - (pen.Width * 3) / 2, p.Y - (pen.Width * 3) / 2, pen.Width * 3, pen.Width * 3);
+                foreach (Point p in figure.GetFigurePoints())
+                {
+                    graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
+                }
             }
             pb.Invalidate();
         }

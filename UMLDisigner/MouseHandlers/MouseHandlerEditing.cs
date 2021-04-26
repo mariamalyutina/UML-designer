@@ -10,9 +10,10 @@ namespace UMLDisigner
     {
         public Core Core;
         Point _pointMovingMouseDownPosition;
+
         bool _isEnd;
         bool _isMoving;
-        
+        bool _isResizing;
 
 
         public MouseHandlerEditing()
@@ -22,12 +23,15 @@ namespace UMLDisigner
 
         public void MouseDown(MouseEventArgs e)
         {
-            bool _isResizing = false;
+            _isResizing = false;
+            _isMoving = false;
+            Core.SelectedFigures.Clear();
 
             foreach (IFigure figure in Core.Figures)
             {
                 if (figure.IsHavingPoint(e.Location))
                 {
+                    Core.SelectedFigures.Add(figure);
                     if (figure is Arrow)
                     {
                         if (Math.Abs(figure.MouseDownPosition.X - e.X) < 10 && Math.Abs(figure.MouseDownPosition.Y - e.Y) < 10)
@@ -85,10 +89,25 @@ namespace UMLDisigner
                 }
 
             }
-            Core.Brush.Clear();
-            Core.Brush.DrawMoveTmpFigure(Core.Figures);
-            Core.Figures.Remove(Core.Figure);
-            Core.Brush.DrawMoveFigure(Core.Figures);
+            if (_isMoving || _isResizing) 
+            {
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveTmpFigure(Core.Figures);
+                Core.Figures.Remove(Core.Figure);
+                Core.Brush.DrawMoveFigure(Core.Figures);
+
+            }
+            //if (Core.SelectedFigures.Count > 0)
+            //{
+            //    Core.Brush.Clear();
+
+            //    Core.Brush.DrawMoveFigure(Core.Figures);
+            //    Core.Brush.MarkAsSelected(Core.SelectedFigures);
+            //}
+
+
+
+
         }
 
         public void MouseMove(MouseEventArgs e)
@@ -108,9 +127,11 @@ namespace UMLDisigner
             {
                 Core.Figure.MouseUpPosition = e.Location;
             }
-            
 
-            Core.Brush.DrawMoveFigure(Core.Figure);
+            if (_isMoving || _isResizing)
+            {
+                Core.Brush.DrawMoveFigure(Core.Figure);
+            }
         }
 
         public void MouseUp(MouseEventArgs e)
@@ -120,13 +141,24 @@ namespace UMLDisigner
                 Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
                 Core.Figure.MouseDownPosition = Point.Add(Core.Figure.MouseDownPosition, delta);
                 Core.Figure.MouseUpPosition = Point.Add(Core.Figure.MouseUpPosition, delta);
-                _isMoving = false;
             }
-            
 
-            Core.Figures.Add(Core.Figure);
-            Core.Figure = Core.Factory.GetShape(Core.Brush.Color, Core.Brush.TrackBarWidth);
+            if (_isMoving || _isResizing)
+            {
+                Core.Figures.Add(Core.Figure);
+                Core.Figure = Core.Factory.GetShape(Core.Brush.Color, Core.Brush.TrackBarWidth);
+            }
 
+            if (Core.SelectedFigures.Count > 0)
+            {
+                Core.Brush.MarkAsSelected(Core.SelectedFigures);
+            } 
+            else
+            {
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+            }
+            _isMoving = false;
             return;
         }
     }

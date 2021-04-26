@@ -21,7 +21,6 @@ namespace UMLDisigner
         private void Form1_Load_1(object sender, EventArgs e)
         {
             Core = Core.GetInstance(pictureBox1);
-            //Figures = new List<IFigure>();
             //this.Controls.Add(pictureBox1);
             //pictureBox1.PreviewKeyDown += new PreviewKeyDownEventHandler(KeyDeleteUp);
             
@@ -32,7 +31,6 @@ namespace UMLDisigner
             if (!(Core.Figure is null) && e.Button == MouseButtons.Left && e.Location != Core.Figure.MouseDownPosition)
             {
                 _crntMH.MouseMove(e);
-                //Core.Brush.MarkAsSelected(Figure);
             }
          }
 
@@ -43,25 +41,6 @@ namespace UMLDisigner
             {
                 _crntMH.MouseDown(e);
             }
-
-            //Выделение фигуры точками
-            //if (Figures != null && e.Button == MouseButtons.Left)
-            //{
-            //    foreach (IFigure figure in Figures)
-            //    {
-            //        if (figure.IsHavingPoint(e.Location))
-            //        {
-            //            Core.Brush.Clear();
-
-            //            Core.Brush.DrawMoveFigure(Figures);
-            //            Core.Brush.MarkAsSelected(figure);
-            //        }
-            //        else 
-            //        {
-            //            //_editing = false;
-            //        }
-            //    }
-            //}
         }
 
 
@@ -70,15 +49,11 @@ namespace UMLDisigner
         {
             Core.Brush.TmpToMainBitmap();
 
-            if(Core.Figure!= null && e.Button != MouseButtons.Right)
+            if(Core.Figure!= null)
             {
                 _crntMH.MouseUp(e);
 
             }
-            //if (_editing)
-            //{
-            //    Core.Brush.MarkAsSelected(_crntFigure);
-            //}
 
         }
 
