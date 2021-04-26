@@ -60,6 +60,7 @@ namespace UMLDisigner
         {
             Core.Brush.Clear();
             Core.Figures.Clear();
+            Core.SelectedFigures.Clear();
         }
 
         
@@ -253,8 +254,32 @@ namespace UMLDisigner
 
         private void button_DeleteFigure_Click(object sender, EventArgs e)
         {
-            Core.Figures.RemoveAt(Core.Figures.Count - 1);
+            //Core.Figures.RemoveAt(Core.Figures.Count - 1);
             Core.Brush.Clear();
+            //foreach (IFigure figure in Core.Figures)
+            //{
+            //    foreach (IFigure selectedfigure in Core.SelectedFigures)
+            //    {
+            //        if (figure == selectedfigure)
+            //        {
+            //            Core.SelectedFigures.Remove(selectedfigure);
+            //            Core.Figures.Remove(figure);
+            //        }
+            //    }
+            //}
+            for(int i=0;i<Core.Figures.Count; ++i)
+            {
+                for (int j = 0; j < Core.SelectedFigures.Count; ++j)
+                {
+                    if (Core.Figures[i] == Core.SelectedFigures[j])
+                    {
+                        Core.Figures.Remove(Core.SelectedFigures[j]);
+                       
+                    }
+                }
+            }
+            Core.SelectedFigures.Clear();
+
             Core.Brush.DrawMoveFigure(Core.Figures);
         }
 

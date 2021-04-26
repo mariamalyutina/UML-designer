@@ -26,7 +26,7 @@ namespace UMLDisigner
         {
             _isResizing = false;
             _isMoving = false;
-            Core.SelectedFigures.Clear();
+           
 
             foreach (IFigure figure in Core.Figures)
             {
@@ -57,12 +57,20 @@ namespace UMLDisigner
                         _pointMovingMouseDownPosition = e.Location;
                         break;
                     }
-                    
+
                 }
-                else
-                {
-                    //Core.CrntMH = new MouseHandlerSelect();
-                }
+
+            }
+
+            if (Core.SelectedFigures.Count == 0)
+            {
+                Core.CrntMH = new MouseHandlerSelect(e.Location);
+            }
+            else if (Core.SelectedFigures.Count != 1)
+            {
+                Core.SelectedFigures.Clear();
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
             }
 
             if (_isMoving || _isResizing)

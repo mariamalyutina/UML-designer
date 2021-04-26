@@ -12,17 +12,18 @@ namespace UMLDisigner
         public Core Core;
         private IFigure _select;
 
-        public MouseHandlerSelect()
+        public MouseHandlerSelect(Point mouseDownPosition)
         {
             Core = Core.GetInstance(new PictureBox());
             _select = new SelectingRectangle();
+            _select.MouseDownPosition = mouseDownPosition;
         }
 
         public void MouseDown(MouseEventArgs e)
         {
-            Core.Brush.Clear();
-            Core.Brush.DrawMoveFigure(Core.Figures);
-            _select.MouseDownPosition = e.Location;
+            //Core.Brush.Clear();
+            //Core.Brush.DrawMoveFigure(Core.Figures);
+            //_select.MouseDownPosition = e.Location;
 
         }
 
@@ -34,7 +35,10 @@ namespace UMLDisigner
 
         public void MouseUp(MouseEventArgs e)
         {
-            foreach(IFigure figure in Core.Figures)
+            Core.Brush.Clear();
+            Core.Brush.DrawMoveFigure(Core.Figures);
+
+            foreach (IFigure figure in Core.Figures)
             {
                 foreach(Point p in figure.GetFigurePoints())
                 {
