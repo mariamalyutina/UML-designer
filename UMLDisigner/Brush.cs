@@ -85,10 +85,24 @@ namespace UMLDisigner
             graphics = Graphics.FromImage(_mainBitmap);
             Pen pen = new Pen(Color.Red, 3);
             foreach(IFigure figure in figures)
-            {
-                foreach (Point p in figure.GetFigurePoints())
+            { 
+                if (figure is Arrow)
                 {
-                    graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
+                    foreach (Point p in figure.GetFigurePoints())
+                    {
+                        graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
+                    }
+                }
+                else
+                {
+                    foreach (Point p in figure.GetFigurePoints())
+                    {
+                        Point MouseDownCopy = figure.MouseDownPosition;
+                        Point MouseUpCopy = figure.MouseDownPosition;
+                        
+
+                        graphics.DrawEllipse(pen, p.X - (pen.Width * 4) / 2, p.Y - (pen.Width * 4) / 2, pen.Width * 4, pen.Width * 4);
+                    }
                 }
             }
             pb.Invalidate();
