@@ -20,8 +20,6 @@ namespace UMLDisigner
 
         List<Point> GetFigurePoints();
 
-        //void MarkAsSelected();
-
     }
 
 }

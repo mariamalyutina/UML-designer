@@ -20,7 +20,12 @@ namespace UMLDisigner
 
         public List<Point> GetFigurePoints()
         {
-            throw new NotImplementedException();
+            List<Point> points = new List<Point>();
+            foreach(Point p in Geometry.GetRectangle(MouseUpPosition, MouseDownPosition))
+            {
+                points.Add(p);
+            }
+            return points;
         }
 
         public bool IsHavingPoint(Point checkedPoint)

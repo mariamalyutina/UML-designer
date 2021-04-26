@@ -21,5 +21,7 @@ namespace UMLDisigner
                 _lineType = new StraightLine();
             }
         }
+        
+    
     }
 }

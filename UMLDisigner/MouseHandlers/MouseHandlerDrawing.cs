@@ -16,7 +16,12 @@ namespace UMLDisigner
 
         public void MouseDown(MouseEventArgs e)
         {
+            Core.Brush.Clear();
+            Core.Brush.DrawMoveFigure(Core.Figures);
+
+
             Core.Figure.MouseDownPosition = e.Location;
+           
         }
 
         public void MouseMove(MouseEventArgs e)
