@@ -10,6 +10,12 @@ namespace UMLDisigner
         protected Font _font = new Font("Arial", 16);
         protected SolidBrush _brush = new SolidBrush(Color.Black);
 
+        public List<string> TextField { get; set; } = new List<string>() { "Classname", "+ field : type", "+ field : type", "+ field : type", "+ field : type", "+ field : type", "+ field : type", "" };
+        public List<string> TextMethod { get; set; } = new List<string>() { "+ method : type", "+ method : type", "+ method : type", "+ method : type", "+ method : type", "+ method : type", "", "" };
+
+        public int Size { get; set; }
+        public int CountFieldString { get; set; }
+        public int CountMethodString { get; set; }
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }
 

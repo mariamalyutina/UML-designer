@@ -22,7 +22,7 @@ namespace UMLDisigner
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
             Color = color;
-            Width = width;
+            Width = width;            
         }
 
 
@@ -31,31 +31,37 @@ namespace UMLDisigner
         {
             Pen pen1 = new Pen(Color, Width);
             Size delta = new Size(deltaX, deltaY);
-            graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
+            int height = 40;
+            int width = 200;
+            int tmpMouseDownPositionX = MouseDownPosition.X;
+            int tmpMouseDownPositionY = MouseDownPosition.Y;
+            int tmpMouseUpPositionX = MouseDownPosition.X + width;
+            int tmpMouseUpPositionY = MouseDownPosition.Y + height;
 
-            if ((MouseDownPosition.Y - MouseUpPosition.Y) > 20)
-            {
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
 
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
-                }
-            }
-            if ((MouseUpPosition.Y - MouseDownPosition.Y) > 20)
+            
+            int k = 20;
+            int indent = 0;
+            for (int i = 0; i <= CountFieldString; i++)
             {
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
+                int fac = k * (i)+5;
+                if (tmpMouseUpPositionX - tmpMouseDownPositionX < Size)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    tmpMouseUpPositionX+= (Size - (tmpMouseUpPositionX - tmpMouseDownPositionX)+k);
                 }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
+                if(tmpMouseUpPositionY - tmpMouseDownPositionY < fac+k)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    tmpMouseUpPositionY += (fac - (tmpMouseUpPositionY - tmpMouseDownPositionY) + 25);
                 }
+                graphics.DrawString(TextField[i], _font, _brush, new Point(tmpMouseDownPositionX + deltaX + indent, tmpMouseDownPositionY + deltaY + fac));
+
             }
+            graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(new Point(tmpMouseUpPositionX, tmpMouseUpPositionY), delta), Point.Add(MouseDownPosition, delta)));
+            MouseUpPosition = new Point(tmpMouseUpPositionX, tmpMouseUpPositionY);
+
+
+
+          
         }
     }
 }

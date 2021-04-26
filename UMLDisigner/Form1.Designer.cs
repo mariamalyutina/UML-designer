@@ -46,6 +46,9 @@ namespace UMLDisigner
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MinusRowField = new System.Windows.Forms.Button();
+            this.PlusRowField = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrows)).BeginInit();
@@ -99,7 +102,7 @@ namespace UMLDisigner
             this.trackBar1.Maximum = 5;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(323, 56);
+            this.trackBar1.Size = new System.Drawing.Size(323, 45);
             this.trackBar1.TabIndex = 13;
             this.trackBar1.Value = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -111,7 +114,7 @@ namespace UMLDisigner
             this.label2.Location = new System.Drawing.Point(24, 78);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 19);
+            this.label2.Size = new System.Drawing.Size(14, 16);
             this.label2.TabIndex = 15;
             this.label2.Text = "1";
             // 
@@ -158,7 +161,7 @@ namespace UMLDisigner
             "Curved"});
             this.comboBox1.Location = new System.Drawing.Point(408, 78);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(118, 28);
+            this.comboBox1.Size = new System.Drawing.Size(118, 23);
             this.comboBox1.TabIndex = 20;
             this.comboBox1.Text = "Line options";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -214,12 +217,13 @@ namespace UMLDisigner
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 25);
             this.textBox1.TabIndex = 24;
+            this.textBox1.Visible = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(919, 65);
+            this.button2.Location = new System.Drawing.Point(918, 75);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(21, 26);
             this.button2.TabIndex = 25;
@@ -231,17 +235,51 @@ namespace UMLDisigner
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Location = new System.Drawing.Point(10, 97);
+            this.panel1.Location = new System.Drawing.Point(10, 107);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1150, 487);
+            this.panel1.Size = new System.Drawing.Size(1150, 477);
             this.panel1.TabIndex = 26;
+            // 
+            // MinusRowField
+            // 
+            this.MinusRowField.Location = new System.Drawing.Point(548, 87);
+            this.MinusRowField.Name = "MinusRowField";
+            this.MinusRowField.Size = new System.Drawing.Size(21, 26);
+            this.MinusRowField.TabIndex = 27;
+            this.MinusRowField.Text = "-";
+            this.MinusRowField.UseVisualStyleBackColor = true;
+            this.MinusRowField.Click += new System.EventHandler(this.MinusRowField_Click);
+            // 
+            // PlusRowField
+            // 
+            this.PlusRowField.Location = new System.Drawing.Point(587, 87);
+            this.PlusRowField.Name = "PlusRowField";
+            this.PlusRowField.Size = new System.Drawing.Size(21, 26);
+            this.PlusRowField.TabIndex = 28;
+            this.PlusRowField.Text = "+";
+            this.PlusRowField.UseVisualStyleBackColor = true;
+            this.PlusRowField.Click += new System.EventHandler(this.PlusRowField_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.textBox2.Location = new System.Drawing.Point(1026, 35);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 25);
+            this.textBox2.TabIndex = 25;
+            this.textBox2.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 615);
+            this.Controls.Add(this.PlusRowField);
+            this.Controls.Add(this.MinusRowField);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button_DeleteFigure);
@@ -296,6 +334,10 @@ namespace UMLDisigner
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button PlusString;
+        public System.Windows.Forms.Button MinusRowField;
+        private System.Windows.Forms.Button PlusRowField;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

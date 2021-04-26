@@ -10,8 +10,10 @@ namespace UMLDisigner
     {
 
         public Core Core;
+        FontDialog fontDialog1 = new FontDialog();
         String _figureName;
         IMouseHandler _crntMH;
+        int selectRow;
 
         public Form1()
         {
@@ -21,15 +23,13 @@ namespace UMLDisigner
         private void Form1_Load_1(object sender, EventArgs e)
         {
             Core = Core.GetInstance(pictureBox1);
-            //Figures = new List<IFigure>();
-            textBox1.Visible = false;
-            
-            Brush = new Brush(pictureBox1);
+            //Core.Figures = new List<ICore.Figure>();
+            // textBox1.Visible = false;
+
             panel1.Controls.Add(pictureBox1);
-           // panel1.Controls.Add(textBox1);
+            // panel1.Controls.Add(textBox1);
             //this.Controls.Add(pictureBox1);
             //pictureBox1.PreviewKeyDown += new PreviewKeyDownEventHandler(KeyDeleteUp);
-            Figures = new List<IFigure>();
 
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -37,9 +37,9 @@ namespace UMLDisigner
             if (!(Core.Figure is null) && e.Button == MouseButtons.Left && e.Location != Core.Figure.MouseDownPosition)
             {
                 _crntMH.MouseMove(e);
-                //Core.Brush.MarkAsSelected(Figure);
+                //Core.Brush.MarkAsSelected(Core.Figure);
             }
-         }
+        }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -50,16 +50,16 @@ namespace UMLDisigner
             }
 
             //Выделение фигуры точками
-            //if (Figures != null && e.Button == MouseButtons.Left)
+            //if (Core.Figures != null && e.Button == MouseButtons.Left)
             //{
-            //    foreach (IFigure figure in Figures)
+            //    foreach (ICore.Figure Core.Figure in Core.Figures)
             //    {
-            //        if (figure.IsHavingPoint(e.Location))
+            //        if (Core.Figure.IsHavingPoint(e.Location))
             //        {
             //            Core.Brush.Clear();
 
-            //            Core.Brush.DrawMoveFigure(Figures);
-            //            Core.Brush.MarkAsSelected(figure);
+            //            Core.Brush.DrawMoveCore.Figure(Core.Figures);
+            //            Core.Brush.MarkAsSelected(Core.Figure);
             //        }
             //        else 
             //        {
@@ -75,14 +75,14 @@ namespace UMLDisigner
         {
             Core.Brush.TmpToMainBitmap();
 
-            if(Core.Figure!= null && e.Button != MouseButtons.Right)
+            if (Core.Figure != null && e.Button != MouseButtons.Right)
             {
                 _crntMH.MouseUp(e);
 
             }
             //if (_editing)
             //{
-            //    Core.Brush.MarkAsSelected(_crntFigure);
+            //    Core.Brush.MarkAsSelected(_crntCore.Figure);
             //}
 
         }
@@ -93,7 +93,7 @@ namespace UMLDisigner
             Core.Figures.Clear();
         }
 
-        
+
         private void SetFigure()
         {
             bool isCurved = false;
@@ -146,7 +146,7 @@ namespace UMLDisigner
 
         private void button_StepBack_Click(object sender, EventArgs e)
         {
-            //Brush.DrawMoveFigure(figures);
+            //Core.Brush.DrawMoveCore.Figure(Core.Figures);
         }
 
         private void button_Color_Click(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace UMLDisigner
                 {
                     Core.Figure.Color = colorDialog1.Color; //если убрать, рисует сначала старым цветом, потом новым
                 }
-                    
+
             }
         }
 
@@ -172,7 +172,7 @@ namespace UMLDisigner
             {
                 Core.Figure.Width = trackBar1.Value;
             }
-                
+
         }
 
         private void pictureBox_Arrows_Click(object sender, EventArgs e)
@@ -237,9 +237,9 @@ namespace UMLDisigner
         //    switch (e.KeyCode)
         //    {
         //        case Keys.Delete:
-        //            Figures.RemoveAt(Figures.Count - 1);
+        //            Core.Figures.RemoveAt(Core.Figures.Count - 1);
         //            Core.Brush.Clear();
-        //            Core.Brush.DrawMoveFigure(Figure);
+        //            Core.Brush.DrawMoveCore.Figure(Core.Figure);
         //            break;
         //    }
         //}
@@ -254,37 +254,42 @@ namespace UMLDisigner
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-            if (Figure is AbstractClassFigure && Figure != null)
+            if (Core.Figure is AbstractClassFigure && Core.Figure != null)
             {
-                Brush.Clear();
-                Figures.Remove(Figure);
-                Figure.Text[selectRow]=textBox1.Text;
-                Figures.Add(Figure);
-                Brush.DrawMoveFigure(Figures);
+                Core.Brush.Clear();
+                if (Core.Figure is Class3Figure && selectRow > Core.Figure.CountFieldString)
+                {
+                    Core.Figure.TextMethod[selectRow - Core.Figure.CountFieldString - 1] = textBox1.Text;
+                }
+                else
+                {
+                    Core.Figure.TextField[selectRow] = textBox1.Text;
+                }
+                Core.Brush.DrawMoveFigure(Core.Figures);
                 Size size = TextRenderer.MeasureText(textBox1.Text, textBox1.Font);
-           //    Figure.Size = size.Width;
-              textBox1.Width = size.Width;
-              textBox1.Height = size.Height;
+                Core.Figure.Size = MaxStringSize();
+                textBox1.Width = size.Width;
+                textBox1.Height = size.Height;
             }
-            // Size= size.Width;
-        }
        
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (Figure is AbstractClassFigure && Figure != null)
+            if (Core.Figure is AbstractClassFigure && Core.Figure != null)
             {
-                Figure.CountString++;
-               //if (Figure.CountString >4) 
-               // {
-               //     Figure.Text.Add("");
-               // }
-                
-                Brush.Clear();
-                Figures.Remove(Figure);
-                Figures.Add(Figure);
-                Brush.DrawMoveFigure(Figures);
-              //  Figure.Text[Figure.CountString - 1] = " ";
+                Core.Figure.CountMethodString++;
+                //if (Core.Figure.CountString >4) 
+                // {
+                //     Core.Figure.Text.Add("");
+                // }
+
+                Core.Brush.Clear();
+                Core.Figures.Remove(Core.Figure);
+                Core.Figures.Add(Core.Figure);
+                Core.Brush.DrawMoveFigure(Core.Figures);
+                //  Core.Figure.Text[Core.Figure.CountString - 1] = " ";
 
 
             }
@@ -293,120 +298,35 @@ namespace UMLDisigner
 
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {if (_editing)
-            {
-               
-
-                if (Figure is AbstractClassFigure && Figure != null)
-                {
-                    textBox1.Visible = true;
-                    
-                    if (RowSelection(e, Figure.MouseUpPosition, Figure.MouseDownPosition) <= 0)
-                    {
-                        return;
-                    }
-                    selectRow = RowSelection(e, Figure.MouseUpPosition, Figure.MouseDownPosition);
-                    textBox1.Location = RowPoint(selectRow, Figure.MouseUpPosition, Figure.MouseDownPosition);
-                    //MessageBox.Show($"X{textBox1.Location.X}   Y{textBox1.Location.Y}");
-                    textBox1.Text=( $"{Figure.Text[selectRow]}");
-                    //MessageBox.Show($"{selectRow}");
-                    //Brush.Clear();
-                    //Figures.Remove(Figure);
-                    //Figure.Text[selectRow-1]= textBox1.Text;                    
-                    //Figures.Add(Figure);
-                    //Brush.DrawMoveFigure(Figures);
-
-
-                }
-            }
-            // MessageBox.Show("По ебалу себе пощелкай");
-        }
-
-
-
-        private Point RowPoint(int selectRow, Point MouseUpPosition, Point MouseDownPosition)
-        { int k = 25;
-            int indent = 5;
-            if ((MouseDownPosition.Y - MouseUpPosition.Y) > 0)
-            {
-                if (MouseUpPosition.X - MouseDownPosition.X > 0)//1 
-                {                    
-                    return new Point(MouseDownPosition.X+ indent, MouseUpPosition.Y + (k * selectRow));                      
-                }
-                else if (MouseDownPosition.X - MouseUpPosition.X > 0)//2
-                {
-                    return new Point(MouseUpPosition.X+ indent, MouseUpPosition.Y + k * selectRow);                  
-                }
-                
-            }
-            else if ((MouseUpPosition.Y - MouseDownPosition.Y) > 0)
-            {
-                if (MouseDownPosition.X - MouseUpPosition.X > 0)//3
-                {
-                     return new Point(MouseUpPosition.X+ indent, MouseDownPosition.Y + k * selectRow);                  
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 0)//4 
-                {
-                 return new Point(MouseDownPosition.X+ indent, MouseDownPosition.Y + k * selectRow);                     
-                }
-            }
-            return new Point(1000,50);         
-        }
-        private int RowSelection(MouseEventArgs e, Point MouseUpPosition, Point MouseDownPosition)
+        //        {if (_editing)
         {
-            int k = 25;
-            if ((MouseDownPosition.Y - MouseUpPosition.Y) > 10)
+
+            if (Core.Figure is AbstractClassFigure && Core.Figure != null)
             {
-                if (MouseUpPosition.X - MouseDownPosition.X > 10)//1 
+                textBox1.Visible = true;
+
+                if (RowSelection(e, Core.Figure.MouseUpPosition, Core.Figure.MouseDownPosition) < 0)
                 {
-                    for (int i = 0; i <= Figure.CountString; i++)
-                    {
-                        if (Geometry.FindPointInClass(new Point(MouseDownPosition.X, MouseUpPosition.Y + k * i), new Point(MouseUpPosition.X, MouseUpPosition.Y + (k * i) + k), e.Location))
-                        {
-                            return i;
-                        }
-                    }
+                    return;
                 }
-                else if (MouseDownPosition.X - MouseUpPosition.X > 10)
+                selectRow = RowSelection(e, Core.Figure.MouseUpPosition, Core.Figure.MouseDownPosition);
+                textBox1.Location = RowPoint(selectRow, Core.Figure.MouseUpPosition, Core.Figure.MouseDownPosition);
+                if (Core.Figure is Class3Figure && selectRow > Core.Figure.CountFieldString)
                 {
-                    //2
-                    for (int i = 0; i <= Figure.CountString; i++)
-                    {
-                        if (Geometry.FindPointInClass(new Point(MouseUpPosition.X, MouseUpPosition.Y + k * i), new Point(MouseDownPosition.X, MouseUpPosition.Y + (k * i) + k), e.Location))
-                        {
-                            return i;
-                        }
-                    }
+                    textBox1.Text = ($"{Core.Figure.TextMethod[selectRow - Core.Figure.CountFieldString - 1]}");
                 }
+                else
+                {
+                    textBox1.Text = ($"{Core.Figure.TextField[selectRow]}");//TextField
+                }
+                Core.Brush.Clear();
+                Core.Figures.Remove(Core.Figure);
+                Core.Figure.TextField[selectRow] = textBox1.Text; //TextField
+                Core.Figures.Add(Core.Figure);
+                Core.Brush.DrawMoveFigure(Core.Figures);
+
 
             }
-            else if ((MouseUpPosition.Y - MouseDownPosition.Y) > 10)
-            {
-
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    //3
-                    for (int i = 0; i <= Figure.CountString; i++)
-                    {
-                        if (Geometry.FindPointInClass(new Point(MouseUpPosition.X, MouseDownPosition.Y + k * i), new Point(MouseDownPosition.X, MouseDownPosition.Y + (k * i) + k), e.Location))
-                        {
-                            return i;
-                        }
-                    }
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
-                {
-                    //4
-                    for (int i = 0; i <= Figure.CountString; i++)
-                    {
-                        if (Geometry.FindPointInClass(new Point(MouseDownPosition.X, MouseDownPosition.Y + k * i), new Point(MouseUpPosition.X, MouseDownPosition.Y + (k * i) + k), e.Location))
-                        {
-                            return i;
-                        }
-                    }
-                }
-            }
-            return -1;
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -414,12 +334,12 @@ namespace UMLDisigner
             if (e.KeyCode == Keys.Enter)
             {
 
-                Brush.Clear();
-                Figures.Remove(Figure);
-                Figure.Text[selectRow] = textBox1.Text;
-                Figures.Add(Figure);
-                Brush.DrawMoveFigure(Figures);
-                 textBox1.Visible = false;
+                Core.Brush.Clear();
+                Core.Figures.Remove(Core.Figure);
+                Core.Figure.TextField[selectRow] = textBox1.Text; //TextField
+                Core.Figures.Add(Core.Figure);
+                Core.Brush.DrawMoveFigure(Core.Figures);
+                textBox1.Visible = false;
             }
             if (e.KeyCode == Keys.Tab)
             {
@@ -427,6 +347,123 @@ namespace UMLDisigner
             }
         }
 
-       
+        private void PlusRowField_Click(object sender, EventArgs e)
+        {
+            if (Core.Figure is AbstractClassFigure)
+            {
+                Core.Figure.CountFieldString++;
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+            }
+        }
+
+        private void MinusRowField_Click(object sender, EventArgs e)
+        {
+            if (Core.Figure is AbstractClassFigure)
+            {
+                Core.Figure.CountFieldString--;
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+            }
+
+        }
+
+
+
+        private Point RowPoint(int selectRow, Point MouseUpPosition, Point MouseDownPosition)
+        {
+            int k = 20;
+            int indent = 5;
+
+            return new Point(MouseDownPosition.X + indent, MouseDownPosition.Y + k * selectRow + 5);
+
+        }
+
+
+        private int RowSelection(MouseEventArgs e, Point MouseUpPosition, Point MouseDownPosition)
+        {
+            int k = 20;
+            if (Core.Figure is Class3Figure)
+            {
+                for (int i = 0; i <= Core.Figure.CountFieldString + Core.Figure.CountMethodString; i++)
+                {
+                    if (Geometry.FindPointInClass(new Point(MouseDownPosition.X, MouseDownPosition.Y + k * i), new Point(MouseUpPosition.X, MouseDownPosition.Y + (k * i) + k), e.Location))
+                    {
+                        return i;
+                    }
+                }
+            }
+
+            for (int i = 0; i <= Core.Figure.CountFieldString; i++)
+            {
+                if (Geometry.FindPointInClass(new Point(MouseDownPosition.X, MouseDownPosition.Y + k * i), new Point(MouseUpPosition.X, MouseDownPosition.Y + (k * i) + k), e.Location))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+
+
+        private int MaxStringSize()
+        {
+            int maxLenghtField = 0;
+            int maxLenghtMethod = 0;
+            Size size;
+            for (int i = 0; i <= Core.Figure.CountFieldString; i++)
+            {
+                textBox2.Text = (Core.Figure.TextField[i]);
+                size = TextRenderer.MeasureText(textBox2.Text, textBox2.Font);
+
+                if (maxLenghtField < size.Width)
+                {
+                    maxLenghtField = size.Width;
+                }
+            }
+
+            if (Core.Figure is Class3Figure)
+            {
+                for (int i = 0; i <= Core.Figure.CountMethodString; i++)
+                {
+                    textBox2.Text = (Core.Figure.TextMethod[i]);
+                    size = TextRenderer.MeasureText(textBox2.Text, textBox2.Font);
+
+                    if (maxLenghtMethod < size.Width)
+                    {
+                        maxLenghtMethod = size.Width;
+                    }
+                }               
+            }
+            if (maxLenghtField > maxLenghtMethod)
+            {
+                return maxLenghtField;
+            }
+            else
+            {
+                return maxLenghtMethod;
+            }
+        }
+
+            private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+            {
+                fontDialog1.ShowColor = true;
+
+                fontDialog1.Font = textBox1.Font;
+                fontDialog1.Color = textBox1.ForeColor;
+                if (fontDialog1.ShowDialog() != DialogResult.Cancel)
+                {
+                    textBox1.Font = fontDialog1.Font;
+
+                    textBox1.ForeColor = fontDialog1.Color;
+
+
+
+                }
+            }
+
+        }
+
     }
-}
+

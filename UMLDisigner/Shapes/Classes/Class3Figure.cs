@@ -7,8 +7,8 @@ namespace UMLDisigner
 {
     class Class3Figure : AbstractClassFigure
     {
-        int _topLineHeight = 40;
-        int _bottomLineHeight = 40;
+        
+       
 
         public Class3Figure()
         {
@@ -30,68 +30,68 @@ namespace UMLDisigner
 
         public override void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0)
         {
+           
             Pen pen1 = new Pen(Color, Width);
             Size delta = new Size(deltaX, deltaY);
-            graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(MouseUpPosition, delta), Point.Add(MouseDownPosition, delta)));
+            int height = 120;
+            int width = 200;
+            int bottomLineHeight = 70;
+            int topLineHeight = 27;
+            int tmpMouseDownPositionX = MouseDownPosition.X;
+            int tmpMouseDownPositionY = MouseDownPosition.Y;
+            int tmpMouseUpPositionX = MouseDownPosition.X + width;
+            int tmpMouseUpPositionY = MouseDownPosition.Y + height;
+            int k = 20;
+            int indent = 0;
 
-
-            if ((MouseDownPosition.Y - MouseUpPosition.Y) > _topLineHeight)
+            for (int i = 0; i <= CountFieldString; i++)
             {
-                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + _topLineHeight + deltaY));
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
+                int fac = k * (i) + 5;
+                if (tmpMouseUpPositionX - tmpMouseDownPositionX < Size)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
+                    tmpMouseUpPositionX += (Size - (tmpMouseUpPositionX - tmpMouseDownPositionX) + k);
+                }
+                if (tmpMouseUpPositionY - tmpMouseDownPositionY < fac + k)
+                {
+                    bottomLineHeight += (fac - (tmpMouseUpPositionY - tmpMouseDownPositionY) + 25 );
+                    tmpMouseUpPositionY += (fac - (tmpMouseUpPositionY - tmpMouseDownPositionY) + 25 );
+                }
+                if ((tmpMouseDownPositionY+bottomLineHeight) - tmpMouseDownPositionY < fac + k)
+                {
+                    tmpMouseUpPositionY += (fac - ((tmpMouseDownPositionY + bottomLineHeight) - tmpMouseDownPositionY) + 25 );
+                    bottomLineHeight += (fac - ((tmpMouseDownPositionY + bottomLineHeight) - tmpMouseDownPositionY) + 25 );
+                }
 
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y + 10 + deltaY));
-                }
+                    graphics.DrawString(TextField[i], _font, _brush, new Point(tmpMouseDownPositionX + deltaX + indent, tmpMouseDownPositionY + deltaY + fac));
+
             }
-            else if ((MouseUpPosition.Y - MouseDownPosition.Y) > _topLineHeight)
+
+
+            for (int i = 0; i <= CountMethodString; i++)
             {
-                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + _topLineHeight + deltaY));
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
+                int fac = k * (i) + 5;
+                if (tmpMouseUpPositionX - tmpMouseDownPositionX < Size)
                 {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    tmpMouseUpPositionX += (Size - (tmpMouseUpPositionX - tmpMouseDownPositionX) + k);
                 }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
+                if ((tmpMouseUpPositionY - (tmpMouseDownPositionY + bottomLineHeight) < fac + k))
                 {
-                    graphics.DrawString("Text   ", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + 10 + deltaY));
+                    tmpMouseUpPositionY += (fac - (tmpMouseUpPositionY - (tmpMouseDownPositionY + bottomLineHeight)) + 25 );
                 }
+                graphics.DrawString(TextMethod[i], _font, _brush, new Point(tmpMouseDownPositionX + deltaX + indent, tmpMouseDownPositionY + bottomLineHeight - 10 + deltaY + fac));
+
             }
+            graphics.DrawPolygon(pen1, Geometry.GetRectangle(Point.Add(new Point(tmpMouseUpPositionX, tmpMouseUpPositionY), delta), Point.Add(MouseDownPosition, delta)));
 
+           
+            graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + topLineHeight + deltaY),
+             new Point(tmpMouseUpPositionX + deltaX, MouseDownPosition.Y + topLineHeight + deltaY));
 
-            if ((MouseDownPosition.Y - MouseUpPosition.Y) > _bottomLineHeight + _topLineHeight)
-            {
-                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - _bottomLineHeight + deltaY));
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseDownPosition.Y - 20 + deltaY));
-
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y - 20 + deltaY));
-                }
-            }
-            else if ((MouseUpPosition.Y - MouseDownPosition.Y) > _bottomLineHeight + _topLineHeight)
-            {
-                graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y - _bottomLineHeight + deltaY),
-                    new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y - _bottomLineHeight + deltaY));
-                if (MouseDownPosition.X - MouseUpPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseUpPosition.X + deltaX, MouseUpPosition.Y - 20 + deltaY));
-
-                }
-                else if (MouseUpPosition.X - MouseDownPosition.X > 10)
-                {
-                    graphics.DrawString("Text", _font, _brush, new Point(MouseDownPosition.X + deltaX, MouseUpPosition.Y - 20 + deltaY));
-                }
-            }
+            graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + bottomLineHeight + deltaY),
+                new Point(tmpMouseUpPositionX + deltaX, MouseDownPosition.Y + bottomLineHeight + deltaY));
+            MouseUpPosition = new Point(tmpMouseUpPositionX, tmpMouseUpPositionY);
+         
+           
         }
 
     }

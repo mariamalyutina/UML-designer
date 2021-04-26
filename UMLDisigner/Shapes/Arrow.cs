@@ -12,6 +12,12 @@ namespace UMLDisigner
 
         public Color Color { get; set; }
         public int Width { get; set; }
+        public int CountFieldString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<string> Text { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Size { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<string> TextField { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<string> TextMethod { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int CountMethodString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public AbstractLine LineType;
         protected AbstractCap _capTypeBeginning;
