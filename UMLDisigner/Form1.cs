@@ -1,6 +1,8 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -12,9 +14,9 @@ namespace UMLDisigner
         public Core Core;
         FontDialog fontDialog1 = new FontDialog();
         String _figureName;
-       
+
         int selectRow;
-        
+
 
 
         public Form1()
@@ -24,10 +26,10 @@ namespace UMLDisigner
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            
-            Core = Core.GetInstance(pictureBox1,textBox1,textBox2);
+
+            Core = Core.GetInstance(pictureBox1, textBox1, textBox2);
             panel1.Controls.Add(pictureBox1);
-            textBox1.BringToFront();         
+            textBox1.BringToFront();
 
 
         }
@@ -43,8 +45,8 @@ namespace UMLDisigner
         {
             if (Core.SelectedFigures.Count == 1 && Core.SelectedFigures[0] is AbstractClassFigure && e.Button == MouseButtons.Right)
             {
-                Core.textBox.Visible = true;              
-              
+                Core.textBox.Visible = true;
+
                 if (RowSelection(e, Core.SelectedFigures[0].MouseUpPosition, Core.SelectedFigures[0].MouseDownPosition) < 0)
                 {
                     return;
@@ -67,7 +69,7 @@ namespace UMLDisigner
                 Core.textBox.Select(0, 0);
 
             }
-            else if (!(Core.Figure is null) && !(e.Button == MouseButtons.Right) &&e.Button == MouseButtons.Left)
+            else if (!(Core.Figure is null) && !(e.Button == MouseButtons.Right) && e.Button == MouseButtons.Left)
             {
                 Core.CrntMH.MouseDown(e);
             }
@@ -79,7 +81,7 @@ namespace UMLDisigner
         {
             Core.Brush.TmpToMainBitmap();
 
-            if(Core.Figure!= null && !(e.Button == MouseButtons.Right))
+            if (Core.Figure != null && !(e.Button == MouseButtons.Right))
             {
                 Core.CrntMH.MouseUp(e);
 
@@ -89,7 +91,7 @@ namespace UMLDisigner
 
         private void button_Clear_Click(object sender, EventArgs e)
         {
-            
+
             Core.Brush.Clear();
             Core.Figures.Clear();
             Core.SelectedFigures.Clear();
@@ -157,14 +159,14 @@ namespace UMLDisigner
                 Core.Brush.DrawMoveFigure(Core.Figures);
                 Core.Brush.MarkAsSelected(Core.SelectedFigures);
             }
-            else if (!(Core.Factory is null)) 
+            else if (!(Core.Factory is null))
             {
                 Core.Figure = Core.Factory.GetShape(Core.Brush.Color, Core.Brush.TrackBarWidth);
                 Core.CrntMH = new MouseHandlerDrawing();
                 pictureBox_Arrows.ImageLocation = @"ImagesArrows\Arrows.JPG";
                 pictureBox_Classes.ImageLocation = @"ImagesClasses\Classes.JPG";
             }
-            
+
         }
 
 
@@ -172,7 +174,7 @@ namespace UMLDisigner
         {
             if (Core.SelectedFigures[0] is AbstractClassFigure && Core.Figure != null)
             {
-             //   button_PlusRowField.Location = Core.SelectedFigures[0].MouseDownPosition;
+                //   button_PlusRowField.Location = Core.SelectedFigures[0].MouseDownPosition;
             }
         }
 
@@ -182,9 +184,9 @@ namespace UMLDisigner
             {
                 button_Color.BackColor = colorDialog1.Color;
                 Core.Brush.Color = colorDialog1.Color;
-                if(Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
+                if (Core.CrntMH is MouseHandlerEditing && Core.SelectedFigures.Count > 0)
                 {
-                    foreach(IFigure figure in Core.SelectedFigures)
+                    foreach (IFigure figure in Core.SelectedFigures)
                     {
                         figure.Color = colorDialog1.Color;
                     }
@@ -256,7 +258,7 @@ namespace UMLDisigner
             }
         }
 
-      
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -264,20 +266,20 @@ namespace UMLDisigner
             SetFigure();
         }
 
-       
+
 
         private void button_DeleteFigure_Click(object sender, EventArgs e)
         {
-           
-            Core.Brush.Clear();            
-            for(int i=0;i<Core.Figures.Count; ++i)
+
+            Core.Brush.Clear();
+            for (int i = 0; i < Core.Figures.Count; ++i)
             {
                 for (int j = 0; j < Core.SelectedFigures.Count; ++j)
                 {
                     if (Core.Figures[i] == Core.SelectedFigures[j])
                     {
                         Core.Figures.Remove(Core.SelectedFigures[j]);
-                       
+
                     }
                 }
             }
@@ -306,7 +308,7 @@ namespace UMLDisigner
                 Core.textBox.Width = size.Width;
                 Core.textBox.Height = size.Height;
             }
-       
+
         }
 
 
@@ -317,9 +319,9 @@ namespace UMLDisigner
                 //Core.SelectedFigures[0].CountMethodString++;             
 
                 //Core.Brush.Clear();
-              
+
                 //Core.Brush.DrawMoveFigure(Core.Figures);
-               
+
 
 
             }
@@ -327,7 +329,7 @@ namespace UMLDisigner
 
 
 
-       
+
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -344,18 +346,18 @@ namespace UMLDisigner
                     textBox1.Visible = false;
                 }
             }
-            
-         
+
+
         }
 
         private void button_PlusRowField_Click(object sender, EventArgs e)
         {
-            if (Core.SelectedFigures.Count == 1&&Core.SelectedFigures[0] is AbstractClassFigure&&Core.SelectedFigures[0].CountFieldString<8)
+            if (Core.SelectedFigures.Count == 1 && Core.SelectedFigures[0] is AbstractClassFigure && Core.SelectedFigures[0].CountFieldString < 8)
             {
                 Core.SelectedFigures[0].CountFieldString++;
                 Core.Brush.Clear();
                 Core.Brush.DrawMoveFigure(Core.Figures);
-                
+
             }
         }
 
@@ -455,7 +457,7 @@ namespace UMLDisigner
                     {
                         maxLenghtMethod = size.Width;
                     }
-                }               
+                }
             }
             if (maxLenghtField > maxLenghtMethod)
             {
@@ -467,24 +469,24 @@ namespace UMLDisigner
             }
         }
 
-            private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            fontDialog1.ShowColor = true;
+
+            fontDialog1.Font = Core.textBox.Font;
+            fontDialog1.Color = Core.textBox.ForeColor;
+            if (fontDialog1.ShowDialog() != DialogResult.Cancel)
             {
-                fontDialog1.ShowColor = true;
+                Core.textBox.Font = fontDialog1.Font;
 
-                fontDialog1.Font = Core.textBox.Font;
-                fontDialog1.Color = Core.textBox.ForeColor;
-                if (fontDialog1.ShowDialog() != DialogResult.Cancel)
-                {
-                    Core.textBox.Font = fontDialog1.Font;
+                Core.textBox.ForeColor = fontDialog1.Color;
 
-                    Core.textBox.ForeColor = fontDialog1.Color;
-
-                }
-                else
-                {
-                    Core.CrntMH = new MouseHandlerTextEditing();
-                }
             }
+            else
+            {
+                Core.CrntMH = new MouseHandlerTextEditing();
+            }
+        }
 
         private void button_Editing_Click(object sender, EventArgs e)
         {
@@ -493,9 +495,62 @@ namespace UMLDisigner
             Core.Brush.DrawMoveFigure(Core.Figures);
             Core.CrntMH = new MouseHandlerEditing();
         }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.InitialDirectory = @"C:\Users\User\Desktop\UmlReader";
+            saveFileDialog1.Filter = "jpg file|*.JPG |uml file|*.uml";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                String filePath = saveFileDialog1.FileName;
+
+                String serialised = JsonConvert.SerializeObject(Core.Figures, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+
+
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine(serialised);
+                }
+            }
+        }
+
+        private void button_load_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = @"C:\Users\User\Desktop\UmlReader";
+
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                String filePath = openFileDialog1.FileName;
+
+                string ser = "";
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    ser = sr.ReadToEnd();
+                }
+
+                Core.Figures.Clear();
+                Core.SelectedFigures.Clear();
+
+                Core.Figures = JsonConvert.DeserializeObject<List<IFigure>>(ser,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+            }
+
+
+        }
     }
 
-    
 }
 
 

@@ -49,6 +49,10 @@ namespace UMLDisigner
             this.button_PlusRowField = new System.Windows.Forms.Button();
             this.button_PlusRowMethod = new System.Windows.Forms.Button();
             this.button_Editing = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button_save = new System.Windows.Forms.Button();
+            this.button_load = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrows)).BeginInit();
@@ -58,7 +62,7 @@ namespace UMLDisigner
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(-69, -70);
+            this.pictureBox1.Location = new System.Drawing.Point(-11, -144);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1980, 1080);
@@ -187,7 +191,7 @@ namespace UMLDisigner
             this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(1173, 5);
+            this.textBox1.Location = new System.Drawing.Point(1173, 8);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(114, 31);
@@ -202,10 +206,11 @@ namespace UMLDisigner
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(11, 143);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1314, 636);
+            this.panel1.Size = new System.Drawing.Size(1972, 943);
             this.panel1.TabIndex = 26;
             // 
             // textBox2
@@ -275,17 +280,43 @@ namespace UMLDisigner
             this.button_Editing.UseVisualStyleBackColor = true;
             this.button_Editing.Click += new System.EventHandler(this.button_Editing_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button_save
+            // 
+            this.button_save.Location = new System.Drawing.Point(874, 93);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(94, 29);
+            this.button_save.TabIndex = 32;
+            this.button_save.Text = "Save";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            // 
+            // button_load
+            // 
+            this.button_load.Location = new System.Drawing.Point(996, 93);
+            this.button_load.Name = "button_load";
+            this.button_load.Size = new System.Drawing.Size(94, 29);
+            this.button_load.TabIndex = 33;
+            this.button_load.Text = "Load";
+            this.button_load.UseVisualStyleBackColor = true;
+            this.button_load.Click += new System.EventHandler(this.button_load_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1317, 820);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button_load);
+            this.Controls.Add(this.button_save);
             this.Controls.Add(this.button_Editing);
             this.Controls.Add(this.button_PlusRowMethod);
             this.Controls.Add(this.button_MinusRowMethod);
             this.Controls.Add(this.button_PlusRowField);
             this.Controls.Add(this.button_MinusRowField);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button_DeleteFigure);
             this.Controls.Add(this.buttonLineOptions);
             this.Controls.Add(this.comboBox1);
@@ -295,7 +326,6 @@ namespace UMLDisigner
             this.Controls.Add(this.label2);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.button_Color);
-            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "Form1";
@@ -341,6 +371,10 @@ namespace UMLDisigner
         private System.Windows.Forms.Button button_PlusRowMethod;
         public System.Windows.Forms.Button button_MinusRowField;
         private System.Windows.Forms.Button button_Editing;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_load;
     }
 }
 
