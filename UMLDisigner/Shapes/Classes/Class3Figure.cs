@@ -66,7 +66,8 @@ namespace UMLDisigner
 
             }
 
-
+            graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + bottomLineHeight + deltaY),
+                new Point(tmpMouseUpPositionX + deltaX, MouseDownPosition.Y + bottomLineHeight + deltaY));
             for (int i = 0; i <= CountMethodString; i++)
             {
                 int fac = k * (i) + 5;
@@ -87,8 +88,7 @@ namespace UMLDisigner
             graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + topLineHeight + deltaY),
              new Point(tmpMouseUpPositionX + deltaX, MouseDownPosition.Y + topLineHeight + deltaY));
 
-            graphics.DrawLine(pen1, new Point(MouseDownPosition.X + deltaX, MouseDownPosition.Y + bottomLineHeight + deltaY),
-                new Point(tmpMouseUpPositionX + deltaX, MouseDownPosition.Y + bottomLineHeight + deltaY));
+            
             MouseUpPosition = new Point(tmpMouseUpPositionX, tmpMouseUpPositionY);
          
            

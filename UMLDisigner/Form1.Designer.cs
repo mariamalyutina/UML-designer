@@ -41,14 +41,15 @@ namespace UMLDisigner
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonLineOptions = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button_DeleteFigure = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.MinusRowField = new System.Windows.Forms.Button();
-            this.PlusRowField = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button_MinusRowMethod = new System.Windows.Forms.Button();
+            this.button_MinusRowField = new System.Windows.Forms.Button();
+            this.button_PlusRowField = new System.Windows.Forms.Button();
+            this.button_PlusRowMethod = new System.Windows.Forms.Button();
+            this.button_Editing = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrows)).BeginInit();
@@ -71,13 +72,12 @@ namespace UMLDisigner
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(2000, 2000);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -178,23 +178,10 @@ namespace UMLDisigner
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(992, -4);
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 89);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Off";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(1072, 26);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 40);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "Editing";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
             // 
             // button_DeleteFigure
             // 
@@ -221,16 +208,6 @@ namespace UMLDisigner
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(918, 75);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(21, 26);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
@@ -241,26 +218,6 @@ namespace UMLDisigner
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1150, 477);
             this.panel1.TabIndex = 26;
-            // 
-            // MinusRowField
-            // 
-            this.MinusRowField.Location = new System.Drawing.Point(548, 87);
-            this.MinusRowField.Name = "MinusRowField";
-            this.MinusRowField.Size = new System.Drawing.Size(21, 26);
-            this.MinusRowField.TabIndex = 27;
-            this.MinusRowField.Text = "-";
-            this.MinusRowField.UseVisualStyleBackColor = true;
-            this.MinusRowField.Click += new System.EventHandler(this.MinusRowField_Click);
-            // 
-            // PlusRowField
-            // 
-            this.PlusRowField.Location = new System.Drawing.Point(587, 87);
-            this.PlusRowField.Name = "PlusRowField";
-            this.PlusRowField.Size = new System.Drawing.Size(21, 26);
-            this.PlusRowField.TabIndex = 28;
-            this.PlusRowField.Text = "+";
-            this.PlusRowField.UseVisualStyleBackColor = true;
-            this.PlusRowField.Click += new System.EventHandler(this.PlusRowField_Click);
             // 
             // textBox2
             // 
@@ -273,17 +230,68 @@ namespace UMLDisigner
             this.textBox2.TabIndex = 25;
             this.textBox2.Visible = false;
             // 
+            // button_MinusRowMethod
+            // 
+            this.button_MinusRowMethod.Location = new System.Drawing.Point(671, 87);
+            this.button_MinusRowMethod.Name = "button_MinusRowMethod";
+            this.button_MinusRowMethod.Size = new System.Drawing.Size(21, 26);
+            this.button_MinusRowMethod.TabIndex = 30;
+            this.button_MinusRowMethod.Text = "-";
+            this.button_MinusRowMethod.UseVisualStyleBackColor = true;
+            this.button_MinusRowMethod.Click += new System.EventHandler(this.button_MinusRowMethod_Click);
+            // 
+            // button_MinusRowField
+            // 
+            this.button_MinusRowField.Location = new System.Drawing.Point(548, 87);
+            this.button_MinusRowField.Name = "button_MinusRowField";
+            this.button_MinusRowField.Size = new System.Drawing.Size(21, 26);
+            this.button_MinusRowField.TabIndex = 27;
+            this.button_MinusRowField.Text = "-";
+            this.button_MinusRowField.UseVisualStyleBackColor = true;
+            this.button_MinusRowField.Click += new System.EventHandler(this.button_MinusRowField_Click);
+            // 
+            // button_PlusRowField
+            // 
+            this.button_PlusRowField.Location = new System.Drawing.Point(575, 87);
+            this.button_PlusRowField.Name = "button_PlusRowField";
+            this.button_PlusRowField.Size = new System.Drawing.Size(21, 26);
+            this.button_PlusRowField.TabIndex = 28;
+            this.button_PlusRowField.Text = "+";
+            this.button_PlusRowField.UseVisualStyleBackColor = true;
+            this.button_PlusRowField.Click += new System.EventHandler(this.button_PlusRowField_Click);
+            // 
+            // button_PlusRowMethod
+            // 
+            this.button_PlusRowMethod.Location = new System.Drawing.Point(698, 87);
+            this.button_PlusRowMethod.Name = "button_PlusRowMethod";
+            this.button_PlusRowMethod.Size = new System.Drawing.Size(21, 26);
+            this.button_PlusRowMethod.TabIndex = 29;
+            this.button_PlusRowMethod.Text = "+";
+            this.button_PlusRowMethod.UseVisualStyleBackColor = true;
+            this.button_PlusRowMethod.Click += new System.EventHandler(this.button_PlusRowMethod_Click);
+            // 
+            // button_Editing
+            // 
+            this.button_Editing.Location = new System.Drawing.Point(1065, 35);
+            this.button_Editing.Name = "button_Editing";
+            this.button_Editing.Size = new System.Drawing.Size(75, 23);
+            this.button_Editing.TabIndex = 31;
+            this.button_Editing.Text = "Editing";
+            this.button_Editing.UseVisualStyleBackColor = true;
+            this.button_Editing.Click += new System.EventHandler(this.button_Editing_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 615);
-            this.Controls.Add(this.PlusRowField);
-            this.Controls.Add(this.MinusRowField);
+            this.Controls.Add(this.button_Editing);
+            this.Controls.Add(this.button_PlusRowMethod);
+            this.Controls.Add(this.button_MinusRowMethod);
+            this.Controls.Add(this.button_PlusRowField);
+            this.Controls.Add(this.button_MinusRowField);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button_DeleteFigure);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.buttonLineOptions);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button_Clear);
@@ -329,15 +337,17 @@ namespace UMLDisigner
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonLineOptions;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button_DeleteFigure;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button PlusString;
         public System.Windows.Forms.Button MinusRowField;
-        private System.Windows.Forms.Button PlusRowField;
+        private System.Windows.Forms.Button button_PlusRowField;
         private System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.Button button_MinusRowMethod;
+        private System.Windows.Forms.Button button_PlusRowMethod;
+        public System.Windows.Forms.Button button_MinusRowField;
+        private System.Windows.Forms.Button button_Editing;
     }
 }
 

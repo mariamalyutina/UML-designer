@@ -14,7 +14,7 @@ namespace UMLDisigner
 
         public MouseHandlerSelect(Point mouseDownPosition)
         {
-            Core = Core.GetInstance(new PictureBox());
+            Core = Core.GetInstance();
             _select = new SelectingRectangle();
             _select.MouseDownPosition = mouseDownPosition;
         }
