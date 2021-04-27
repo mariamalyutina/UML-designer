@@ -16,21 +16,32 @@ namespace UMLDisigner
         public AbstractFactory Factory;
         public IMouseHandler CrntMH;
         static Core _instance;
+        //public bottom bottom;
+        public TextBox textBox;
+        public TextBox textBoxForResizing;
 
 
-        private Core(PictureBox pb)
+        private Core(PictureBox pb,TextBox textBox, TextBox textBoxForResizing)
         {
+            this.textBox = textBox;
+            this.textBoxForResizing = textBoxForResizing;
+
             Brush = new Brush(pb);
             Figures = new List<IFigure>();
             SelectedFigures = new List<IFigure>();
         }
 
-        public static Core GetInstance(PictureBox pb)
+        public static Core GetInstance(PictureBox pb, TextBox textBox, TextBox textBoxForResizing)
         {
             if (_instance is null)
             {
-                _instance = new Core(pb);
+                _instance = new Core(pb,textBox,textBoxForResizing);
             }
+            return _instance;
+        }
+
+        public static Core GetInstance()
+        {
             return _instance;
         }
     }

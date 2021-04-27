@@ -18,7 +18,7 @@ namespace UMLDisigner
 
         public MouseHandlerEditing()
         {
-            Core = Core.GetInstance(new PictureBox());
+            Core = Core.GetInstance();
             
         }
 
@@ -57,11 +57,12 @@ namespace UMLDisigner
                         _pointMovingMouseDownPosition = e.Location;
                         break;
                     }
-
                 }
-
             }
-
+            //if(Core.SelectedFigures.Count == 1 && Core.SelectedFigures[0] is AbstractClassFigure)
+            //{
+            //    Core.CrntMH = new MouseHandlerTextEditing(/*e.Location*/);
+            //}
             if (Core.SelectedFigures.Count == 0)
             {
                 Core.CrntMH = new MouseHandlerSelect(e.Location);
@@ -91,6 +92,9 @@ namespace UMLDisigner
             {
                 int deltaX = e.Location.X - _pointMovingMouseDownPosition.X;
                 int deltaY = e.Location.Y - _pointMovingMouseDownPosition.Y;
+                
+             
+                
                 Core.Brush.DrawMoveFigure(Core.Figure, deltaX, deltaY);
                 return;
             }

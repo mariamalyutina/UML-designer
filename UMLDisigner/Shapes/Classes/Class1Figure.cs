@@ -9,10 +9,12 @@ namespace UMLDisigner
     {
         public Class1Figure()
         {
+            
         }
 
         public Class1Figure(Color color, int width)
         {
+            TextField[0] = "Interface";
             Color = color;
             Width = width;
         }
@@ -22,17 +24,19 @@ namespace UMLDisigner
             MouseDownPosition = mouseDownPosition;
             MouseUpPosition = mouseUpPosition;
             Color = color;
-            Width = width;            
+            Width = width;
+           
         }
 
 
 
         public override void Draw(Graphics graphics, int deltaX = 0, int deltaY = 0)
         {
+            
             Pen pen1 = new Pen(Color, Width);
             Size delta = new Size(deltaX, deltaY);
-            int height = 40;
-            int width = 200;
+            int height = 100;
+            int width = 150;
             int tmpMouseDownPositionX = MouseDownPosition.X;
             int tmpMouseDownPositionY = MouseDownPosition.Y;
             int tmpMouseUpPositionX = MouseDownPosition.X + width;

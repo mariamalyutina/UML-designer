@@ -11,6 +11,12 @@ namespace UMLDisigner
         public Point MouseDownPosition { get; set; }
         public Color Color { get; set; }
         public int Width { get; set; }
+        public List<string> TextField { get; set; } 
+        public List<string> TextMethod { get; set; } 
+
+        public int Size { get; set; }
+        public int CountFieldString { get; set; }
+        public int CountMethodString { get; set; }
 
         public SelectingRectangle(Color color, int width = 3)
         {

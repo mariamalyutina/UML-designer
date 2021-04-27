@@ -11,7 +11,7 @@ namespace UMLDisigner
 
         public MouseHandlerDrawing()
         {
-            Core = Core.GetInstance(new PictureBox());
+            Core = Core.GetInstance();
         }
 
         public void MouseDown(MouseEventArgs e)

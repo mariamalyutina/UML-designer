@@ -89,6 +89,7 @@ namespace UMLDisigner
 
                 graphics.DrawString(TextField[i], _font, _brush, new Point(tmpMouseDownPositionX + deltaX + indent, tmpMouseDownPositionY + deltaY + fac));
                 MouseUpPosition = new Point(tmpMouseUpPositionX, tmpMouseUpPositionY);
+               
 
               
             }
