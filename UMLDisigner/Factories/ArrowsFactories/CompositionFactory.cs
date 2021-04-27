@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UMLDisigner
 {
-    class CompositionFactory : AbstractArrowFactory
+    public class CompositionFactory : AbstractArrowFactory
     {
         public CompositionFactory(bool curved) : base(curved)
         {

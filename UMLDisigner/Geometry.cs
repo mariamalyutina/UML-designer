@@ -7,21 +7,22 @@ namespace UMLDisigner
 {
     public static class Geometry
     {
-        
-        public static Point[] GetArrow(Point endPoint, Point stratPoint) //стрелочки в начале
-        {
-            double d = Math.Sqrt(Math.Pow(endPoint.X - stratPoint.X, 2) + Math.Pow(endPoint.Y - stratPoint.Y, 2));
+        const int delta = 10;
 
-            double X = endPoint.X - stratPoint.X;
-            double Y = endPoint.Y - stratPoint.Y;
+        public static Point[] GetArrow(Point endPoint, Point startPoint ) //стрелочки в начале
+        {
+            double d = Math.Sqrt(Math.Pow(endPoint.X - startPoint.X, 2) + Math.Pow(endPoint.Y - startPoint.Y, 2));
+
+            double X = endPoint.X - startPoint.X;
+            double Y = endPoint.Y - startPoint.Y;
 
             // координаты точки, удалённой от конца  отрезка на 20px
             double X4 = endPoint.X - (X / d) * 20;
             double Y4 = endPoint.Y - (Y / d) * 20;
 
             // полученные множители x и y => координаты вектора перпендикуляра
-            double Xp = endPoint.Y - stratPoint.Y;
-            double Yp = stratPoint.X - endPoint.X;
+            double Xp = endPoint.Y - startPoint.Y;
+            double Yp = startPoint.X - endPoint.X;
 
             // координаты перпендикуляров, удалённой от точки X4;Y4 на 15px в разные стороны
             double X5 = X4 + (Xp / d) * 15;

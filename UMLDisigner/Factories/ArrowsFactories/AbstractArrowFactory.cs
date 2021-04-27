@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UMLDisigner
 {
-    abstract class AbstractArrowFactory : AbstractFactory
+    public abstract class AbstractArrowFactory : AbstractFactory
     {
         protected AbstractLine _lineType;
         protected AbstractCap _firstCap;

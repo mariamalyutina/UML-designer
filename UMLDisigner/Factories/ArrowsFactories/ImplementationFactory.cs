@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
 namespace UMLDisigner
 {
-    class ImplementationFactory : AbstractArrowFactory
+    public class ImplementationFactory : AbstractArrowFactory
     {
         public ImplementationFactory(bool curved) : base(curved)
         {

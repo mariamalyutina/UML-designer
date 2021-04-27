@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
 namespace UMLDisigner
 {
-    class Class1Figure : AbstractClassFigure
+    public class Class1Figure : AbstractClassFigure
     {
         public Class1Figure()
         {
