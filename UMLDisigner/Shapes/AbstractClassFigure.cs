@@ -7,7 +7,7 @@ namespace UMLDisigner
 {
     public abstract class AbstractClassFigure : IFigure
     {
-        protected Font _font = new Font("Arial", 16);
+        protected Font _font = new Font("Arial", 14);
         protected SolidBrush _brush = new SolidBrush(Color.Black);
 
         public List<string> TextField { get; set; } = new List<string>() { "Classname", "+ field : type", "+ field : type", "+ field : type", "+ field : type", "+ field : type", "+ field : type", "+ field : type", "+ field : type" };

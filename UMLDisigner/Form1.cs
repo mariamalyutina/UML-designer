@@ -145,9 +145,12 @@ namespace UMLDisigner
                 {
                     if (Core.SelectedFigures[i] is Arrow)
                     {
-                        Core.Figures.Remove(Core.SelectedFigures[i]);
-                        Core.SelectedFigures[i] = Core.Factory.GetShape(Core.SelectedFigures[i].Color, Core.SelectedFigures[i].Width, Core.SelectedFigures[i].MouseDownPosition, Core.SelectedFigures[i].MouseUpPosition);
-                        Core.Figures.Add(Core.SelectedFigures[i]);
+                        if (Core.Factory is AbstractArrowFactory)
+                        {
+                            Core.Figures.Remove(Core.SelectedFigures[i]);
+                            Core.SelectedFigures[i] = Core.Factory.GetShape(Core.SelectedFigures[i].Color, Core.SelectedFigures[i].Width, Core.SelectedFigures[i].MouseDownPosition, Core.SelectedFigures[i].MouseUpPosition);
+                            Core.Figures.Add(Core.SelectedFigures[i]);
+                        }
                     }
                 }
                 Core.Brush.Clear();
@@ -482,9 +485,6 @@ namespace UMLDisigner
                     Core.CrntMH = new MouseHandlerTextEditing();
                 }
             }
-                
-            
-        }
 
         private void button_Editing_Click(object sender, EventArgs e)
         {
@@ -492,12 +492,15 @@ namespace UMLDisigner
             Core.SelectedFigures.Clear();
             Core.Brush.DrawMoveFigure(Core.Figures);
             Core.CrntMH = new MouseHandlerEditing();
-
         }
     }
 
-        
-    }
+    
+}
 
-    }
+
+        
+    
+
+    
 

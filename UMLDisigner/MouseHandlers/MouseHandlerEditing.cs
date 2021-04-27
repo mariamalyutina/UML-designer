@@ -26,13 +26,29 @@ namespace UMLDisigner
         {
             _isResizing = false;
             _isMoving = false;
-           
+
 
             foreach (IFigure figure in Core.Figures)
             {
                 if (figure.IsHavingPoint(e.Location))
                 {
-                    Core.SelectedFigures.Add(figure);
+                    if (Core.SelectedFigures.Count > 0)
+                    {
+                        for (int i = 0; i < Core.SelectedFigures.Count; ++i)
+                        {
+                            if (Core.SelectedFigures[i] != figure)
+                            {
+                                Core.SelectedFigures.Clear();
+                                Core.SelectedFigures.Add(figure);
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        Core.SelectedFigures.Clear();
+                        Core.SelectedFigures.Add(figure);
+                    }
                     if (figure is Arrow)
                     {
                         if (Math.Abs(figure.MouseDownPosition.X - e.X) < 10 && Math.Abs(figure.MouseDownPosition.Y - e.Y) < 10)
