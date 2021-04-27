@@ -5,10 +5,11 @@ using System.Text;
 
 namespace UMLDisigner
 {
+    [Serializable]
     public abstract class AbstractClassFigure : IFigure
     {
-        protected Font _font = new Font("Arial", 16);
-        protected SolidBrush _brush = new SolidBrush(Color.Black);
+        public Font _font = new Font("Arial", 16);
+        public SolidBrush _brush = new SolidBrush(Color.Black);
 
         public Point MouseUpPosition { get; set; }
         public Point MouseDownPosition { get; set; }

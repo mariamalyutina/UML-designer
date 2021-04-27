@@ -1,8 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using System.Windows.Forms;
-
+using Newtonsoft.Json;
 
 namespace UMLDisigner
 {
@@ -282,6 +286,61 @@ namespace UMLDisigner
 
             Core.Brush.DrawMoveFigure(Core.Figures);
         }
+
+        private void button_Save_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.InitialDirectory = @"C:\Users\kushk\OneDrive\Desktop\umldesigner";
+            saveFileDialog1.Filter = "jpg file|*.JPG |uml file|*.uml";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                String filePath = saveFileDialog1.FileName;
+
+                String serialised = JsonConvert.SerializeObject(Core.Figures, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+
+
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                     writer.WriteLine(serialised);
+                }
+            }
+        }
+
+        private void button_Load_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = @"C:\Users\kushk\OneDrive\Desktop\umldesigner";
+// openFileDialog1.Filter = "jpg file|*.JPG |uml file|*.uml";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                String filePath = openFileDialog1.FileName;
+
+                string ser = "";
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    ser = sr.ReadToEnd();
+                }
+
+                Core.Figures.Clear();
+                Core.SelectedFigures.Clear();
+
+                Core.Figures = JsonConvert.DeserializeObject<List<IFigure>>(ser,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+
+                Core.Brush.Clear();
+                Core.Brush.DrawMoveFigure(Core.Figures);
+            }
+
+
+        }
+
 
     }
 }

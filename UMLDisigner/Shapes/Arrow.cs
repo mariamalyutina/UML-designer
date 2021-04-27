@@ -5,6 +5,7 @@ using System.Text;
 
 namespace UMLDisigner
 {
+  //  [Serializable]
     public class Arrow : IFigure
     {
         public Point MouseUpPosition { get; set; }
@@ -14,9 +15,13 @@ namespace UMLDisigner
         public int Width { get; set; }
 
         public AbstractLine LineType;
-        protected AbstractCap _capTypeBeginning;
-        protected AbstractCap _capTypeEnding;
+        public AbstractCap _capTypeBeginning;
+        public AbstractCap _capTypeEnding;
 
+        public Arrow()
+        {
+
+        }
 
         public Arrow(Color color, int width, AbstractLine lineType, AbstractCap firstCap, AbstractCap endCap)
         {
@@ -90,31 +95,33 @@ namespace UMLDisigner
 
         }
 
-        public override bool Equals(object obj)
-        {
-            Arrow arrow = (Arrow)obj;
-            String lineType = Convert.ToString(this.LineType);
-            String lineTypeArrow = Convert.ToString(arrow.LineType);
-            String capTypeBeginning = Convert.ToString(this._capTypeBeginning);
-            String capTypeBeginningArrow = Convert.ToString(arrow._capTypeBeginning);
-            String capTypeEnding = Convert.ToString(this._capTypeEnding);
-            String capTypeEndingArrow = Convert.ToString(arrow._capTypeEnding);
+        //public override bool Equals(object obj)
+        //{
+            
+        //        Arrow arrow = (Arrow)obj;
+        //        String lineType = Convert.ToString(this.LineType);
+        //        String lineTypeArrow = Convert.ToString(arrow.LineType);
+        //        String capTypeBeginning = Convert.ToString(this._capTypeBeginning);
+        //        String capTypeBeginningArrow = Convert.ToString(arrow._capTypeBeginning);
+        //        String capTypeEnding = Convert.ToString(this._capTypeEnding);
+        //        String capTypeEndingArrow = Convert.ToString(arrow._capTypeEnding);
 
-            if (this.MouseUpPosition != arrow.MouseUpPosition || this.MouseDownPosition != arrow.MouseDownPosition
-                || this.Color != arrow.Color || this.Width != arrow.Width || lineType != lineTypeArrow
-                || capTypeBeginning != capTypeBeginningArrow || capTypeEnding != capTypeEndingArrow)
-            {
-                return false;
-            }
-            return true;
-        }
+        //        if (this.MouseUpPosition != arrow.MouseUpPosition || this.MouseDownPosition != arrow.MouseDownPosition
+        //            || this.Color != arrow.Color || this.Width != arrow.Width || lineType != lineTypeArrow
+        //            || capTypeBeginning != capTypeBeginningArrow || capTypeEnding != capTypeEndingArrow)
+        //        {
+        //            return false;
+        //        }
+        //        return true;
+            
+        //}
 
-        public override string ToString()
-        {
-            string s = $"MouseDownPosition: {MouseDownPosition} MouseUpPosition {MouseUpPosition} Color: {Color} Width: {Width} LineType: {LineType} _capTypeBeginnig: {_capTypeBeginning} _capTypeEnding: {_capTypeEnding}";
+        //public override string ToString()
+        //{
+        //    string s = $"MouseDownPosition: {MouseDownPosition} MouseUpPosition {MouseUpPosition} Color: {Color} Width: {Width} LineType: {LineType} _capTypeBeginnig: {_capTypeBeginning} _capTypeEnding: {_capTypeEnding}";
 
-            return s;
-        }
+        //    return s;
+        //}
 
 
         public List<Point> GetFigurePoints()
