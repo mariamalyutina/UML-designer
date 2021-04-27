@@ -477,16 +477,6 @@ namespace UMLDisigner
                     Core.textBox.ForeColor = fontDialog1.Color;
 
                 }
-            }
-
-        private void TextChange_Click(object sender, EventArgs e)
-        {
-            if (Core.SelectedFigures.Count == 1 && Core.SelectedFigures[0] is AbstractClassFigure)
-            {
-                if (Core.CrntMH is MouseHandlerTextEditing)
-                {
-                    Core.CrntMH = new MouseHandlerEditing();
-                }
                 else
                 {
                     Core.CrntMH = new MouseHandlerTextEditing();
@@ -504,6 +494,9 @@ namespace UMLDisigner
             Core.CrntMH = new MouseHandlerEditing();
 
         }
+    }
+
+        
     }
 
     }
