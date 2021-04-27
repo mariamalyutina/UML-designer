@@ -47,7 +47,21 @@ namespace UMLDisigner
 
         }
 
-         
+        public void DrawMoveFigure(List<IFigure> figure, int deltaX = 0, int deltaY = 0)
+        {
+            _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+            graphics = Graphics.FromImage(_tmpBitmap);
+
+            foreach (IFigure a in figure)
+            {
+                a.Draw(graphics, deltaX, deltaY);
+            }
+            pb.Image = _tmpBitmap;
+            pb.Invalidate();
+
+        }
+
+
 
         public void DrawMoveFigure(IFigure figure, int deltaX = 0, int deltaY = 0)
         {
@@ -63,7 +77,7 @@ namespace UMLDisigner
         }
 
 
-        public void DrawMoveTmpFigure(List<IFigure> figure)
+        public void DrawMoveTmpFigure(List<IFigure> figure, int deltaX = 0, int deltaY = 0)
         {
             _tempBitmap = (Bitmap)_mainBitmap.Clone();
             graphics = Graphics.FromImage(_tempBitmap);
@@ -72,7 +86,7 @@ namespace UMLDisigner
             {
                 //pen.Color = a.Color;
                 //pen.Width = a.Width;
-                a.Draw(graphics);
+                a.Draw(graphics, deltaX, deltaY);
             }
             pb.Image = _tempBitmap;
             pb.Invalidate();
@@ -100,7 +114,9 @@ namespace UMLDisigner
                     Size sizeOne = new Size(10, 10);
                     Size sizeTwo = new Size(-10, -10);
 
-                    graphics.DrawPolygon(pen, Geometry.GetRectangle(Point.Add(figure.MouseUpPosition, sizeOne), Point.Add(figure.MouseDownPosition, sizeTwo)));
+                    graphics.DrawPolygon(pen, Geometry.GetRectangle(Point.Add(figure.MouseUpPosition, sizeOne),
+                        Point.Add(figure.MouseDownPosition, sizeTwo)));
+                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
                 }
                 pb.Invalidate();
             }

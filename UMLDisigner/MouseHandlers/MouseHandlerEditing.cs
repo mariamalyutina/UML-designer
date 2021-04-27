@@ -26,13 +26,29 @@ namespace UMLDisigner
         {
             _isResizing = false;
             _isMoving = false;
-           
 
             foreach (IFigure figure in Core.Figures)
             {
                 if (figure.IsHavingPoint(e.Location))
                 {
-                    Core.SelectedFigures.Add(figure);
+                    if (Core.SelectedFigures.Count > 0)
+                    {
+                        for(int i=0;i<Core.SelectedFigures.Count; ++i)
+                        {
+                            if(Core.SelectedFigures[i] != figure)
+                            {
+                                Core.SelectedFigures.Clear();
+                                Core.SelectedFigures.Add(figure);
+                            }
+                            
+                        }
+                    }
+                    else
+                    {
+                        Core.SelectedFigures.Clear();
+                        Core.SelectedFigures.Add(figure);
+                    }
+
                     if (figure is Arrow)
                     {
                         if (Math.Abs(figure.MouseDownPosition.X - e.X) < 10 && Math.Abs(figure.MouseDownPosition.Y - e.Y) < 10)
@@ -59,7 +75,6 @@ namespace UMLDisigner
                     }
 
                 }
-
             }
 
             if (Core.SelectedFigures.Count == 0)
@@ -91,7 +106,7 @@ namespace UMLDisigner
             {
                 int deltaX = e.Location.X - _pointMovingMouseDownPosition.X;
                 int deltaY = e.Location.Y - _pointMovingMouseDownPosition.Y;
-                Core.Brush.DrawMoveFigure(Core.Figure, deltaX, deltaY);
+                Core.Brush.DrawMoveFigure(Core.SelectedFigures, deltaX, deltaY);
                 return;
             }
             if (_isEnd)
@@ -110,11 +125,15 @@ namespace UMLDisigner
 
         public void MouseUp(MouseEventArgs e)
         {
-            if(_isMoving)
+            if (_isMoving)
             {
                 Size delta = new Size(e.Location.X - _pointMovingMouseDownPosition.X, e.Location.Y - _pointMovingMouseDownPosition.Y);
-                Core.Figure.MouseDownPosition = Point.Add(Core.Figure.MouseDownPosition, delta);
-                Core.Figure.MouseUpPosition = Point.Add(Core.Figure.MouseUpPosition, delta);
+                foreach (IFigure figure in Core.SelectedFigures)
+                {
+                    figure.MouseDownPosition = Point.Add(Core.Figure.MouseDownPosition, delta);
+                    figure.MouseUpPosition = Point.Add(Core.Figure.MouseUpPosition, delta);
+                }
+
             }
 
             if (_isMoving || _isResizing)
